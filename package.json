@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Danske IT Recruitmet App",
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+    "start": "tsc && concurrently \"tsc -w\" \"lite-server -c bs-config.json\" ",
     "lint": "tslint ./app/**/*.ts -t verbose",
     "lite": "lite-server",
     "test": "tsc && concurrently \"tsc -w\" \"karma start karma.conf.js\"",
