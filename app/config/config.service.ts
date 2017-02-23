@@ -19,13 +19,10 @@ export class ConfigService {
           this.config = config;
           resolve();
         }); */
-		this.http.get('app/config/appConfig.json')
-			.success(function(data){
-				console.log(data);
-			})
-			.error(function(data){
-				console.log('Error'+data);
-			});
+		this.http.get('app/config/appConfig.json').then(
+			function(data){console.log(data);}
+			,function(err){console.log(err);}
+		);
     });
   }
 
