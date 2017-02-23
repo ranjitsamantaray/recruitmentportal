@@ -1,7 +1,7 @@
 {
   "name": "recruitmentapp",
   "version": "1.0.0",
-  "description": "Danske IT Recruitmet App",
+  "description": "Danske IT Recruitmet App ",
   "scripts": {
     "start": "concurrently \"tsc -w\" \"lite-server\" ",
     "lint": "tslint ./app/**/*.ts -t verbose",
