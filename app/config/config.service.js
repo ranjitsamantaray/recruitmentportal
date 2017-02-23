@@ -21,14 +21,12 @@ var ConfigService = (function () {
         var _this = this;
         console.log('Inside Load');
         return new Promise(function (resolve) {
-			return '{"apiUrl": "http://recruitmentservices.azurewebsites.net/","mode": "Development"}';
-			
- /*           _this.http.get('http://dbrecruitmentapp.azurewebsites.net/appConfig.json').map(function (res) { return res.json(); })
+            _this.http.get('app/config/appConfig.json').map(function (res) { return res.json(); })
                 .subscribe(function (config) {
                 console.log('Configuration loaded...........');
                 _this.config = config;
-                resolve();  */
-    
+                resolve();
+            });
         });
     };
     ConfigService = __decorate([
