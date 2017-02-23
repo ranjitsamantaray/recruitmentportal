@@ -12,7 +12,7 @@ export class ConfigService {
 
   load() {
     console.log('Inside Load');
-    return new Promise((resolve) => resolve(JSON.stringify({"apiUrl": "http://recruitmentservices.azurewebsites.net/", "mode": "Development"})));
+    return new Promise((resolve) => resolve('{"apiUrl": "http://recruitmentservices.azurewebsites.net/", "mode": "Development"}'));
   }
 
 }
