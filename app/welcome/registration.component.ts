@@ -32,13 +32,15 @@ export class RegistrationComponent implements OnInit {
         let target: HTMLInputElement = <HTMLInputElement> eventObj.target;
         let files: FileList = target.files;
         this.file = files[0];
-       // console.log(this.file); 
+       //console.log(this.file); 
   }
 
   ngOnInit() {
    // this.r =this.router.url;
+	console.log('inside registration component');
     this._skillService.getSkills().subscribe(skills => this.skills = skills,
         error => this.errorMessage = <any>error);
+	console.log('returned skill service');
     this._consultancyService.getConsultancy().subscribe(cons=>this.Consul=cons,
       error => this.errorMessage = <any>error);
 
