@@ -1,0 +1,33 @@
+
+<div id="test_header">
+    <div id="test_header_div"></div>
+    <div id="test_header_text">
+      <span>ONLINE TEST</span>
+    </div>
+    <div id="time_text">
+      <span>Time Remaining: </span>      
+      <my-timer></my-timer>
+    </div><br><br>
+   <div id="test_div" (click)="show=false" > 
+		<div id="question_div">
+			
+          <div id="pure-control-group" *ngFor="let q of questions" >
+            <br>
+              <div id="pure-control-group">{{q.ID}}. {{q.Questions}} </div>
+              <textarea id="pure-control-group" rows="7" cols="50" autofocus placeholder="Answers" [(ngModel)]="q.Answer"></textarea>
+              <br>
+          </div>
+    
+		</div>     
+</div>
+
+</div>
+<div id="savemsg_div" *ngIf="show">The answers are saved..</div>
+<input id="test_save_button" type="submit" name="Save" value="Save" (click)="gotoSaveTest()" />
+<input id="test_review_button" type="submit" name="Review" value="Review" (click)="gotoReviewTest()"/>
+<input id="test_submit_button" type="submit" name="Submit" value="Submit" (click)="gotoSubmitTest()"/>
+<div id="trailer">
+  <input id="trailer_input" type="text" value="Danske IT Recruitment team - 2017"/>
+  </div>
+<div id="trailer_img_con" ><img id="trailer_img" src="images/u11.png"/></div>
+         

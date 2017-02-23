@@ -1,0 +1,22 @@
+[
+    {
+        "ID" : 1,
+        "Name" : "Dotnet"
+    },
+    {
+        "ID" : 2,
+        "Name" : "Java"
+    },
+    {
+        "ID" : 3,
+        "Name" : "Angular"
+    },
+    {
+        "ID" : 4,
+        "Name" : "BD"
+    },
+    {
+        "ID" : 5,
+        "Name" : "PLI"
+    }
+]
