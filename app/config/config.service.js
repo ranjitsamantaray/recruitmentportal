@@ -28,7 +28,7 @@ var ConfigService = (function () {
                 console.log('Configuration loaded...........');
                 _this.config = config;
                 resolve();  */
-            });
+    
         });
     };
     ConfigService = __decorate([
