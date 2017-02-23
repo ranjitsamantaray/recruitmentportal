@@ -22,7 +22,7 @@ var ConfigService = (function () {
         console.log('Inside Load');
         return new Promise(function (resolve) {
 			return '{"apiUrl": "http://recruitmentservices.azurewebsites.net/","mode": "Development"}';
-}
+			
  /*           _this.http.get('http://dbrecruitmentapp.azurewebsites.net/appConfig.json').map(function (res) { return res.json(); })
                 .subscribe(function (config) {
                 console.log('Configuration loaded...........');
