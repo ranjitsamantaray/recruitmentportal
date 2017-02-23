@@ -13,12 +13,19 @@ export class ConfigService {
   load() {
     console.log('Inside Load');
     return new Promise((resolve) => {
-      this.http.get('app/config/appConfig.json').map(res => res.json())
+/*      this.http.get('app/config/appConfig.json').map(res => res.json())
         .subscribe(config => {
           console.log('Configuration loaded...........');
           this.config = config;
           resolve();
-        });
+        }); */
+		this.http.get('app/config/appConfig.json')
+			.success(function(data){
+				console.log(data);
+			})
+			.error(function(data){
+				console.log('Error'+data);
+			});
     });
   }
 
