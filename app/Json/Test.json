@@ -1,0 +1,38 @@
+[
+    {
+        "CandidateID" : 1,
+        "QuestionID": 1,
+        "Status" : "",
+        "Question" : "What is Encapsulation",
+        "Answer" : "Encapsulation is.."
+    },
+    {
+        "CandidateID" : 1,
+        "QuestionID": 2,
+        "Status" : "",
+        "Question" : "What is a class",
+        "Answer" : "Class is.."
+    },
+    {
+        "CandidateID" : 1,
+        "QuestionID": 3,
+        "Status" : "",
+        "Question" : "What is an object?",
+        "Answer" : "Object is.."
+    },
+    {
+        "CandidateID" : 1,
+        "QuestionID": 4,
+        "Status" : "",
+        "Question" : "Explain the basic features of OOPs",
+        "Answer" : "Opps is.."
+    },
+    {
+        "CandidateID" : 1,
+        "QuestionID": 5,
+        "Status" : "",
+        "Question" : "What is the difference between arrays and collection?",
+        "Answer" : "Array is.."
+    }
+    
+]
