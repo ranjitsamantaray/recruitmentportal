@@ -15,7 +15,7 @@ var WelcomeStaticComponent = (function () {
         this.router = _router;
     }
     WelcomeStaticComponent.prototype.gotoLogInPage = function () {
-        ///this.router.navigate(['login']);
+        this.router.navigate(['login']);
     };
     WelcomeStaticComponent = __decorate([
         core_1.Component({
