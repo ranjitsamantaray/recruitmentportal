@@ -38,12 +38,10 @@ var SkillService = (function (_super) {
         console.log('Inside SkillService');
         this.config = this.configSrvc.config;
         console.log('Configurations: ' + JSON.stringify(this.config));
-        //  this.url = this.config['apiUrl'] + 'recruitment/home';
-        this.url = 'http://recruitmentservices.azurewebsites.net/recruitment/home';
+        this.url = this.config['apiUrl'] + 'recruitment/home';
     }
     SkillService.prototype.getSkills = function () {
         var _this = this;
-        console.log('Url:' + this.url);
         return this._http.get(this.url)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('All : ' + JSON.stringify(data)); })

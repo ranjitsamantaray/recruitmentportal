@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { HandleError } from './HandleError.service';
 import { ConfigService } from '../config/config.service';
+import * as Rs from 'rxjs/Rx';
 
 @Injectable()
 export class ConsultancyService{
@@ -13,18 +14,24 @@ export class ConsultancyService{
   constructor(private _http: Http,private _handleError : HandleError,
        private configSrvc: ConfigService,) {
         // console.log('Inside ConsultancyService');
-         this.config = this.configSrvc.config;
-        // console.log('Configurations: '+ JSON.stringify(this.config));
-         this.url = 'app/Json/Consultancy.json';   
+         
          }
-
+  con : Array<Consultancy>;
   getConsultancy(): Observable<Consultancy[]>
   {
-    return this._http.get(this.url)
-    .map((response : Response) => <Consultancy[]> response.json())
-    //.do(data => console.log('All : ' + JSON.stringify(data)))
-    .catch(res => this._handleError.handleError(res));
+    this.con = new Array<Consultancy>();
+    this.con.push(new Consultancy(1,"Direct"));
+    this.con.push(new Consultancy(2,"ABC"));
+    this.con.push(new Consultancy(3,"A2HR"));
+    this.con.push(new Consultancy(4,"Arista"));
+    this.con.push(new Consultancy(5,"Armour"));
+    
+    return Rs.Observable.from([this.con]);
+    // return this._http.get(this.url)
+    // .map((response : Response) => <Consultancy[]> response.json())
+    // //.do(data => console.log('All : ' + JSON.stringify(data)))
+    // .catch(res => this._handleError.handleError(res));
   }
-   }
+}
   
  
