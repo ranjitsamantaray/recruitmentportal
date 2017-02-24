@@ -32,6 +32,7 @@ export class SkillService extends SkillMethods {
 
   getSkills(): Observable<Skill[]>
   {
+	console.log('Url:' + this.url);
     return this._http.get(this.url)
     .map((response : Response) => <Skill[]> response.json())
     .do(data => console.log('All : ' + JSON.stringify(data)))
