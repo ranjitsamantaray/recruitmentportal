@@ -26,13 +26,11 @@ export class SkillService extends SkillMethods {
     console.log('Inside SkillService');
     this.config = this.configSrvc.config;
     console.log('Configurations: '+ JSON.stringify(this.config));
-  //  this.url = this.config['apiUrl'] + 'recruitment/home';
-	this.url = 'http://recruitmentservices.azurewebsites.net/recruitment/home';
+    this.url = this.config['apiUrl'] + 'recruitment/home';
   }  
 
   getSkills(): Observable<Skill[]>
   {
-	console.log('Url:' + this.url);
     return this._http.get(this.url)
     .map((response : Response) => <Skill[]> response.json())
     .do(data => console.log('All : ' + JSON.stringify(data)))
