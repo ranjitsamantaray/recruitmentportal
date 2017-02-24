@@ -12,7 +12,7 @@ export class ConfigService {
     console.log('ctor for ConfigService called.');
     this.obj = 
       {
-        "apiUrl": "http://localhost:3000/",
+        "apiUrl": "http://recruitmentservices.azurewebsites.net/",
         "mode": "Development"
       };
       this.output = <JSON>this.obj;
