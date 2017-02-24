@@ -35,15 +35,18 @@ var SkillService = (function (_super) {
         this._http = _http;
         this.configSrvc = configSrvc;
         this._handleError = _handleError;
-        //console.log('Inside SkillService');
+        console.log('Inside SkillService');
         this.config = this.configSrvc.config;
-        //console.log('Configurations: '+ JSON.stringify(this.config));
-        this.url = this.config['apiUrl'] + 'recruitment/home';
+        console.log('Configurations: ' + JSON.stringify(this.config));
+        //  this.url = this.config['apiUrl'] + 'recruitment/home';
+        this.url = 'http://recruitmentservices.azurewebsites.net/recruitment/home';
     }
     SkillService.prototype.getSkills = function () {
         var _this = this;
+        console.log('Url:' + this.url);
         return this._http.get(this.url)
             .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All : ' + JSON.stringify(data)); })
             .catch(function (res) { return _this._handleError.handleError(res); });
     };
     // yet to implement

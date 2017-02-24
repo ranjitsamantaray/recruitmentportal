@@ -28,12 +28,14 @@ var RegistrationComponent = (function () {
         var target = eventObj.target;
         var files = target.files;
         this.file = files[0];
-        // console.log(this.file); 
+        //console.log(this.file); 
     };
     RegistrationComponent.prototype.ngOnInit = function () {
         var _this = this;
         // this.r =this.router.url;
+        console.log('inside registration component');
         this._skillService.getSkills().subscribe(function (skills) { return _this.skills = skills; }, function (error) { return _this.errorMessage = error; });
+        console.log('returned skill service');
         this._consultancyService.getConsultancy().subscribe(function (cons) { return _this.Consul = cons; }, function (error) { return _this.errorMessage = error; });
         this.candidate = new Candidate_1.Candidate(null, '', '', '', null, '0', this.today, '0', null, '', '', null);
     };

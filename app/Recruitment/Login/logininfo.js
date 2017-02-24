@@ -8,4 +8,4 @@ var LoginInfo = (function () {
     return LoginInfo;
 }());
 exports.LoginInfo = LoginInfo;
-//# sourceMappingURL=logininfo.js.map
+//# sourceMappingURL=Logininfo.js.map
