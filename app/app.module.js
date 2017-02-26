@@ -37,6 +37,7 @@ var angular2_jwt_1 = require('angular2-jwt');
 var auth_guard_1 = require('./auth.guard');
 var config_service_1 = require('./config/config.service');
 var HandleError_service_1 = require('./Services/HandleError.service');
+var common_1 = require('@angular/common');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -57,7 +58,7 @@ var AppModule = (function () {
                 Timer_component_1.TimerComponent
             ],
             bootstrap: [app_component_1.AppComponent],
-            providers: [{ provide: Skills_service_1.SkillMethods, useClass: Skills_service_1.SkillService }, { provide: Candidate_service_1.CandidateMethods, useClass: Candidate_service_1.CandidateService }, { provide: AuthenticateCandidate_service_1.AuthCandidateMethods, useClass: AuthenticateCandidate_service_1.AuthCandidateDummyService }, { provide: Questions_service_1.QuestionsMethods, useClass: Questions_service_1.QuestionsService }, { provide: AuthenticateUser_service_1.AuthUserMethods, useClass: AuthenticateUser_service_1.AuthUserDummyService }, { provide: Test_service_1.TestMethods, useClass: Test_service_1.TestDummyService }, { provide: Login_service_1.Login, useClass: Login_service_1.LoginReal }, Consultancy_service_1.ConsultancyService, { provide: HandleError_service_1.HandleError, useClass: HandleError_service_1.HandleErrorService }, auth_guard_1.AuthGuard].concat(angular2_jwt_1.AUTH_PROVIDERS, [config_service_1.ConfigService, { provide: core_1.APP_INITIALIZER,
+            providers: [{ provide: Skills_service_1.SkillMethods, useClass: Skills_service_1.SkillService }, { provide: Candidate_service_1.CandidateMethods, useClass: Candidate_service_1.CandidateService }, { provide: AuthenticateCandidate_service_1.AuthCandidateMethods, useClass: AuthenticateCandidate_service_1.AuthCandidateDummyService }, { provide: Questions_service_1.QuestionsMethods, useClass: Questions_service_1.QuestionsService }, { provide: AuthenticateUser_service_1.AuthUserMethods, useClass: AuthenticateUser_service_1.AuthUserDummyService }, { provide: Test_service_1.TestMethods, useClass: Test_service_1.TestDummyService }, { provide: Login_service_1.Login, useClass: Login_service_1.LoginReal }, Consultancy_service_1.ConsultancyService, { provide: HandleError_service_1.HandleError, useClass: HandleError_service_1.HandleErrorService }, { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }, auth_guard_1.AuthGuard].concat(angular2_jwt_1.AUTH_PROVIDERS, [config_service_1.ConfigService, { provide: core_1.APP_INITIALIZER,
                 useFactory: function (config) { return function () { return config.load(); }; },
                 deps: [config_service_1.ConfigService],
                 multi: true }])

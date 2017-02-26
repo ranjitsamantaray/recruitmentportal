@@ -28,8 +28,7 @@ import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { AuthGuard } from './auth.guard';
 import { ConfigService } from './config/config.service';
 import { HandleError,HandleErrorService } from './Services/HandleError.service';
-
-
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule ({
   imports: [ BrowserModule, routing, HttpModule, FormsModule,],
@@ -55,6 +54,7 @@ import { HandleError,HandleErrorService } from './Services/HandleError.service';
               {provide:TestMethods, useClass:TestDummyService},
               {provide:Login, useClass:LoginReal},ConsultancyService,
               {provide:HandleError, useClass:HandleErrorService},
+              {provide: LocationStrategy, useClass: HashLocationStrategy},
               AuthGuard, ...AUTH_PROVIDERS,
               ConfigService,
               { provide: APP_INITIALIZER,
