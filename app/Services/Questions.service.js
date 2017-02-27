@@ -78,7 +78,7 @@ var QuestionsService = (function (_super) {
         //var body = "this is body" ;
         //  var body =`Answers=${JSON.stringify(Answers)}`;
         var body = { "Answers": Answers };
-        console.log(body);
+        //console.log(JSON.stringify(body));
         //var body =JSON.stringify(Answers);
         // var body =JSON.stringify({Answers :Answers});
         // console.log(JSON.stringify(Answers[1]));
@@ -91,7 +91,7 @@ var QuestionsService = (function (_super) {
         //headers.append('key',`${key}`);
         headers.append('Content-Type', 'application/json');
         return this._http
-            .post(this.url2, body, { headers: headers })
+            .post(this.url2, JSON.stringify(body), { headers: headers })
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('All : ' + JSON.stringify(data)); })
             .catch(function (res) { return _this._handleError.handleError(res); });
