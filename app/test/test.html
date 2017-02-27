@@ -11,9 +11,9 @@
    <div id="test_div" (click)="show=false" > 
 		<div id="question_div">
 			
-          <div id="pure-control-group" *ngFor="let q of questions" >
+          <div id="pure-control-group" *ngFor="let q of questions; let i=index" >
             <br>
-              <div id="pure-control-group">{{q.ID}}. {{q.Questions}} </div>
+              <div id="pure-control-group">{{i + 1}}. {{q.Questions}} </div>
               <textarea id="pure-control-group" rows="7" cols="50" autofocus placeholder="Answers" [(ngModel)]="q.Answer"></textarea>
               <br>
           </div>

@@ -8,7 +8,7 @@
   <input id="phone" type="text" placeholder="Phone" [(ngModel)]="candidate.Phone" (keyup)="errorMessage=''"/>
   <input id="exp" type="text" placeholder="Experience in Years" [(ngModel)]="candidate.Experience" (keyup)="errorMessage=''"/>
   <select id="skill" [(ngModel)]="candidate.Skill" (change)="errorMessage=''">
-    <option>--Select your skill---</option>
+    <option >--Select your skill---</option>
     <option *ngFor="let skill of skills" [value]="skill.SKILL">{{skill.SKILL}}</option>
   </select>
   <select id="consultancy" [(ngModel)]="candidate.Consultancy" (change)="errorMessage=''">
