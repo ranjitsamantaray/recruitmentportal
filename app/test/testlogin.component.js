@@ -35,18 +35,21 @@ var TestLoginComponent = (function () {
         else {
             this.token = this._authService.login(this.email, this.pwd)
                 .subscribe(function (result) {
-                if (result === true) {
+                if (result === 't')
                     // login successful
                     _this.router.navigate(['/test']);
-                }
-                else {
-                    // login failed
-                    // this.t=JSON.parse(localStorage.getItem('emsg')).status;
-                    _this.errorMessage = "Invalid credentials";
-                }
+                //this.errorMessage="successful";
+            }, function (err) {
+                // login failed
+                // this.t=JSON.parse(localStorage.getItem('emsg')).status;
+                if (err === 'f')
+                    console.log(err);
+                _this.errorMessage = "Invalid credentials";
+                // this.loading = false;
             });
-            this.token = JSON.parse(localStorage.getItem('id_token')).token;
         }
+        //this.token=JSON.parse(localStorage.getItem('id_token')).token;
+        //this.t=JSON.parse(localStorage.getItem('id_token')).key;
     };
     TestLoginComponent = __decorate([
         core_1.Component({

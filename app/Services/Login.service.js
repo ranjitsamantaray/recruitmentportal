@@ -42,30 +42,43 @@ var LoginReal = (function (_super) {
         this.url = this.config['apiUrl'] + 'login/auth';
     }
     LoginReal.prototype.login = function (Email, Password) {
-        var _this = this;
         var body = "Email=" + Email + "&Password=" + Password;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this._http
             .post(this.url, body, { headers: headers })
             .map(function (response) {
+            //  console.log(response);
+            //  console.log(response.json().status);
+            //  switch(response.json().status){
+            //   case 401 : return false;
+            //   case 200 : return true;
+            //   default: return false;
+            //  }
             // login successful if there's a jwt token in the response
             var token = response.json() && response.json().Token;
-            //let tok=response.json().Token;
+            // let tok=response.json().Token;
             if (token) {
                 // set token property
                 //this.token = token;
                 // store username and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('id_token', JSON.stringify({ token: response.json().Token }));
-                // return true to indicate successful login
-                return true;
+                //  console.log(JSON.parse(localStorage.getItem('id_token')).token);
+                //  console.log(JSON.parse(localStorage.getItem('id_token')).token.length);
+                return "t";
             }
-            else {
-                //localStorage.setItem('emsg',JSON.stringify({ status: response.json().status}));
-                // return false to indicate failed login  q6JWJaH0hs
-                return false;
+        }).catch(function (e) {
+            if (e.status === 401) {
+                return Observable_1.Observable.throw("f");
             }
-        }).catch(function (res) { return _this._handleError.handleError(res); });
+        });
+        //  } else {
+        //localStorage.setItem('emsg',JSON.stringify({ status: response.json().status}));
+        // return false to indicate failed login  q6JWJaH0hs
+        //     console.log("faiul");
+        //  return false;
+        // }
+        // }).catch(res => this._handleError.handleError(res));
     };
     LoginReal = __decorate([
         core_1.Injectable(), 

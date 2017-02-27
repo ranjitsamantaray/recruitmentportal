@@ -67,7 +67,7 @@ export class CandidateService extends CandidateMethods {
     return this._http
     .post(this.url, body, {headers:headers})
       .map((response : Response) => <string> response.json())
-      //.do(data => console.log('All : ' + JSON.stringify(data)))
+      .do(data => console.log('All : ' + JSON.stringify(data)))
       .catch(res => this._handleError.handleError(res));
   }
 
@@ -83,7 +83,7 @@ export class CandidateService extends CandidateMethods {
 //     return Observable.throw(error.json().error || 'Server error');
 //   }
 // }
-UploadResume(resume : File, email : string) : Observable<string>
+UploadResume(resume : File, email : string) : Observable<any>
   {    
     var formData = new FormData();
     formData.append('resume', resume, email);
@@ -91,7 +91,7 @@ UploadResume(resume : File, email : string) : Observable<string>
     
     return this._http
     .post(this.urlResume, formData, headers)
-      .map((response : Response) => <string> response.json())
+      .map((response : Response) => <any> response)
      // .do(data => console.log('All : ' + JSON.stringify(data)))
       .catch(res => this._handleError.handleError(res));
   }

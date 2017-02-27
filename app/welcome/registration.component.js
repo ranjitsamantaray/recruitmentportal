@@ -62,7 +62,7 @@ var RegistrationComponent = (function () {
         else if (!this.file) {
             this.errorMessage = "Please upload yoyr resume";
         }
-        else if (!this.candidate.Email.match(new RegExp(/^[A-Z0-9a-z._%+-]+@[A-Za-z0-9-]+.[A-Za-z]{2,4}$/))) {
+        else if (!this.candidate.Email.match(new RegExp(/^[A-Z0-9a-z._%+-]+@[A-Za-z0-9-.]+.[A-Za-z]{2,4}$/))) {
             this.errorMessage = "invalid email id eg:xyz@abc.com";
         }
         else if (!this.candidate.Phone.match(new RegExp(/^[0-9]{10}$/))) {

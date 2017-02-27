@@ -41,20 +41,20 @@ export class TestLoginComponent implements OnInit {
     else{
      this.token=this._authService.login(this.email,this.pwd)
      .subscribe(result => {
-                if (result === true) {
+                if (result === 't') 
                     // login successful
                     this.router.navigate(['/test']);
                     //this.errorMessage="successful";
-                } else {
+     }, err => {
                     // login failed
                   // this.t=JSON.parse(localStorage.getItem('emsg')).status;
+                  if(err === 'f')
+                   console.log(err);
                    this.errorMessage="Invalid credentials";
                    // this.loading = false;
-                }
-            });
-this.token=JSON.parse(localStorage.getItem('id_token')).token;
+                });
+    }
+//this.token=JSON.parse(localStorage.getItem('id_token')).token;
 //this.t=JSON.parse(localStorage.getItem('id_token')).key;
     }
   }
-}
-     

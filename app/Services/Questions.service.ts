@@ -70,6 +70,7 @@ export class QuestionsService extends QuestionsMethods {
     //var body = "this is body" ;
   //  var body =`Answers=${JSON.stringify(Answers)}`;
   let body = {"Answers": Answers};
+  console.log(body);
   //var body =JSON.stringify(Answers);
   // var body =JSON.stringify({Answers :Answers});
   // console.log(JSON.stringify(Answers[1]));
@@ -85,7 +86,7 @@ export class QuestionsService extends QuestionsMethods {
     return this._http
     .post(this.url2, body, {headers: headers} )
       .map((response : Response) => <String> response.json())
-     // .do(data => console.log('All : ' + JSON.stringify(data)))
+      .do(data => console.log('All : ' + JSON.stringify(data)))
       .catch(res => this._handleError.handleError(res));
   }
 

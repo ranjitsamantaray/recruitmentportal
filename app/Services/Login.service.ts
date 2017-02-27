@@ -12,7 +12,7 @@ import { ConfigService } from '../config/config.service';
 import { HandleError } from './HandleError.service';
 
 export abstract class Login{
-    abstract login(email : string, pwd : string): Observable<boolean>;
+    abstract login(email : string, pwd : string): Observable<string>;
 }
 
 @Injectable()
@@ -30,31 +30,47 @@ export class LoginReal extends Login {
   }  
 
 
-  login(Email : string, Password : string): Observable<boolean> {
+  login(Email : string, Password : string): Observable<string> {
     var body = `Email=${Email}&Password=${Password}`;
     var headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     return this._http
      .post(this.url, body, {headers:headers})
        .map((response: Response) => {
+        //  console.log(response);
+        //  console.log(response.json().status);
+        //  switch(response.json().status){
+        //   case 401 : return false;
+        //   case 200 : return true;
+        //   default: return false;
+        //  }
                 // login successful if there's a jwt token in the response
-                let token = response.json() && response.json().Token;
-                //let tok=response.json().Token;
+               let token = response.json() && response.json().Token;
+               // let tok=response.json().Token;
                 if (token) {
                     // set token property
                     //this.token = token;
- 
+
                     // store username and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('id_token', JSON.stringify({  token: response.json().Token}));
- 
+                     localStorage.setItem('id_token', JSON.stringify({  token: response.json().Token}));
+                  //  console.log(JSON.parse(localStorage.getItem('id_token')).token);
+                  //  console.log(JSON.parse(localStorage.getItem('id_token')).token.length);
+                   return "t";
                     // return true to indicate successful login
-                    return true;
-                } else {
+                    //return true;
+                  }
+       }).catch(e => {         
+       if (e.status === 401){
+          return Observable.throw("f");
+         }
+       });
+              //  } else {
                   //localStorage.setItem('emsg',JSON.stringify({ status: response.json().status}));
                     // return false to indicate failed login  q6JWJaH0hs
-                    return false;
-                }
-            }).catch(res => this._handleError.handleError(res));
+               //     console.log("faiul");
+                //  return false;
+               // }
+            // }).catch(res => this._handleError.handleError(res));
           
 
 
@@ -65,6 +81,7 @@ export class LoginReal extends Login {
   //   return Observable.throw(error.json().error || 'Server error');
   // }
 }
+
 
 
 @Injectable()

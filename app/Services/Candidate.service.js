@@ -71,6 +71,7 @@ var CandidateService = (function (_super) {
         return this._http
             .post(this.url, body, { headers: headers })
             .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All : ' + JSON.stringify(data)); })
             .catch(function (res) { return _this._handleError.handleError(res); });
     };
     CandidateService.prototype.getCandidate = function (Id) {
@@ -91,7 +92,7 @@ var CandidateService = (function (_super) {
         var headers = new http_1.Headers();
         return this._http
             .post(this.urlResume, formData, headers)
-            .map(function (response) { return response.json(); })
+            .map(function (response) { return response; })
             .catch(function (res) { return _this._handleError.handleError(res); });
     };
     CandidateService = __decorate([
