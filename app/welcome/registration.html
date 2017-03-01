@@ -8,11 +8,11 @@
   <input id="phone" type="text" placeholder="Phone" [(ngModel)]="candidate.Phone" (keyup)="errorMessage=''"/>
   <input id="exp" type="text" placeholder="Experience in Years" [(ngModel)]="candidate.Experience" (keyup)="errorMessage=''"/>
   <select id="skill" [(ngModel)]="candidate.Skill" (change)="errorMessage=''">
-    <option >--Select your skill---</option>
+    <option [value]="0" (click)="candidate.Skill='0'">--Select your skill---</option>
     <option *ngFor="let skill of skills" [value]="skill.SKILL">{{skill.SKILL}}</option>
   </select>
   <select id="consultancy" [(ngModel)]="candidate.Consultancy" (change)="errorMessage=''">
-    <option >--Select your consultancy---</option>
+    <option [value]="0" (click)="candidate.Consultancy='0'" >--Select your consultancy---</option>
     <option *ngFor="let cons of Consul" [value]="cons.ID">{{cons.Name}}</option>
   </select>
   <input id="file" type="file" name=" upload your documents" (change)="onChange($event);errorMessage=''" />

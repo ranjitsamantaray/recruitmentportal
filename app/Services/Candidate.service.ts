@@ -5,7 +5,7 @@ import { Candidate } from '../Recruitment/Candidate/Candidate';
 import {RegCandidate} from '../recruitment/registrationCandidate/RegCandidate'
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import * as Rs from 'rxjs/Rx';
+//import * as Rs from 'rxjs/Rx';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { ConfigService } from '../config/config.service';
@@ -34,6 +34,36 @@ export class CandidateService extends CandidateMethods {
     this.url = this.config['apiUrl'] + 'candidate/register';
     this.urlResume =this.config['apiUrl']+'candidate/upload';
   }  
+   // yet to implement
+  saveCandidate(candidate:Candidate): Observable<string>
+  {
+    var body=`Name=${candidate.Name}&Email=${candidate.Email}&Phone=${candidate.Phone}&Experience=${candidate.Experience}&Skill=${candidate.Skill}&Consultant_Name=${candidate.Consultancy}`; 
+    var headers = new Headers();
+    //console.log(body);
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    return this._http
+    .post(this.url, body, {headers:headers})
+      .map((response : Response) => <string> response.json())
+      //.do(data => console.log('All : ' + JSON.stringify(data)))
+      .catch(res => this._handleError.handleError(res));
+  }
+
+
+  UploadResume(resume : File, email : string) : Observable<any>
+  {    
+    var formData = new FormData();
+    formData.append('resume', resume, email);
+    var headers = new Headers();
+    
+    return this._http
+    .post(this.urlResume, formData, headers)
+      .map((response : Response) => <any> response)
+     // .do(data => console.log('All : ' + JSON.stringify(data)))
+      .catch(err =>{
+     return Observable.throw(err.statusText);
+  });
+
+}
 
   candidateLogin(email : string, pwd : string) : Observable<boolean>
   {
@@ -55,22 +85,7 @@ export class CandidateService extends CandidateMethods {
     .catch(res => this._handleError.handleError(res));
   }
 
-  // yet to implement
-  saveCandidate(candidate:Candidate): Observable<string>
-  {
-    var body=`Name=${candidate.Name}&Email=${candidate.Email}&Phone=${candidate.Phone}&Experience=${candidate.Experience}&Skill=${candidate.Skill}&Consultant_Name=${candidate.Consultancy}`; 
-    var headers = new Headers();
-    //console.log(body);
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    //let headers    = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-   // let options    = new RequestOptions({ headers: headers }); // Create a request option
-    return this._http
-    .post(this.url, body, {headers:headers})
-      .map((response : Response) => <string> response.json())
-      .do(data => console.log('All : ' + JSON.stringify(data)))
-      .catch(res => this._handleError.handleError(res));
-  }
-
+ 
   getCandidate(Id : number) : Observable<Candidate>
   {      
      return this._http.get(this.url)
@@ -78,23 +93,7 @@ export class CandidateService extends CandidateMethods {
     .do(data => console.log('All : ' + JSON.stringify(data))).filter(c => c.ID === Id).catch(res => this._handleError.handleError(res));
   }
 
-//   private handleError(error: Response) {
-//     console.error('An error occurred', error);
-//     return Observable.throw(error.json().error || 'Server error');
-//   }
-// }
-UploadResume(resume : File, email : string) : Observable<any>
-  {    
-    var formData = new FormData();
-    formData.append('resume', resume, email);
-    var headers = new Headers();
-    
-    return this._http
-    .post(this.urlResume, formData, headers)
-      .map((response : Response) => <any> response)
-     // .do(data => console.log('All : ' + JSON.stringify(data)))
-      .catch(res => this._handleError.handleError(res));
-  }
+
 
 }
 @Injectable()

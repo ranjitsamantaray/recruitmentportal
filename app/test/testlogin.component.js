@@ -19,10 +19,6 @@ var TestLoginComponent = (function () {
         this.router = _router;
     }
     TestLoginComponent.prototype.ngOnInit = function () {
-        // this.can = new Candidate(null,'','','',null,'',null,'',null,'',null);
-        //localStorage.removeItem('currentUser');
-        // this.token='';
-        // this.t='';
     };
     TestLoginComponent.prototype.gotoTestPage = function () {
         var _this = this;
@@ -36,20 +32,11 @@ var TestLoginComponent = (function () {
             this.token = this._authService.login(this.email, this.pwd)
                 .subscribe(function (result) {
                 if (result === 't')
-                    // login successful
                     _this.router.navigate(['/test']);
-                //this.errorMessage="successful";
             }, function (err) {
-                // login failed
-                // this.t=JSON.parse(localStorage.getItem('emsg')).status;
-                if (err === 'f')
-                    console.log(err);
-                _this.errorMessage = "Invalid credentials";
-                // this.loading = false;
+                _this.errorMessage = err;
             });
         }
-        //this.token=JSON.parse(localStorage.getItem('id_token')).token;
-        //this.t=JSON.parse(localStorage.getItem('id_token')).key;
     };
     TestLoginComponent = __decorate([
         core_1.Component({

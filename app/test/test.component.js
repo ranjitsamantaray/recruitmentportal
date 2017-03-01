@@ -11,50 +11,48 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var Questions_service_1 = require('../Services/Questions.service');
+var common_1 = require('@angular/common');
 var TestComponent = (function () {
-    function TestComponent(_router, _questionService) {
+    function TestComponent(_router, _questionService, location) {
+        var _this = this;
         this._questionService = _questionService;
+        this.location = location;
         this.router = _router;
-        //this.questions = new <Question>(null,'','','');
+        location.onPopState(function () {
+            _this.gotoSubmitTest();
+        });
+        this.index = 0;
     }
     TestComponent.prototype.ngOnInit = function () {
         this.getQuetions();
-        //this.questions[this.questions.length] = new Question('','','');
     };
     TestComponent.prototype.getQuetions = function () {
         var _this = this;
         this._questionService.getQuestions()
-            .subscribe(function (questions) { return _this.questions = questions; }, 
-        //this.length= (questions[questions.length].Answers).length,
-        function (error) { return _this.errorMessage = error; });
+            .subscribe(function (questions) { return _this.questions = questions; }, function (error) {
+            alert(error);
+            localStorage.removeItem('id_token');
+            _this.router.navigate(['testlogin']);
+        });
         this.show = false;
     };
     TestComponent.prototype.gotoSaveTest = function () {
         this.show = true;
     };
-    TestComponent.prototype.gotoReviewTest = function () {
-        //this.router.navigate(['review']);
-    };
     TestComponent.prototype.gotoSubmitTest = function () {
         var _this = this;
-        //debugger;
         this._questionService.saveQuestions(this.questions)
             .subscribe(function (can) {
-            //if (can == "") {
-            //this.message=(can.Status);
+            localStorage.removeItem('id_token');
             _this.router.navigate(['testsuccess']);
         }, function (error) { return _this.errorMessage = error; });
-        //if(confirm("Submit will close the test are sure you want to continue?")){
-        //localStorage.removeItem('id_token');
-        // localStorage.removeItem('Authlevel');
-        //this.router.navigate(['testsuccess']);
     };
     TestComponent = __decorate([
         core_1.Component({
             selector: 'test',
             templateUrl: './app/test/test.html'
         }), 
-        __metadata('design:paramtypes', [router_1.Router, Questions_service_1.QuestionsMethods])
+        __metadata('design:paramtypes', [router_1.Router, Questions_service_1.QuestionsMethods, common_1.PlatformLocation])
     ], TestComponent);
     return TestComponent;
 }());

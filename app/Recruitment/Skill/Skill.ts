@@ -1,10 +1,10 @@
 export class Skill{
     ID : number;
-    Name : string;
+    SKILL : string;
 
     constructor(id : number, name : string)
     {
         this.ID = id;
-        this.Name = name;
+        this.SKILL = name;
     }
 }

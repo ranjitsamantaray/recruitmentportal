@@ -17,7 +17,7 @@ var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
 require('rxjs/add/operator/map');
-var Rs = require('rxjs/Rx');
+//import * as Rs from 'rxjs/Rx';
 require('rxjs/add/operator/do');
 require('rxjs/add/operator/catch');
 var config_service_1 = require('../config/config.service');
@@ -35,16 +35,15 @@ var SkillService = (function (_super) {
         this._http = _http;
         this.configSrvc = configSrvc;
         this._handleError = _handleError;
-        console.log('Inside SkillService');
+        //console.log('Inside SkillService');
         this.config = this.configSrvc.config;
-        console.log('Configurations: ' + JSON.stringify(this.config));
+        //console.log('Configurations: '+ JSON.stringify(this.config));
         this.url = this.config['apiUrl'] + 'recruitment/home';
     }
     SkillService.prototype.getSkills = function () {
         var _this = this;
         return this._http.get(this.url)
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All : ' + JSON.stringify(data)); })
             .catch(function (res) { return _this._handleError.handleError(res); });
     };
     // yet to implement

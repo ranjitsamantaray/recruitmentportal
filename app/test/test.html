@@ -11,9 +11,9 @@
    <div id="test_div" (click)="show=false" > 
 		<div id="question_div">
 			
-          <div id="pure-control-group" *ngFor="let q of questions; let i=index" >
+          <div id="pure-control-group" *ngFor="let q of questions; let i=index " >
             <br>
-              <div id="pure-control-group">{{i + 1}}. {{q.Questions}} </div>
+              <div id="pure-control-group">{{i+1}}. {{q.Questions}} </div>
               <textarea id="pure-control-group" rows="7" cols="50" autofocus placeholder="Answers" [(ngModel)]="q.Answer"></textarea>
               <br>
           </div>
@@ -24,8 +24,8 @@
 </div>
 <div id="savemsg_div" *ngIf="show">The answers are saved..</div>
 <input id="test_save_button" type="submit" name="Save" value="Save" (click)="gotoSaveTest()" />
-<input id="test_review_button" type="submit" name="Review" value="Review" (click)="gotoReviewTest()"/>
-<input id="test_submit_button" type="submit" name="Submit" value="Submit" (click)="gotoSubmitTest()"/>
+<!--<input id="test_review_button" type="submit" name="Review" value="Review" (click)="gotoReviewTest()"/>-->
+<input id="test_review_button" type="submit" name="Submit" value="Submit" (click)="gotoSubmitTest()"/>
 <div id="trailer">
   <input id="trailer_input" type="text" value="Danske IT Recruitment team - 2017"/>
   </div>

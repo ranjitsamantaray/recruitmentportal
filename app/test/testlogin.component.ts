@@ -12,23 +12,16 @@ import {LoginInfo} from '../Recruitment/Login/Logininfo'
 export class TestLoginComponent implements OnInit {
   router: Router;
   public email : string='';
-  public logininfo : LoginInfo[];
   public pwd : string='';
   errorMessage : string;
-  public loginTrue : boolean;
-  public can : Candidate;
   public token :any;
-  public t:string;
+  
   
   constructor(
     private _authService: Login,_router:Router){ this.router = _router; }
 
   ngOnInit() {    
-    // this.can = new Candidate(null,'','','',null,'',null,'',null,'',null);
-    //localStorage.removeItem('currentUser');
-   // this.token='';
-   // this.t='';
-
+   
   }
 
   gotoTestPage(){
@@ -41,20 +34,17 @@ export class TestLoginComponent implements OnInit {
     else{
      this.token=this._authService.login(this.email,this.pwd)
      .subscribe(result => {
+
                 if (result === 't') 
-                    // login successful
+                    
                     this.router.navigate(['/test']);
-                    //this.errorMessage="successful";
+                   
      }, err => {
-                    // login failed
-                  // this.t=JSON.parse(localStorage.getItem('emsg')).status;
-                  if(err === 'f')
-                   console.log(err);
-                   this.errorMessage="Invalid credentials";
-                   // this.loading = false;
+                   
+                   this.errorMessage=err;
+                   
                 });
     }
-//this.token=JSON.parse(localStorage.getItem('id_token')).token;
-//this.t=JSON.parse(localStorage.getItem('id_token')).key;
     }
   }
+     

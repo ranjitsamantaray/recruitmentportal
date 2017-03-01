@@ -19,7 +19,7 @@ require('rxjs/add/operator/toPromise');
 var Candidate_1 = require('../Recruitment/Candidate/Candidate');
 var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/operator/map');
-var Rs = require('rxjs/Rx');
+//import * as Rs from 'rxjs/Rx';
 require('rxjs/add/operator/do');
 require('rxjs/add/operator/catch');
 var config_service_1 = require('../config/config.service');
@@ -43,6 +43,29 @@ var CandidateService = (function (_super) {
         this.url = this.config['apiUrl'] + 'candidate/register';
         this.urlResume = this.config['apiUrl'] + 'candidate/upload';
     }
+    // yet to implement
+    CandidateService.prototype.saveCandidate = function (candidate) {
+        var _this = this;
+        var body = "Name=" + candidate.Name + "&Email=" + candidate.Email + "&Phone=" + candidate.Phone + "&Experience=" + candidate.Experience + "&Skill=" + candidate.Skill + "&Consultant_Name=" + candidate.Consultancy;
+        var headers = new http_1.Headers();
+        //console.log(body);
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        return this._http
+            .post(this.url, body, { headers: headers })
+            .map(function (response) { return response.json(); })
+            .catch(function (res) { return _this._handleError.handleError(res); });
+    };
+    CandidateService.prototype.UploadResume = function (resume, email) {
+        var formData = new FormData();
+        formData.append('resume', resume, email);
+        var headers = new http_1.Headers();
+        return this._http
+            .post(this.urlResume, formData, headers)
+            .map(function (response) { return response; })
+            .catch(function (err) {
+            return Observable_1.Observable.throw(err.statusText);
+        });
+    };
     CandidateService.prototype.candidateLogin = function (email, pwd) {
         var _this = this;
         var body = "username=" + email + "&password=" + pwd;
@@ -59,41 +82,11 @@ var CandidateService = (function (_super) {
             .map(function (response) { return response.json(); })
             .catch(function (res) { return _this._handleError.handleError(res); });
     };
-    // yet to implement
-    CandidateService.prototype.saveCandidate = function (candidate) {
-        var _this = this;
-        var body = "Name=" + candidate.Name + "&Email=" + candidate.Email + "&Phone=" + candidate.Phone + "&Experience=" + candidate.Experience + "&Skill=" + candidate.Skill + "&Consultant_Name=" + candidate.Consultancy;
-        var headers = new http_1.Headers();
-        //console.log(body);
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        //let headers    = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-        // let options    = new RequestOptions({ headers: headers }); // Create a request option
-        return this._http
-            .post(this.url, body, { headers: headers })
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All : ' + JSON.stringify(data)); })
-            .catch(function (res) { return _this._handleError.handleError(res); });
-    };
     CandidateService.prototype.getCandidate = function (Id) {
         var _this = this;
         return this._http.get(this.url)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('All : ' + JSON.stringify(data)); }).filter(function (c) { return c.ID === Id; }).catch(function (res) { return _this._handleError.handleError(res); });
-    };
-    //   private handleError(error: Response) {
-    //     console.error('An error occurred', error);
-    //     return Observable.throw(error.json().error || 'Server error');
-    //   }
-    // }
-    CandidateService.prototype.UploadResume = function (resume, email) {
-        var _this = this;
-        var formData = new FormData();
-        formData.append('resume', resume, email);
-        var headers = new http_1.Headers();
-        return this._http
-            .post(this.urlResume, formData, headers)
-            .map(function (response) { return response; })
-            .catch(function (res) { return _this._handleError.handleError(res); });
     };
     CandidateService = __decorate([
         core_1.Injectable(), 

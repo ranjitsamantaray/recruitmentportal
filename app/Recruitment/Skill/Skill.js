@@ -2,7 +2,7 @@
 var Skill = (function () {
     function Skill(id, name) {
         this.ID = id;
-        this.Name = name;
+        this.SKILL = name;
     }
     return Skill;
 }());

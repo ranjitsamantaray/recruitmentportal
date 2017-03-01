@@ -16,7 +16,6 @@ var TestSuccessComponent = (function () {
     }
     TestSuccessComponent.prototype.logout = function () {
         localStorage.removeItem('id_token');
-        // localStorage.removeItem('Authlevel');
         this.router.navigate(['testlogin']);
     };
     TestSuccessComponent = __decorate([

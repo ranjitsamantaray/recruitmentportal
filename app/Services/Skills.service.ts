@@ -4,7 +4,7 @@ import 'rxjs/add/operator/toPromise';
 import { Skill } from '../Recruitment/Skill/Skill';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import * as Rs from 'rxjs/Rx';
+//import * as Rs from 'rxjs/Rx';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { ConfigService } from '../config/config.service';
@@ -23,9 +23,9 @@ export class SkillService extends SkillMethods {
   constructor(private _http: Http,private configSrvc: ConfigService,
   private _handleError : HandleError) {
     super();
-    console.log('Inside SkillService');
+    //console.log('Inside SkillService');
     this.config = this.configSrvc.config;
-    console.log('Configurations: '+ JSON.stringify(this.config));
+    //console.log('Configurations: '+ JSON.stringify(this.config));
     this.url = this.config['apiUrl'] + 'recruitment/home';
   }  
 
@@ -33,7 +33,7 @@ export class SkillService extends SkillMethods {
   {
     return this._http.get(this.url)
     .map((response : Response) => <Skill[]> response.json())
-    .do(data => console.log('All : ' + JSON.stringify(data)))
+    //.do(data => console.log('All : ' + JSON.stringify(data)))
     .catch(res => this._handleError.handleError(res));
   }
 
@@ -49,10 +49,7 @@ export class SkillService extends SkillMethods {
       .catch(res => this._handleError.handleError(res));
   }
 
-  // private handleError(error: Response) {
-  //   console.error('An error occurred', error);
-  //   return Observable.throw(error.json().error || 'Server error');
-  // }
+ 
 
   // getSkill(): Observable<Array<Skill>> {
   //   return this.http.get(this.url).map((r) => {

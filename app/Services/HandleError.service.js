@@ -18,6 +18,7 @@ var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
 var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/operator/map');
+//import * as Rs from 'rxjs/Rx';
 require('rxjs/add/operator/do');
 require('rxjs/add/operator/catch');
 var config_service_1 = require('../config/config.service');
@@ -33,17 +34,17 @@ var HandleErrorService = (function (_super) {
         _super.call(this);
         this._http = _http;
         this.configSrvc = configSrvc;
-        console.log('Inside HandleService');
+        //console.log('Inside HandleService');
         this.config = this.configSrvc.config;
         this.url = this.config['apiUrl'] + 'recruitment/log';
     }
     HandleErrorService.prototype.handleError = function (error) {
-        console.error('An error occurred', error);
+        // console.error('An error occurred', error);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         var options = new http_1.RequestOptions({ headers: headers }); // Create a request option
         this._http
-            .post(this.url, error, options)
-            .do(function (data) { return console.log('All : ' + JSON.stringify(data)); });
+            .post(this.url, error, options);
+        // .do(data => console.log('All : ' + JSON.stringify(data)));         
         return Observable_1.Observable.throw(error.json().error || 'Server error..');
     };
     HandleErrorService = __decorate([

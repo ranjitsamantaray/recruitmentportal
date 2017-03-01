@@ -12,11 +12,12 @@ var core_1 = require('@angular/core');
 var http_1 = require("@angular/http");
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/catch');
+//import * as Rs from 'rxjs/Rx';
 require('rxjs/add/operator/do');
 var ConfigService = (function () {
     function ConfigService(http) {
         this.http = http;
-        console.log('ctor for ConfigService called.');
+        //console.log('ctor for ConfigService called.');
         this.obj =
             {
                 "apiUrl": "http://recruitmentservices.azurewebsites.net/",
@@ -26,7 +27,7 @@ var ConfigService = (function () {
     }
     ConfigService.prototype.load = function () {
         var _this = this;
-        console.log('Inside Load');
+        //console.log('Inside Load');
         // var p1 = new Promise((resolve) => { 
         //   this.http.get('app/config/appConfig.json').map(res => res.json())
         //     .subscribe(config => {
@@ -35,7 +36,7 @@ var ConfigService = (function () {
         //       resolve();
         //     });
         // });
-        console.log(this.output);
+        //console.log(this.output);
         return new Promise(function (resolve) {
             _this.config = _this.output;
             resolve();

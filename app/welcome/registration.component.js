@@ -32,10 +32,7 @@ var RegistrationComponent = (function () {
     };
     RegistrationComponent.prototype.ngOnInit = function () {
         var _this = this;
-        // this.r =this.router.url;
-        console.log('inside registration component');
         this._skillService.getSkills().subscribe(function (skills) { return _this.skills = skills; }, function (error) { return _this.errorMessage = error; });
-        console.log('returned skill service');
         this._consultancyService.getConsultancy().subscribe(function (cons) { return _this.Consul = cons; }, function (error) { return _this.errorMessage = error; });
         this.candidate = new Candidate_1.Candidate(null, '', '', '', null, '0', this.today, '0', null, '', '', null);
     };
@@ -50,7 +47,7 @@ var RegistrationComponent = (function () {
         else if (this.candidate.Phone == '') {
             this.errorMessage = "Please enter your Phone number";
         }
-        else if (this.candidate.Experience === null) {
+        else if (!this.candidate.Experience) {
             this.errorMessage = "Please enter year of experiance in numbers";
         }
         else if (this.candidate.Skill == '0') {
@@ -60,7 +57,7 @@ var RegistrationComponent = (function () {
             this.errorMessage = "Please select your Consultancy";
         }
         else if (!this.file) {
-            this.errorMessage = "Please upload yoyr resume";
+            this.errorMessage = "Please upload your resume";
         }
         else if (!this.candidate.Email.match(new RegExp(/^[A-Z0-9a-z._%+-]+@[A-Za-z0-9-.]+.[A-Za-z]{2,4}$/))) {
             this.errorMessage = "invalid email id eg:xyz@abc.com";
@@ -71,22 +68,19 @@ var RegistrationComponent = (function () {
         else if (!(String(this.candidate.Experience).match(new RegExp(/^[0-9]{0,2}(\.[0-9]{0,1}?)?$/)))) {
             this.errorMessage = "Invalid years of expreiance entered Eg:3.7";
         }
-        else if (!this.file) {
-            this.errorMessage = "Please upload yoyr resume";
-        }
         else {
+            //console.log(JSON.stringify(this.candidate));
             this._candidateService.saveCandidate(this.candidate)
                 .subscribe(function (can) {
                 if (can == "Already Registered") {
-                    _this.message = can;
                     alert("Yo are already registered before !!! contact admin ..");
                 }
                 else {
-                    // let text=[]=can.split(/\s/g);
-                    //this.message=text[2];
-                    //localStorage.setItem('login_token',text[2]);
                     _this.router.navigate(['/registrationsuccess']);
-                    _this._candidateService.UploadResume(_this.file, _this.candidate.Email).subscribe(function (can) { _this.message = can; });
+                    _this._candidateService.UploadResume(_this.file, _this.candidate.Email)
+                        .subscribe(function (can) { _this.message = can; }, function (err) {
+                        _this.errorMessage = err;
+                    });
                 }
             }, function (error) { return _this.errorMessage = error; });
         }

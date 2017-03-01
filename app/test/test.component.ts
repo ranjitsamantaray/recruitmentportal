@@ -2,6 +2,7 @@ import { Component ,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Question } from '../Recruitment/Questions/Questions';
 import { QuestionsMethods } from '../Services/Questions.service';
+import { PlatformLocation } from '@angular/common'
 
 @Component ({
   selector: 'test',
@@ -15,43 +16,41 @@ export class TestComponent implements OnInit {
   public show : boolean;
   public message:string;
   public length :number;
+  public index:number;
 
-  constructor(_router: Router, private _questionService : QuestionsMethods){  
+  constructor(_router: Router, private _questionService : QuestionsMethods,private location: PlatformLocation){  
   this.router = _router;
-  //this.questions = new <Question>(null,'','','');
+  location.onPopState(() => {
+        this.gotoSubmitTest();
+      
+    });
+  this.index=0;
   }
 
   ngOnInit() {
     this.getQuetions();
-    //this.questions[this.questions.length] = new Question('','','');
+    
   }
   getQuetions(){
     this._questionService.getQuestions()
     .subscribe(questions => this.questions = questions,
-    //this.length= (questions[questions.length].Answers).length,
-    error => this.errorMessage = <any>error);
+    error => {
+       alert(error);
+       localStorage.removeItem('id_token');
+       this.router.navigate(['testlogin']);
+      });
     this.show = false;
   }
   gotoSaveTest() {
     this.show = true;
   }
 
-  gotoReviewTest() {
-    //this.router.navigate(['review']);
-  }
 
   gotoSubmitTest() {
-    //debugger;
      this._questionService.saveQuestions(this.questions)
     .subscribe(can => {
-      //if (can == "") {
-      //this.message=(can.Status);
+      localStorage.removeItem('id_token');
       this.router.navigate(['testsuccess']);
     },error => this.errorMessage = <any>error); 
-   //if(confirm("Submit will close the test are sure you want to continue?")){
-    //localStorage.removeItem('id_token');
-   // localStorage.removeItem('Authlevel');
-    //this.router.navigate(['testsuccess']);
-  
   }
 }

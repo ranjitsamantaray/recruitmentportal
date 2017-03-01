@@ -17,8 +17,9 @@ var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
 var Questions_1 = require('../Recruitment/Questions/Questions');
+var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/operator/map');
-var Rs = require('rxjs/Rx');
+//import * as Rs from 'rxjs/Rx';
 require('rxjs/add/operator/do');
 require('rxjs/add/operator/catch');
 var config_service_1 = require('../config/config.service');
@@ -36,64 +37,31 @@ var QuestionsService = (function (_super) {
         this._http = _http;
         this.configSrvc = configSrvc;
         this._handleError = _handleError;
-        //console.log('Inside QuestionService');
         this.config = this.configSrvc.config;
-        //console.log('Configurations: '+ JSON.stringify(this.config));
         this.url1 = this.config['apiUrl'] + 'dbsecure-can/questionset';
         this.url2 = this.config['apiUrl'] + 'dbsecure-can/submit';
     }
     QuestionsService.prototype.getQuestions = function () {
-        var _this = this;
         var token = JSON.parse(localStorage.getItem('id_token')).token;
-        //var key =JSON.parse(localStorage.getItem('id_token')).key;
         var headers = new http_1.Headers();
         headers.append('acc-token', "" + token);
-        // headers.append('key',`${key}`);
         return this._http.get(this.url1, { headers: headers })
             .map(function (response) { return response.json(); })
-            .catch(function (res) { return _this._handleError.handleError(res); });
-        // return this._http.get(this.url,{ headers: headers }).map((r) =>
-        //  {
-        //    let x = r.json();
-        //    let Questions : Question[];
-        //    for(let i = 0; i < x.length ; i++)
-        //     {
-        //       let e: Question = new Question(
-        //         x[i].ID,
-        //         x[i].Questions,
-        //         ''
-        //       );
-        //       Questions.push(e);  
-        //  }
-        //  console.log(Questions);
-        //  return Questions ;
-        //  });
+            .catch(function (err) {
+            var r = JSON.parse(err._body);
+            return Observable_1.Observable.throw(r.status);
+        });
     };
-    // yet to implement
     QuestionsService.prototype.saveQuestions = function (Answers) {
         var _this = this;
-        //var ans = Answers{ar:Answers};
-        // console.log(JSON.stringify(Answers.length));
-        //var body=`Questions=${Answers[1].Questions}&ID=${Answers[1].ID}&Answers=${Answers[1].Answers}`;
-        //var body = "this is body" ;
-        //  var body =`Answers=${JSON.stringify(Answers)}`;
         var body = { "Answers": Answers };
-        //console.log(JSON.stringify(body));
-        //var body =JSON.stringify(Answers);
-        // var body =JSON.stringify({Answers :Answers});
-        // console.log(JSON.stringify(Answers[1]));
-        //  console.log(JSON.stringify(body));
-        //var body= `Answers=${Answers}`;
         var token = JSON.parse(localStorage.getItem('id_token')).token;
-        //var key =JSON.parse(localStorage.getItem('id_token')).key;
         var headers = new http_1.Headers();
         headers.append('acc-token', "" + token);
-        //headers.append('key',`${key}`);
         headers.append('Content-Type', 'application/json');
         return this._http
-            .post(this.url2, JSON.stringify(body), { headers: headers })
+            .post(this.url2, body, { headers: headers })
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All : ' + JSON.stringify(data)); })
             .catch(function (res) { return _this._handleError.handleError(res); });
     };
     QuestionsService = __decorate([
@@ -103,6 +71,23 @@ var QuestionsService = (function (_super) {
     return QuestionsService;
 }(QuestionsMethods));
 exports.QuestionsService = QuestionsService;
+// return this._http.get(this.url,{ headers: headers }).map((r) =>
+//  {
+//    let x = r.json();
+//    let Questions : Question[];
+//    for(let i = 0; i < x.length ; i++)
+//     {
+//       let e: Question = new Question(
+//         x[i].ID,
+//         x[i].Questions,
+//         ''
+//       );
+//       Questions.push(e);  
+//  }
+//  console.log(Questions);
+//  return Questions ;
+//  });
+// yet to implement
 var QuestionsDummyService = (function (_super) {
     __extends(QuestionsDummyService, _super);
     function QuestionsDummyService(_http) {

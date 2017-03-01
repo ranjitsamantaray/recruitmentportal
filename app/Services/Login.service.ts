@@ -1,6 +1,6 @@
 import { contentHeaders } from '../header';
 import 'rxjs/add/operator/map';
-import * as Rs from 'rxjs/Rx';
+//import * as Rs from 'rxjs/Rx';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { Injectable } from '@angular/core';
@@ -23,9 +23,7 @@ export class LoginReal extends Login {
   constructor(private _http: Http,private configSrvc: ConfigService,
   private _handleError : HandleError) {
     super();
-   // console.log('Inside LoginService');
     this.config = this.configSrvc.config;
-   // console.log('Configurations: '+ JSON.stringify(this.config));
     this.url = this.config['apiUrl'] + 'login/auth';
   }  
 
@@ -37,52 +35,23 @@ export class LoginReal extends Login {
     return this._http
      .post(this.url, body, {headers:headers})
        .map((response: Response) => {
-        //  console.log(response);
-        //  console.log(response.json().status);
-        //  switch(response.json().status){
-        //   case 401 : return false;
-        //   case 200 : return true;
-        //   default: return false;
-        //  }
-                // login successful if there's a jwt token in the response
                let token = response.json() && response.json().Token;
-               // let tok=response.json().Token;
+              
                 if (token) {
                     // set token property
                     //this.token = token;
-
+ 
                     // store username and jwt token in local storage to keep user logged in between page refreshes
                      localStorage.setItem('id_token', JSON.stringify({  token: response.json().Token}));
-                  //  console.log(JSON.parse(localStorage.getItem('id_token')).token);
-                  //  console.log(JSON.parse(localStorage.getItem('id_token')).token.length);
                    return "t";
-                    // return true to indicate successful login
-                    //return true;
                   }
-       }).catch(e => {         
-       if (e.status === 401){
-          return Observable.throw("f");
-         }
+       }).catch(e => {
+         let r = JSON.parse(e._body);
+         return Observable.throw(r.status);
        });
-              //  } else {
-                  //localStorage.setItem('emsg',JSON.stringify({ status: response.json().status}));
-                    // return false to indicate failed login  q6JWJaH0hs
-               //     console.log("faiul");
-                //  return false;
-               // }
-            // }).catch(res => this._handleError.handleError(res));
-          
-
-
+              
   }
-
-  // private handleError(error: Response) {
-  //   console.error('An error occurred', error);
-  //   return Observable.throw(error.json().error || 'Server error');
-  // }
 }
-
-
 
 @Injectable()
 export class LoginDummy extends Login {

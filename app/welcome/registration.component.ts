@@ -36,11 +36,10 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
-   // this.r =this.router.url;
-	console.log('inside registration component');
+   
     this._skillService.getSkills().subscribe(skills => this.skills = skills,
         error => this.errorMessage = <any>error);
-	console.log('returned skill service');
+	
     this._consultancyService.getConsultancy().subscribe(cons=>this.Consul=cons,
       error => this.errorMessage = <any>error);
 
@@ -58,7 +57,7 @@ export class RegistrationComponent implements OnInit {
     else if(this.candidate.Phone==''){
       this.errorMessage="Please enter your Phone number";
     }
-    else if(this.candidate.Experience===null)
+    else if(!this.candidate.Experience)
     {
       this.errorMessage="Please enter year of experiance in numbers";
     }
@@ -69,7 +68,7 @@ export class RegistrationComponent implements OnInit {
      this.errorMessage="Please select your Consultancy";
    }
    else if(!this.file){
-     this.errorMessage="Please upload yoyr resume";
+     this.errorMessage="Please upload your resume";
    }
     else if(!this.candidate.Email.match(new RegExp(/^[A-Z0-9a-z._%+-]+@[A-Za-z0-9-.]+.[A-Za-z]{2,4}$/)))
    {
@@ -82,25 +81,22 @@ export class RegistrationComponent implements OnInit {
    else if(!(String(this.candidate.Experience).match(new RegExp(/^[0-9]{0,2}(\.[0-9]{0,1}?)?$/)))){
      this.errorMessage="Invalid years of expreiance entered Eg:3.7";
    }
-   else if(!this.file){
-     this.errorMessage="Please upload yoyr resume";
-   }
-
+   
     else{
+     //console.log(JSON.stringify(this.candidate));
    this._candidateService.saveCandidate(this.candidate)
+   
     .subscribe(can => {
        if(can == "Already Registered"){
-         this.message=can;
        alert("Yo are already registered before !!! contact admin ..");
-       //location.reload();
-      // this.ngOnInit();
           }
      else{
-     // let text=[]=can.split(/\s/g);
-      //this.message=text[2];
-       //localStorage.setItem('login_token',text[2]);
        this.router.navigate(['/registrationsuccess']);
-       this._candidateService.UploadResume(this.file,this.candidate.Email).subscribe(can => {this.message = can});
+       this._candidateService.UploadResume(this.file,this.candidate.Email)
+       .subscribe(can => {this.message = can},
+       err=>{
+         this.errorMessage=err;
+       });
         }
             
       },
