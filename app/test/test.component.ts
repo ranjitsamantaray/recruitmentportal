@@ -1,15 +1,19 @@
-import { Component ,OnInit } from '@angular/core';
+import { Component ,OnInit,HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { Question } from '../Recruitment/Questions/Questions';
 import { QuestionsMethods } from '../Services/Questions.service';
 import { PlatformLocation } from '@angular/common'
+import {Location} from '@angular/common';
 
+//@HostListener("window:onPopState", [])
 @Component ({
   selector: 'test',
-  templateUrl: './app/test/test.html'
+  templateUrl: './app/test/test.html',
+  //host: {'window:beforeunload':'doSomething'}
 })
 
 export class TestComponent implements OnInit {
+ 
   router: Router;
   public questions: Question[];
   errorMessage : string;
@@ -17,13 +21,18 @@ export class TestComponent implements OnInit {
   public message:string;
   public length :number;
   public index:number;
+  public confirmClose:boolean;
 
-  constructor(_router: Router, private _questionService : QuestionsMethods,private location: PlatformLocation){  
+ 
+  constructor(_router: Router, private _questionService : QuestionsMethods,private location1: PlatformLocation,
+  private location: Location){  
   this.router = _router;
-  location.onPopState(() => {
-        this.gotoSubmitTest();
+  // location.onPopState(() => {
+  //       this.gotoSubmitTest();
       
-    });
+  //   });
+   
+ 
   this.index=0;
   }
 

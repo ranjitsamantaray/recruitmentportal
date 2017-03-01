@@ -12,15 +12,17 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var Questions_service_1 = require('../Services/Questions.service');
 var common_1 = require('@angular/common');
+var common_2 = require('@angular/common');
+//@HostListener("window:onPopState", [])
 var TestComponent = (function () {
-    function TestComponent(_router, _questionService, location) {
-        var _this = this;
+    function TestComponent(_router, _questionService, location1, location) {
         this._questionService = _questionService;
+        this.location1 = location1;
         this.location = location;
         this.router = _router;
-        location.onPopState(function () {
-            _this.gotoSubmitTest();
-        });
+        // location.onPopState(() => {
+        //       this.gotoSubmitTest();
+        //   });
         this.index = 0;
     }
     TestComponent.prototype.ngOnInit = function () {
@@ -50,9 +52,9 @@ var TestComponent = (function () {
     TestComponent = __decorate([
         core_1.Component({
             selector: 'test',
-            templateUrl: './app/test/test.html'
+            templateUrl: './app/test/test.html',
         }), 
-        __metadata('design:paramtypes', [router_1.Router, Questions_service_1.QuestionsMethods, common_1.PlatformLocation])
+        __metadata('design:paramtypes', [router_1.Router, Questions_service_1.QuestionsMethods, common_1.PlatformLocation, common_2.Location])
     ], TestComponent);
     return TestComponent;
 }());
