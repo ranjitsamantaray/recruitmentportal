@@ -42,12 +42,15 @@ var QuestionsService = (function (_super) {
         this.url2 = this.config['apiUrl'] + 'dbsecure-can/submit';
     }
     QuestionsService.prototype.getQuestions = function () {
+        console.log('question url:' + this.url1);
         var token = JSON.parse(localStorage.getItem('id_token')).token;
+        console.log('token:' + token);
         var headers = new http_1.Headers();
         headers.append('acc-token', "" + token);
         return this._http.get(this.url1, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(function (err) {
+            console.log('Error returned from Question Service: ' + err);
             var r = JSON.parse(err._body);
             return Observable_1.Observable.throw(r.status);
         });
@@ -82,7 +85,7 @@ exports.QuestionsService = QuestionsService;
 //         x[i].Questions,
 //         ''
 //       );
-//       Questions.push(e);  
+//       Questions.push(e);
 //  }
 //  console.log(Questions);
 //  return Questions ;

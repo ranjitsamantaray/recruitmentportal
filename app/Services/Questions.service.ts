@@ -20,26 +20,28 @@ export class QuestionsService extends QuestionsMethods {
   config: any;
   private url1 : any;
   private url2: any;
-  
+
   constructor(private _http: Http,private configSrvc: ConfigService,
   private _handleError : HandleError) {
     super();
-    
+
     this.config = this.configSrvc.config;
-    
+
     this.url1 = this.config['apiUrl'] + 'dbsecure-can/questionset';
     this.url2 = this.config['apiUrl'] + 'dbsecure-can/submit';
-  }  
+  }
 
   getQuestions(): Observable<Question[]>
   {
+    console.log('question url:' + this.url1);
     let token=JSON.parse(localStorage.getItem('id_token')).token;
+    console.log('token:' + token);
     let headers = new Headers();
     headers.append('acc-token',`${token}`);
     return this._http.get(this.url1,{ headers: headers })
     .map((response : Response) => <Question[]> response.json())
-   // .do(data => console.log('All : ' + JSON.stringify(data)))
     .catch(err =>{
+      console.log('Error returned from Question Service: ' + err);
      let r = JSON.parse(err._body);
       return Observable.throw(r.status);
     });
@@ -72,18 +74,18 @@ export class QuestionsService extends QuestionsMethods {
     //         x[i].Questions,
     //         ''
     //       );
-    //       Questions.push(e);  
+    //       Questions.push(e);
     //  }
     //  console.log(Questions);
     //  return Questions ;
     //  });
-  
+
 
   // yet to implement
-  
+
 
 @Injectable()
-export class QuestionsDummyService extends QuestionsMethods { 
+export class QuestionsDummyService extends QuestionsMethods {
   private url = 'app/Json/Question.json';
   private questions : Array<Question>;
   constructor(private _http: Http) {
@@ -108,7 +110,7 @@ export class QuestionsDummyService extends QuestionsMethods {
             x[i].Questions,
             ''
           );
-          Questions.push(e);  
+          Questions.push(e);
      }
      return Questions;
      });

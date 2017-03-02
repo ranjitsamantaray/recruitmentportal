@@ -15,13 +15,13 @@ export class TestLoginComponent implements OnInit {
   public pwd : string='';
   errorMessage : string;
   public token :any;
-  
-  
+
+
   constructor(
     private _authService: Login,_router:Router){ this.router = _router; }
 
-  ngOnInit() {    
-   
+  ngOnInit() {
+
   }
 
   gotoTestPage(){
@@ -34,17 +34,16 @@ export class TestLoginComponent implements OnInit {
     else{
      this.token=this._authService.login(this.email,this.pwd)
      .subscribe(result => {
+                
+                if (result === 't')
 
-                if (result === 't') 
-                    
                     this.router.navigate(['/test']);
-                   
+
      }, err => {
-                   
+
                    this.errorMessage=err;
-                   
+
                 });
     }
     }
   }
-     
