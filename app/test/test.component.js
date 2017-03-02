@@ -57,6 +57,7 @@ var TestComponent = (function () {
         var _this = this;
         this._questionService.saveQuestions(this.questions)
             .subscribe(function (can) {
+            console.log('Submitting answer');
             localStorage.removeItem('id_token');
             _this.router.navigate(['testsuccess']);
         }, function (error) { return _this.errorMessage = error; });

@@ -19,17 +19,12 @@ var AuthGuard = (function () {
         }
         else {
             var url = state.url;
-            // alert("Forbidden to this route!!!! LOGIN first"+url)
             if (url == '/test') {
                 alert("Forbidden to this route!!!! LOGIN first");
                 this.router.navigate(['/testlogin']);
                 return false;
             }
         }
-        // If not, they redirect them to the login page
-        // this.router.navigate(['/login']);
-        // return false;
-        //}
     };
     AuthGuard = __decorate([
         core_1.Injectable(), 
@@ -38,8 +33,4 @@ var AuthGuard = (function () {
     return AuthGuard;
 }());
 exports.AuthGuard = AuthGuard;
-// If not, they redirect them to the login page
-// this.router.navigate(['/login']);
-// return false;
-//}
 //# sourceMappingURL=auth.guard.js.map

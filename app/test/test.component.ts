@@ -70,6 +70,7 @@ export class TestComponent implements OnInit {
   gotoSubmitTest() {
      this._questionService.saveQuestions(this.questions)
     .subscribe(can => {
+      console.log('Submitting answer');
       localStorage.removeItem('id_token');
       this.router.navigate(['testsuccess']);
     },error => this.errorMessage = <any>error);
