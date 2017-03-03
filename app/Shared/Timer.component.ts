@@ -16,8 +16,8 @@ export class TimerComponent  {
   public subscription:any;
    count=1; 
    public hh:String='00';
-   public mm=5;
-   public mm2=5;
+   public mm=59;
+   public mm2=60;
    public ss=59;
    public ss2=60
    public ticks=0;
