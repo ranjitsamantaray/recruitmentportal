@@ -29,7 +29,8 @@ export class TestComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('token:' + JSON.parse(localStorage.getItem('id_token')).token);
+    //console.log('token:' + JSON.parse(localStorage.getItem('id_token')).token);
+    console.log(localStorage.getItem('id_token'));
     this.getQuetions();
   }
 

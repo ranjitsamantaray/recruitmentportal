@@ -22,7 +22,8 @@ var TestComponent = (function () {
         this.index = 0;
     }
     TestComponent.prototype.ngOnInit = function () {
-        console.log('token:' + JSON.parse(localStorage.getItem('id_token')).token);
+        //console.log('token:' + JSON.parse(localStorage.getItem('id_token')).token);
+        console.log(localStorage.getItem('id_token'));
         this.getQuetions();
     };
     TestComponent.prototype.onPopState = function (event) {

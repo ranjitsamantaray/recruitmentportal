@@ -42,8 +42,9 @@ var CandidateService = (function (_super) {
         // console.log('Configurations: '+ JSON.stringify(this.config));
         this.url = this.config['apiUrl'] + 'candidate/register';
         this.urlResume = this.config['apiUrl'] + 'candidate/upload';
+        this.url2 = this.config['apiUrl'] + 'employee/register';
+        this.url3 = this.config['apiUrl'] + 'employee/summary';
     }
-    // yet to implement
     CandidateService.prototype.saveCandidate = function (candidate) {
         var _this = this;
         var body = "Name=" + candidate.Name + "&Email=" + candidate.Email + "&Phone=" + candidate.Phone + "&Experience=" + candidate.Experience + "&Skill=" + candidate.Skill + "&Consultant_Name=" + candidate.Consultancy;
@@ -52,6 +53,17 @@ var CandidateService = (function (_super) {
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this._http
             .post(this.url, body, { headers: headers })
+            .map(function (response) { return response.json(); })
+            .catch(function (res) { return _this._handleError.handleError(res); });
+    };
+    CandidateService.prototype.saveEmployee = function (employee) {
+        var _this = this;
+        var body = "Name=" + employee.Name + "&Email=" + employee.Email + "&Skill=" + employee.Skill + "&Role=" + employee.Role;
+        var headers = new http_1.Headers();
+        //console.log(body);
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        return this._http
+            .post(this.url2, body, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(function (res) { return _this._handleError.handleError(res); });
     };
@@ -66,6 +78,22 @@ var CandidateService = (function (_super) {
             return Observable_1.Observable.throw(err.statusText);
         });
     };
+    CandidateService.prototype.getCandidates = function () {
+        return this._http.get(this.url3)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All : ' + JSON.stringify(data)); })
+            .catch(function (err) {
+            console.log('Error returned from candidate Service: ' + err);
+            //let r = JSON.parse(err._body);
+            return Observable_1.Observable.throw(err.statusText);
+        });
+    };
+    CandidateService.prototype.getCandidate = function (Id) {
+        var _this = this;
+        return this._http.get(this.url3)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All : ' + JSON.stringify(data)); }).filter(function (c) { return c.ID === Id; }).catch(function (res) { return _this._handleError.handleError(res); });
+    };
     CandidateService.prototype.candidateLogin = function (email, pwd) {
         var _this = this;
         var body = "username=" + email + "&password=" + pwd;
@@ -75,18 +103,6 @@ var CandidateService = (function (_super) {
             .post(this.url, body, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(function (res) { return _this._handleError.handleError(res); });
-    };
-    CandidateService.prototype.getCandidates = function () {
-        var _this = this;
-        return this._http.get(this.url)
-            .map(function (response) { return response.json(); })
-            .catch(function (res) { return _this._handleError.handleError(res); });
-    };
-    CandidateService.prototype.getCandidate = function (Id) {
-        var _this = this;
-        return this._http.get(this.url)
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All : ' + JSON.stringify(data)); }).filter(function (c) { return c.ID === Id; }).catch(function (res) { return _this._handleError.handleError(res); });
     };
     CandidateService = __decorate([
         core_1.Injectable(), 

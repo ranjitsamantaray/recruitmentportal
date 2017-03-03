@@ -6,7 +6,7 @@
     </div>
     <div id="time_text">
       <span>Time Remaining: </span>      
-      <my-timer></my-timer>
+      <my-timer (done)="gotoSubmitTest()"></my-timer>
     </div><br><br>
    <div id="test_div" (click)="show=false" > 
 		<div id="question_div">

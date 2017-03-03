@@ -10,11 +10,13 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { ConfigService } from '../config/config.service';
 import { HandleError } from './HandleError.service';
+import { Employee } from '../Recruitment/Employee/Employee';
 
 export abstract class CandidateMethods{
     abstract getCandidates(): Observable<Candidate[]>;
     abstract saveCandidate(candidate:Candidate): Observable<string>;
     abstract getCandidate(Id : number): Observable<Candidate>;
+    abstract saveEmployee(employee:Employee): Observable<string>;
     abstract candidateLogin(email : string, pwd : string): Observable<boolean>;
     abstract UploadResume(file : File, email : string) : Observable<any>;
 }
@@ -23,6 +25,8 @@ export abstract class CandidateMethods{
 export class CandidateService extends CandidateMethods {
   config: any;
   private url : any;
+  private url2 : any;
+  private url3 : any;
   private urlResume:any;
 
   constructor(private _http: Http, private configSrvc: ConfigService,
@@ -33,8 +37,10 @@ export class CandidateService extends CandidateMethods {
    // console.log('Configurations: '+ JSON.stringify(this.config));
     this.url = this.config['apiUrl'] + 'candidate/register';
     this.urlResume =this.config['apiUrl']+'candidate/upload';
+    this.url2 =this.config['apiUrl']+'employee/register';
+    this.url3 =this.config['apiUrl']+'employee/summary';
   }  
-   // yet to implement
+
   saveCandidate(candidate:Candidate): Observable<string>
   {
     var body=`Name=${candidate.Name}&Email=${candidate.Email}&Phone=${candidate.Phone}&Experience=${candidate.Experience}&Skill=${candidate.Skill}&Consultant_Name=${candidate.Consultancy}`; 
@@ -46,6 +52,20 @@ export class CandidateService extends CandidateMethods {
       .map((response : Response) => <string> response.json())
       //.do(data => console.log('All : ' + JSON.stringify(data)))
       .catch(res => this._handleError.handleError(res));
+  }
+
+
+ saveEmployee(employee:Employee): Observable<string>
+  {
+    var body=`Name=${employee.Name}&Email=${employee.Email}&Skill=${employee.Skill}&Role=${employee.Role}`;
+    var headers = new Headers();
+    //console.log(body);
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    return this._http
+    .post(this.url2, body, {headers:headers})
+      .map((response : Response) => <string> response.json())
+      //.do(data => console.log('All : ' + JSON.stringify(data)))
+      .catch(res => this._handleError.handleError(res)); 
   }
 
 
@@ -65,7 +85,30 @@ export class CandidateService extends CandidateMethods {
 
 }
 
-  candidateLogin(email : string, pwd : string) : Observable<boolean>
+
+  getCandidates(): Observable<Candidate[]>
+  {
+    return this._http.get(this.url3)
+    .map((response : Response) => <Candidate[]> response.json())
+    .do(data => console.log('All : ' + JSON.stringify(data)))
+    .catch(err =>{
+      console.log('Error returned from candidate Service: ' + err);
+     //let r = JSON.parse(err._body);
+      return Observable.throw(err.statusText);
+    });
+  }
+
+ 
+  getCandidate(Id : number) : Observable<Candidate>
+  {      
+     return this._http.get(this.url3)
+    .map((response : Response) => <Candidate> response.json())
+    .do(data => console.log('All : ' + JSON.stringify(data))).filter(c => c.ID === Id).catch(res => this._handleError.handleError(res));
+  }
+
+
+
+candidateLogin(email : string, pwd : string) : Observable<boolean>
   {
     var body = `username=${email}&password=${pwd}`;
     var headers = new Headers();
@@ -76,23 +119,6 @@ export class CandidateService extends CandidateMethods {
     //.do(data => console.log('All : ' + JSON.stringify(data)))
     .catch(res => this._handleError.handleError(res)); 
   }
-
-  getCandidates(): Observable<Candidate[]>
-  {
-    return this._http.get(this.url)
-    .map((response : Response) => <Candidate[]> response.json())
-    //.do(data => console.log('All : ' + JSON.stringify(data)))
-    .catch(res => this._handleError.handleError(res));
-  }
-
- 
-  getCandidate(Id : number) : Observable<Candidate>
-  {      
-     return this._http.get(this.url)
-    .map((response : Response) => <Candidate> response.json())
-    .do(data => console.log('All : ' + JSON.stringify(data))).filter(c => c.ID === Id).catch(res => this._handleError.handleError(res));
-  }
-
 
 
 }

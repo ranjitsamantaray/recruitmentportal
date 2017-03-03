@@ -7,20 +7,18 @@ import {AuthUserMethods} from "./Services/AuthenticateUser.service"
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-
+  
   constructor(private router: Router) {}
 
   canActivate(route:ActivatedRouteSnapshot,state:RouterStateSnapshot) {
-      if(JSON.parse(localStorage.getItem('id_token')).token != null){
+    if (localStorage.getItem('id_token')) {
+           
+            return true;
+        }
 
-      }
-       else {
-        const url :string = state.url;
-        if( url == '/test') {
-         alert("Forbidden to this route!!!! LOGIN first");
-         this.router.navigate(['/testlogin']);
-         return false;
-       }
+       this.router.navigate(['/testlogin']);
+        return false;
     }
   }
-}
+
+ 

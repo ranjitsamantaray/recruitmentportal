@@ -15,16 +15,11 @@ var AuthGuard = (function () {
         this.router = router;
     }
     AuthGuard.prototype.canActivate = function (route, state) {
-        if (JSON.parse(localStorage.getItem('id_token')).token != null) {
+        if (localStorage.getItem('id_token')) {
+            return true;
         }
-        else {
-            var url = state.url;
-            if (url == '/test') {
-                alert("Forbidden to this route!!!! LOGIN first");
-                this.router.navigate(['/testlogin']);
-                return false;
-            }
-        }
+        this.router.navigate(['/testlogin']);
+        return false;
     };
     AuthGuard = __decorate([
         core_1.Injectable(), 

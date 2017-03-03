@@ -26,11 +26,14 @@ export class SummaryComponent implements OnInit {
     this._skillService.getSkills().subscribe(skills => this.skills = skills,
         error => this.errorMessage = <any>error);
     this._candidateService.getCandidates().subscribe(candidates => this.candidates = candidates,
-        error => this.errorMessage = <any>error);
+        error => {
+       alert(error);
+       localStorage.removeItem('id_token');
+       this.router.navigate(['login']);
+      });
   }
 logout(){
     localStorage.removeItem('id_token');
-    localStorage.removeItem('Authlevel');
     this.router.navigate(['login']);
   }
 }

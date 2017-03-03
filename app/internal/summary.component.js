@@ -21,11 +21,14 @@ var SummaryComponent = (function () {
     SummaryComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._skillService.getSkills().subscribe(function (skills) { return _this.skills = skills; }, function (error) { return _this.errorMessage = error; });
-        this._candidateService.getCandidates().subscribe(function (candidates) { return _this.candidates = candidates; }, function (error) { return _this.errorMessage = error; });
+        this._candidateService.getCandidates().subscribe(function (candidates) { return _this.candidates = candidates; }, function (error) {
+            alert(error);
+            localStorage.removeItem('id_token');
+            _this.router.navigate(['login']);
+        });
     };
     SummaryComponent.prototype.logout = function () {
         localStorage.removeItem('id_token');
-        localStorage.removeItem('Authlevel');
         this.router.navigate(['login']);
     };
     SummaryComponent = __decorate([

@@ -16,7 +16,6 @@ var LoginComponent = (function () {
         this._authService = _authService;
         this.email = '';
         this.pwd = '';
-        this.token = '';
         this.router = _router;
     }
     LoginComponent.prototype.ngOnInit = function () {
@@ -32,14 +31,11 @@ var LoginComponent = (function () {
         }
         else {
             this._authService.login(this.email, this.pwd)
-                .subscribe(function (response) {
-                _this.token = response;
-                localStorage.setItem('id_token', _this.token);
-                _this.t = localStorage.getItem('id_token');
-                localStorage.setItem('Authlevel', 'admin');
-                _this.router.navigate(['summary']);
-            }, function (error) {
-                _this.errorMessage = 'Incorrect email or password';
+                .subscribe(function (result) {
+                if (result === 't')
+                    _this.router.navigate(['/summary']);
+            }, function (err) {
+                _this.errorMessage = err;
             });
         }
     };

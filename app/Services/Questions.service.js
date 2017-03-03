@@ -43,7 +43,7 @@ var QuestionsService = (function (_super) {
     }
     QuestionsService.prototype.getQuestions = function () {
         console.log('question url:' + this.url1);
-        var token = JSON.parse(localStorage.getItem('id_token')).token;
+        var token = localStorage.getItem('id_token');
         console.log('token:' + token);
         var headers = new http_1.Headers();
         headers.append('acc-token', "" + token);
@@ -58,7 +58,7 @@ var QuestionsService = (function (_super) {
     QuestionsService.prototype.saveQuestions = function (Answers) {
         var _this = this;
         var body = { "Answers": Answers };
-        var token = JSON.parse(localStorage.getItem('id_token')).token;
+        var token = localStorage.getItem('id_token');
         var headers = new http_1.Headers();
         headers.append('acc-token', "" + token);
         headers.append('Content-Type', 'application/json');
@@ -74,23 +74,6 @@ var QuestionsService = (function (_super) {
     return QuestionsService;
 }(QuestionsMethods));
 exports.QuestionsService = QuestionsService;
-// return this._http.get(this.url,{ headers: headers }).map((r) =>
-//  {
-//    let x = r.json();
-//    let Questions : Question[];
-//    for(let i = 0; i < x.length ; i++)
-//     {
-//       let e: Question = new Question(
-//         x[i].ID,
-//         x[i].Questions,
-//         ''
-//       );
-//       Questions.push(e);
-//  }
-//  console.log(Questions);
-//  return Questions ;
-//  });
-// yet to implement
 var QuestionsDummyService = (function (_super) {
     __extends(QuestionsDummyService, _super);
     function QuestionsDummyService(_http) {

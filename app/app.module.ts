@@ -29,6 +29,7 @@ import { AuthGuard } from './auth.guard';
 import { ConfigService } from './config/config.service';
 import { HandleError,HandleErrorService } from './Services/HandleError.service';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import {EmpRegistrationComponent} from  './internal/empRegistration.component'
 
 @NgModule ({
   imports: [ BrowserModule, routing, HttpModule, FormsModule,],
@@ -43,7 +44,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
                   TestSuccessComponent,
                   SummaryComponent,
                   EvaluationComponent,
-                  TimerComponent
+                  TimerComponent,
+                  EmpRegistrationComponent
                 ],  
   bootstrap: [ AppComponent ],
   providers: [{provide:SkillMethods, useClass:SkillService},

@@ -34,7 +34,8 @@ export class QuestionsService extends QuestionsMethods {
   getQuestions(): Observable<Question[]>
   {
     console.log('question url:' + this.url1);
-    let token=JSON.parse(localStorage.getItem('id_token')).token;
+    
+    let token = localStorage.getItem('id_token');
     console.log('token:' + token);
     let headers = new Headers();
     headers.append('acc-token',`${token}`);
@@ -51,7 +52,8 @@ export class QuestionsService extends QuestionsMethods {
   saveQuestions(Answers:Question[]): Observable<string>
   {
   let body = {"Answers": Answers};
-  var token=JSON.parse(localStorage.getItem('id_token')).token;
+ 
+ let token = localStorage.getItem('id_token');
     var headers = new Headers();
     headers.append('acc-token',`${token}`);
     headers.append('Content-Type', 'application/json');
@@ -63,26 +65,7 @@ export class QuestionsService extends QuestionsMethods {
       .catch(res => this._handleError.handleError(res));
   }
 }
-    // return this._http.get(this.url,{ headers: headers }).map((r) =>
-    //  {
-    //    let x = r.json();
-    //    let Questions : Question[];
-    //    for(let i = 0; i < x.length ; i++)
-    //     {
-    //       let e: Question = new Question(
-    //         x[i].ID,
-    //         x[i].Questions,
-    //         ''
-    //       );
-    //       Questions.push(e);
-    //  }
-    //  console.log(Questions);
-    //  return Questions ;
-    //  });
-
-
-  // yet to implement
-
+   
 
 @Injectable()
 export class QuestionsDummyService extends QuestionsMethods {

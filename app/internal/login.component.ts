@@ -13,14 +13,10 @@ export class LoginComponent implements OnInit {
   public email : string='';
   public pwd : string='';
   errorMessage : string;
-  public loginTrue : boolean;
-  public can : Candidate;
-  public token : string='';
-  public t:string;
+  public token : any;
   
   constructor(
-    private _authService: Login,
-    _router:Router){ this.router = _router;
+    private _authService: Login,_router:Router){ this.router = _router;
        }
 
   ngOnInit() {    
@@ -36,20 +32,19 @@ export class LoginComponent implements OnInit {
     }
     else{
      this._authService.login(this.email,this.pwd)
-     .subscribe(
-        response => {
-          this.token=response;
-          localStorage.setItem('id_token', this.token);
-          this.t=localStorage.getItem('id_token'); 
-          localStorage.setItem('Authlevel', 'admin');
-          this.router.navigate(['summary']);        
-        },
-        error => {
-          this.errorMessage = 'Incorrect email or password';
-        }
-      );      
+     .subscribe(result => {
+                
+                if (result === 't')
+
+                    this.router.navigate(['/summary']);
+
+     }, err => {
+
+                   this.errorMessage=err;
+
+                });
     }
-  }
+    }
 
   
 }

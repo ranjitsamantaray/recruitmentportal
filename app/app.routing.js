@@ -8,12 +8,15 @@ var test_component_1 = require('./test/test.component');
 var summary_component_1 = require('./internal/summary.component');
 var testsuccess_component_1 = require('./test/testsuccess.component');
 var evaluation_component_1 = require('./internal/evaluation.component');
+var empRegistration_component_1 = require('./internal/empRegistration.component');
+var auth_guard_1 = require('./auth.guard');
 var appRoutes = [
     { path: 'home', component: welcome_component_1.WelcomeComponent },
     { path: 'registrationsuccess', component: success_component_1.RegistrationSuccessComponent },
+    { path: 'empregistration', component: empRegistration_component_1.EmpRegistrationComponent },
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'testlogin', component: testlogin_component_1.TestLoginComponent },
-    { path: 'test', component: test_component_1.TestComponent },
+    { path: 'test', component: test_component_1.TestComponent, canActivate: [auth_guard_1.AuthGuard] },
     { path: 'summary', component: summary_component_1.SummaryComponent },
     { path: 'testsuccess', component: testsuccess_component_1.TestSuccessComponent },
     { path: 'evaluation/:id', component: evaluation_component_1.EvaluationComponent },

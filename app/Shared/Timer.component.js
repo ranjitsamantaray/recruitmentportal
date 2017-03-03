@@ -10,13 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var Rx_1 = require('rxjs/Rx');
+//import {TestComponent} from '../test/test.component';
 var TimerComponent = (function () {
     function TimerComponent() {
+        this.done = new core_1.EventEmitter();
         this.name = 'Angular';
         this.count = 1;
         this.hh = '00';
-        this.mm = 59;
-        this.mm2 = 60;
+        this.mm = 5;
+        this.mm2 = 5;
         this.ss = 59;
         this.ss2 = 60;
         this.ticks = 0;
@@ -33,8 +35,11 @@ var TimerComponent = (function () {
         if (this.ss == 0) {
             this.count += 1;
             this.ss2 = 60 * this.count;
+            if (this.mm == 5 && this.ss == 0)
+                alert("you have only 5 minutes left");
             this.mm = this.mm2 - this.count;
             if (this.mm == 0) {
+                this.done.next();
                 this.ngOnDestroy();
             }
         }
@@ -42,6 +47,10 @@ var TimerComponent = (function () {
     TimerComponent.prototype.ngOnDestroy = function () {
         this.subscription.unsubscribe();
     };
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], TimerComponent.prototype, "done", void 0);
     TimerComponent = __decorate([
         core_1.Component({
             selector: 'my-timer',

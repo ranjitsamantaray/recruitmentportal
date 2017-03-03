@@ -35,16 +35,17 @@ export class LoginReal extends Login {
     return this._http
      .post(this.url, body, {headers:headers})
        .map((response: Response) => {
-               let token = response.json() && response.json().Token;
-              
+                let token = response.json() && response.json().Token;
+              console.log(response.json().Token);
                 if (token) {
                     // set token property
                     //this.token = token;
- 
+                    localStorage.setItem('id_token',response.json().Token);
                     // store username and jwt token in local storage to keep user logged in between page refreshes
-                     localStorage.setItem('id_token', JSON.stringify({  token: response.json().Token}));
+                     //localStorage.setItem('id_token', JSON.stringify({  token: response.json().Token}));
+                     console.log((localStorage.getItem('id_token')));
                    return "t";
-                  }
+                }
        }).catch(e => {
          let r = JSON.parse(e._body);
          return Observable.throw(r.status);
