@@ -39,16 +39,10 @@ export class SummaryService extends SummaryMethods {
     .map((response : Response) => <Candidate[]> response.json())
     .do(data => console.log('All : ' + JSON.stringify(data)))
     .catch(err =>{
-      console.log('Error returned from summary Service: ' + err);
-     //let r = JSON.parse(err._body);
+      console.log('Error returned from summary Service: ' + err);     
       return Observable.throw(err.statusText);
     });
   }
-
-  // private handleError(error: Response) {
-  //   console.error('An error occurred', error);
-  //   return Observable.throw(error.json().error || 'Server error');
-  // }
 }
 
 @Injectable()

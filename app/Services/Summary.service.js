@@ -50,7 +50,6 @@ var SummaryService = (function (_super) {
             .do(function (data) { return console.log('All : ' + JSON.stringify(data)); })
             .catch(function (err) {
             console.log('Error returned from summary Service: ' + err);
-            //let r = JSON.parse(err._body);
             return Observable_1.Observable.throw(err.statusText);
         });
     };

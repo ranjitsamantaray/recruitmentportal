@@ -58,7 +58,7 @@ import { SummaryMethods,SummaryService,SummayDummyService } from './Services/Sum
               {provide:TestMethods, useClass:TestDummyService},
               {provide:Login, useClass:LoginReal},ConsultancyService,
               {provide:HandleError, useClass:HandleErrorService},
-              {provide: LocationStrategy, useClass: HashLocationStrategy},
+              //{provide: LocationStrategy, useClass: HashLocationStrategy},
               {provide:SummaryMethods, useClass:SummaryService},
               {provide: EmployeeMethods, useClass: EmployeeService},
               AuthGuard, ...AUTH_PROVIDERS,

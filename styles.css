@@ -194,6 +194,26 @@ body {
   font-style:normal;
   font-size:16px;
 }
+#empreg_div {
+  border-width:0px;
+  position:absolute;
+  left:250px;
+  top:120px;
+  width:345px;
+  height:300px;
+  background:inherit;
+  background-color:rgba(255, 255, 255, 0);
+  border-width:1px;
+  border-style: solid;
+  border-color: rgba(121,121,121,1);
+  border-radius:10px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:'Calibri';
+  font-style:normal;
+  font-size:16px;
+}
 #email {
   position:absolute;
   left:40px;
@@ -323,7 +343,34 @@ position:absolute;
   color:#000000;
   text-align:left;
 }
-
+#empskill {
+  position:absolute;
+  left:40px;
+  top:140px;
+  width:265px;
+  height:30px;
+  font-family:'Calibri';
+  font-weight:400;
+  font-style:normal;
+  font-size:13px;
+  text-decoration:none;
+  color:#000000;
+  text-align:left;
+}
+#role {
+  position:absolute;
+  left:40px;
+  top:170px;
+  width:265px;
+  height:30px;
+  font-family:'Calibri';
+  font-weight:400;
+  font-style:normal;
+  font-size:13px;
+  text-decoration:none;
+  color:#000000;
+  text-align:left;
+}
 #consultancy {
   position:absolute;
   left:40px;
@@ -371,6 +418,28 @@ position:absolute;
   position:absolute;
   left:40px;
   top:320px;
+  width:265px;
+  height:30px;
+  background:inherit;
+  background-color:rgba(0, 51, 102, 1);
+  box-sizing:border-box;
+  border-width:1px;
+  border-style:solid;
+  border-color:rgba(121, 121, 121, 1);
+  border-radius:0px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:'Calibri Bold', 'Calibri';
+  font-weight:700;
+  font-style:normal;
+  color:#FFFFFF;
+}
+#empsignup {
+  border-width:0px;
+  position:absolute;
+  left:40px;
+  top:230px;
   width:265px;
   height:30px;
   background:inherit;

@@ -17,20 +17,42 @@ export class EmpRegistrationComponent implements OnInit {
   errorMessage : string;
   public emp : Employee;
   public skills : Skill[];
+  public roles : any;
   
   constructor(_router: Router, private _empService : EmployeeMethods, private _skillService: SkillMethods,
   private route: ActivatedRoute){  
   this.router = _router;  
   }
 
-    ngOnInit() {
+    ngOnInit() {        
         this.emp = new Employee('','','','','');
+        this.roles = [
+            {
+                "ID" : 1,
+                "Role" : "Admin"
+            },
+            {
+                "ID" : 2,
+                "Role" : "Manager"
+            },
+            {
+                "ID" : 3,
+                "Role" : "Architect"
+            },
+            {
+                "ID" : 4,
+                "Role" : "BD"
+            },
+            {
+                "ID" : 5,
+                "Role" : "Developer"
+            }
+        ];
         this._skillService.getSkills().subscribe(skills => this.skills = skills,
         error => this.errorMessage = <any>error);              
     }
 
-    regEmployee(){     
-        this.emp.Role = 'Admin';   
+    regEmployee(){            
 
         if (this.emp.Email==''){
             this.errorMessage="please enter your Email id";
@@ -41,6 +63,9 @@ export class EmpRegistrationComponent implements OnInit {
         else if(this.emp.Skill=='0'){
             this.errorMessage="Please select your skill";
         }
+        else if(this.emp.Role=='0'){
+            this.errorMessage="Please select your Role";
+        }
         else if(!this.emp.Email.match(new RegExp(/^[A-Z0-9a-z._%+-]+@[A-Za-z0-9-.]+.[A-Za-z]{2,4}$/)))
         {
             this.errorMessage="invalid email id eg:xyz@abc.com";
@@ -48,7 +73,7 @@ export class EmpRegistrationComponent implements OnInit {
         else {
             this._empService.registerEmployee(this.emp).subscribe(can => {
             if(can == "Already Registered"){
-                alert("Yo are already registered before !!! contact admin ..");
+                alert("You are already registered before. Please contact the admin");
             }
             else{
                 this.router.navigate(['/login']);       

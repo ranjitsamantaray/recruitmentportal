@@ -1,21 +1,21 @@
-<div id="reg_div">
+<div id="empreg_div">
     
   <p style="font-size:18px;text-align:center"><span style="font-family:'Calibri Bold', 'Calibri';font-weight:700;color:#003366">
     REGISTRATION  </span></p>
   <input id="email" type="text" placeholder="Email" [(ngModel)]="emp.Email"  (keyup)="errorMessage=''"/>
   <input id="name" type="text" placeholder="Name" [(ngModel)]="emp.Name"  (keyup)="errorMessage=''"/>  
   
-  <select id="skill" [(ngModel)]="emp.Skill" (change)="errorMessage=''">
+  <select id="empskill" [(ngModel)]="emp.Skill" (change)="errorMessage=''">
     <option [value]="0" (click)="emp.Skill='0'">--Select your skill---</option>
     <option *ngFor="let skill of skills" [value]="skill.SKILL">{{skill.SKILL}}</option>
   </select>    
-  <!--<select id="role" [(ngModel)]="emp.Role" (change)="errorMessage=''">
-    <option [value]="0" (click)="emp.Role='0'">Select your role</option>
+  <select id="role" [(ngModel)]="emp.Role" (change)="errorMessage=''">
+    <option [value]="0" (click)="emp.Role='0'">--Select your role--</option>
     <option *ngFor="let role of roles" [value]="role.Role">{{role.Role}}</option>
-  </select> -->
+  </select>
   <p style="text-align:center; font-size:14px"><span style="font-family:'Calibri Bold', 'Calibri';
     color: #D8000C;">{{errorMessage}}</span></p>
-  <input id="signup" type="submit" value="Sign Up" (click)="regEmployee()" />
+  <input id="empsignup" type="submit" value="Sign Up" (click)="regEmployee()" />
 </div>
 <div id="trailer" style="top:680px;">
   <input id="trailer_input" type="text" value="Danske IT Recruitment Team - 2017"/>
