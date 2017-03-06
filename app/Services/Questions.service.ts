@@ -33,10 +33,7 @@ export class QuestionsService extends QuestionsMethods {
 
   getQuestions(): Observable<Question[]>
   {
-    console.log('question url:' + this.url1);
-    
     let token = localStorage.getItem('id_token');
-    console.log('token:' + token);
     let headers = new Headers();
     headers.append('acc-token',`${token}`);
     return this._http.get(this.url1,{ headers: headers })
@@ -52,7 +49,7 @@ export class QuestionsService extends QuestionsMethods {
   saveQuestions(Answers:Question[]): Observable<string>
   {
   let body = {"Answers": Answers};
- 
+
  let token = localStorage.getItem('id_token');
     var headers = new Headers();
     headers.append('acc-token',`${token}`);
@@ -65,7 +62,7 @@ export class QuestionsService extends QuestionsMethods {
       .catch(res => this._handleError.handleError(res));
   }
 }
-   
+
 
 @Injectable()
 export class QuestionsDummyService extends QuestionsMethods {

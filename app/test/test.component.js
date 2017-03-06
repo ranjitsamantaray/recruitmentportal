@@ -22,28 +22,35 @@ var TestComponent = (function () {
         this.index = 0;
     }
     TestComponent.prototype.ngOnInit = function () {
-        //console.log('token:' + JSON.parse(localStorage.getItem('id_token')).token);
-        console.log(localStorage.getItem('id_token'));
         this.getQuetions();
     };
     TestComponent.prototype.onPopState = function (event) {
-        console.log('Backbutton pressed!!');
         this.gotoSubmitTest();
         localStorage.removeItem('id_token');
         this.router.navigate(['testsuccess']);
     };
     TestComponent.prototype.onBeforeUnload = function (event) {
-        console.log('Refresh pressed!!');
         this.gotoSubmitTest();
         localStorage.removeItem('id_token');
         this.router.navigate(['testsuccess']);
+    };
+    TestComponent.prototype.onContextMenu = function (event) {
+        return false;
+    };
+    TestComponent.prototype.onCopy = function (event) {
+        return false;
+    };
+    TestComponent.prototype.onCut = function (event) {
+        return false;
+    };
+    TestComponent.prototype.onPaste = function (event) {
+        return false;
     };
     TestComponent.prototype.getQuetions = function () {
         var _this = this;
         this._questionService.getQuestions()
             .subscribe(function (questions) {
             _this.questions = questions;
-            console.log(questions);
         }, function (error) {
             alert(error);
             localStorage.removeItem('id_token');
@@ -58,7 +65,6 @@ var TestComponent = (function () {
         var _this = this;
         this._questionService.saveQuestions(this.questions)
             .subscribe(function (can) {
-            console.log('Submitting answer');
             localStorage.removeItem('id_token');
             _this.router.navigate(['testsuccess']);
         }, function (error) { return _this.errorMessage = error; });
@@ -75,6 +81,30 @@ var TestComponent = (function () {
         __metadata('design:paramtypes', [Object]), 
         __metadata('design:returntype', void 0)
     ], TestComponent.prototype, "onBeforeUnload", null);
+    __decorate([
+        core_1.HostListener('window:contextmenu', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], TestComponent.prototype, "onContextMenu", null);
+    __decorate([
+        core_1.HostListener('window:copy', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], TestComponent.prototype, "onCopy", null);
+    __decorate([
+        core_1.HostListener('window:cut', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], TestComponent.prototype, "onCut", null);
+    __decorate([
+        core_1.HostListener('window:paste', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], TestComponent.prototype, "onPaste", null);
     TestComponent = __decorate([
         core_1.Component({
             selector: 'test',

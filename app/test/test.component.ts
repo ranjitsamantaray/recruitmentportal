@@ -29,14 +29,11 @@ export class TestComponent implements OnInit {
   }
 
   ngOnInit() {
-    //console.log('token:' + JSON.parse(localStorage.getItem('id_token')).token);
-    console.log(localStorage.getItem('id_token'));
     this.getQuetions();
   }
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event){
-    console.log('Backbutton pressed!!');
     this.gotoSubmitTest();
     localStorage.removeItem('id_token');
     this.router.navigate(['testsuccess']);
@@ -44,17 +41,35 @@ export class TestComponent implements OnInit {
 
   @HostListener('window:beforeunload', ['$event'])
   onBeforeUnload(event){
-    console.log('Refresh pressed!!');
     this.gotoSubmitTest();
     localStorage.removeItem('id_token');
     this.router.navigate(['testsuccess']);
+  }
+
+  @HostListener('window:contextmenu', ['$event'])
+  onContextMenu(event){
+    return false;
+  }
+
+  @HostListener('window:copy', ['$event'])
+  onCopy(event){
+    return false;
+  }
+
+  @HostListener('window:cut', ['$event'])
+  onCut(event){
+    return false;
+  }
+
+  @HostListener('window:paste', ['$event'])
+  onPaste(event){
+    return false;
   }
 
   getQuetions(){
     this._questionService.getQuestions()
     .subscribe(questions => {
       this.questions = questions;
-      console.log(questions);
     },
     error => {
        alert(error);
@@ -71,7 +86,6 @@ export class TestComponent implements OnInit {
   gotoSubmitTest() {
      this._questionService.saveQuestions(this.questions)
     .subscribe(can => {
-      console.log('Submitting answer');
       localStorage.removeItem('id_token');
       this.router.navigate(['testsuccess']);
     },error => this.errorMessage = <any>error);

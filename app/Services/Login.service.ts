@@ -25,7 +25,7 @@ export class LoginReal extends Login {
     super();
     this.config = this.configSrvc.config;
     this.url = this.config['apiUrl'] + 'login/auth';
-  }  
+  }
 
 
   login(Email : string, Password : string): Observable<string> {
@@ -36,32 +36,26 @@ export class LoginReal extends Login {
      .post(this.url, body, {headers:headers})
        .map((response: Response) => {
                 let token = response.json() && response.json().Token;
-              console.log(response.json().Token);
                 if (token) {
-                    // set token property
-                    //this.token = token;
                     localStorage.setItem('id_token',response.json().Token);
-                    // store username and jwt token in local storage to keep user logged in between page refreshes
-                     //localStorage.setItem('id_token', JSON.stringify({  token: response.json().Token}));
-                     console.log((localStorage.getItem('id_token')));
                    return "t";
                 }
        }).catch(e => {
          let r = JSON.parse(e._body);
          return Observable.throw(r.status);
        });
-              
+
   }
 }
 
 @Injectable()
 export class LoginDummy extends Login {
-  private url = 'http://localhost:8088/api/login';  
+  private url = 'http://localhost:8088/api/login';
   constructor(private _http: Http) {
     super();
     console.log('Inside CandidateService');
-  }    
- 
+  }
+
 
   login(email : string, pwd : string): Observable<string> {
      // let token:any;

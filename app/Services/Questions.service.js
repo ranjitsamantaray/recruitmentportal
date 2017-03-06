@@ -42,9 +42,7 @@ var QuestionsService = (function (_super) {
         this.url2 = this.config['apiUrl'] + 'dbsecure-can/submit';
     }
     QuestionsService.prototype.getQuestions = function () {
-        console.log('question url:' + this.url1);
         var token = localStorage.getItem('id_token');
-        console.log('token:' + token);
         var headers = new http_1.Headers();
         headers.append('acc-token', "" + token);
         return this._http.get(this.url1, { headers: headers })
