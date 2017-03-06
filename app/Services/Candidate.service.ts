@@ -38,7 +38,7 @@ export class CandidateService extends CandidateMethods {
     this.url = this.config['apiUrl'] + 'candidate/register';
     this.urlResume =this.config['apiUrl']+'candidate/upload';
     this.url2 =this.config['apiUrl']+'employee/register';
-    this.url3 =this.config['apiUrl']+'employee/summary';
+    this.url3 =this.config['apiUrl']+'dbsecure-can/summary';
   }  
 
   saveCandidate(candidate:Candidate): Observable<string>
@@ -87,7 +87,11 @@ export class CandidateService extends CandidateMethods {
 
 
   getCandidates(): Observable<Candidate[]>
-  {
+  {    
+    let token = localStorage.getItem('id_token');
+    console.log('token:' + token);
+    let headers = new Headers();
+    headers.append('acc-token',`${token}`);
     return this._http.get(this.url3)
     .map((response : Response) => <Candidate[]> response.json())
     .do(data => console.log('All : ' + JSON.stringify(data)))

@@ -10,18 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var Candidate_service_1 = require('../Services/Candidate.service');
+var Summary_service_1 = require('../Services/Summary.service');
 var Skills_service_1 = require('../Services/Skills.service');
 var SummaryComponent = (function () {
-    function SummaryComponent(_router, _candidateService, _skillService) {
-        this._candidateService = _candidateService;
+    function SummaryComponent(_router, _summaryService, _skillService) {
+        this._summaryService = _summaryService;
         this._skillService = _skillService;
         this.router = _router;
     }
     SummaryComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._skillService.getSkills().subscribe(function (skills) { return _this.skills = skills; }, function (error) { return _this.errorMessage = error; });
-        this._candidateService.getCandidates().subscribe(function (candidates) { return _this.candidates = candidates; }, function (error) {
+        this._summaryService.getSummary().subscribe(function (candidates) { return _this.candidates = candidates; }, function (error) {
             alert(error);
             localStorage.removeItem('id_token');
             _this.router.navigate(['login']);
@@ -36,7 +36,7 @@ var SummaryComponent = (function () {
             selector: 'summary',
             templateUrl: './app/internal/summary.html'
         }), 
-        __metadata('design:paramtypes', [router_1.Router, Candidate_service_1.CandidateMethods, Skills_service_1.SkillMethods])
+        __metadata('design:paramtypes', [router_1.Router, Summary_service_1.SummaryMethods, Skills_service_1.SkillMethods])
     ], SummaryComponent);
     return SummaryComponent;
 }());

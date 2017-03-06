@@ -16,6 +16,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
+var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/do');
 require('rxjs/add/operator/catch');
@@ -27,9 +28,9 @@ var SummaryMethods = (function () {
     return SummaryMethods;
 }());
 exports.SummaryMethods = SummaryMethods;
-var QuestionsService = (function (_super) {
-    __extends(QuestionsService, _super);
-    function QuestionsService(_http, configSrvc, _handleError) {
+var SummaryService = (function (_super) {
+    __extends(SummaryService, _super);
+    function SummaryService(_http, configSrvc, _handleError) {
         _super.call(this);
         this._http = _http;
         this.configSrvc = configSrvc;
@@ -37,22 +38,29 @@ var QuestionsService = (function (_super) {
         console.log('Inside SummaryService');
         this.config = this.configSrvc.config;
         console.log('Configurations: ' + JSON.stringify(this.config));
-        this.url = this.config['apiUrl'] + '';
+        this.url = this.config['apiUrl'] + 'dbsecure-can/summary';
     }
-    QuestionsService.prototype.getSummary = function () {
-        var _this = this;
-        return this._http.get(this.url)
+    SummaryService.prototype.getSummary = function () {
+        var token = localStorage.getItem('id_token');
+        console.log('token:' + token);
+        var headers = new http_1.Headers();
+        headers.append('acc-token', "" + token);
+        return this._http.get(this.url, { headers: headers })
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('All : ' + JSON.stringify(data)); })
-            .catch(function (res) { return _this._handleError.handleError(res); });
+            .catch(function (err) {
+            console.log('Error returned from summary Service: ' + err);
+            //let r = JSON.parse(err._body);
+            return Observable_1.Observable.throw(err.statusText);
+        });
     };
-    QuestionsService = __decorate([
+    SummaryService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, config_service_1.ConfigService, HandleError_service_1.HandleError])
-    ], QuestionsService);
-    return QuestionsService;
+    ], SummaryService);
+    return SummaryService;
 }(SummaryMethods));
-exports.QuestionsService = QuestionsService;
+exports.SummaryService = SummaryService;
 var SummayDummyService = (function (_super) {
     __extends(SummayDummyService, _super);
     function SummayDummyService(_http) {
