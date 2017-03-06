@@ -69,8 +69,13 @@ var SummayDummyService = (function (_super) {
     }
     SummayDummyService.prototype.getSummary = function () {
         return this._http.get(this.url)
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All : ' + JSON.stringify(data)); })
+            .map(function (r) {
+            var x = r.json();
+            var candidates = new Array();
+            for (var i = 0; i < x.length; i++) {
+            }
+            return candidates;
+        })
             .catch(this.handleError);
     };
     SummayDummyService.prototype.handleError = function (error) {

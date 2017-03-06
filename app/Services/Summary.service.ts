@@ -56,8 +56,19 @@ export class SummayDummyService extends SummaryMethods {
   getSummary(): Observable<Candidate[]>
   {
     return this._http.get(this.url)
-    .map((response : Response) => <Candidate[]> response.json())
-    .do(data => console.log('All : ' + JSON.stringify(data)))
+    .map((r) => {
+      let x = r.json();
+      let candidates : Array<Candidate> = new Array<Candidate>();
+      for(var i = 0;i< x.length ; i++)
+      {
+        // let s: Candidate = new Candidate(
+        //      x[i].id,
+        //      x[i].name
+        // );
+        // candidates.push(s); 
+      }
+      return candidates;
+    })
     .catch(this.handleError);
   }
 

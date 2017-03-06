@@ -32,7 +32,6 @@ export class RegistrationComponent implements OnInit {
         let target: HTMLInputElement = <HTMLInputElement> eventObj.target;
         let files: FileList = target.files;
         this.file = files[0];
-       //console.log(this.file); 
   }
 
   ngOnInit() {
@@ -48,21 +47,20 @@ export class RegistrationComponent implements OnInit {
   
   gotoSuccessPage() {   
    if (this.candidate.Email==''){
-      this.errorMessage="please enter your Email id";
-    }
-   
-    else if (this.candidate.Name==''){
-      this.errorMessage="Please enter your Name";
-    }
-    else if(this.candidate.Phone==''){
-      this.errorMessage="Please enter your Phone number";
-    }
-    else if(!this.candidate.Experience)
-    {
-      this.errorMessage="Please enter year of experiance in numbers";
-    }
+    this.errorMessage="please enter your Email id";
+   }  
+   else if (this.candidate.Name==''){
+    this.errorMessage="Please enter your Name";
+   }
+   else if(this.candidate.Phone==''){
+    this.errorMessage="Please enter your Phone number";
+   }
+   else if(!this.candidate.Experience)
+   {
+    this.errorMessage="Please enter year of experiance in numbers";
+   }
    else if(this.candidate.Skill=='0'){
-     this.errorMessage="Please select your skill";
+    this.errorMessage="Please select your skill";
    }
    else if(this.candidate.Consultancy=='0'){
      this.errorMessage="Please select your Consultancy";
@@ -81,31 +79,24 @@ export class RegistrationComponent implements OnInit {
    else if(!(String(this.candidate.Experience).match(new RegExp(/^[0-9]{0,2}(\.[0-9]{0,1}?)?$/)))){
      this.errorMessage="Invalid years of expreiance entered Eg:3.7";
    }
-   
-    else{
+   else{
      //console.log(JSON.stringify(this.candidate));
-   this._candidateService.saveCandidate(this.candidate)
-   
-    .subscribe(can => {
+     this._candidateService.saveCandidate(this.candidate)   
+     .subscribe(can => {
        if(can == "Already Registered"){
-       alert("You are already registered before please contact the admin");
-          }
-     else{
-       this.router.navigate(['/registrationsuccess']);
-       this._candidateService.UploadResume(this.file,this.candidate.Email)
-       .subscribe(can => {this.message = can},
-       err=>{
-         this.errorMessage=err;
-       });
-        }
+         alert("You are already registered before please contact the admin");
+       }
+       else{
+          this.router.navigate(['/registrationsuccess']);
+          this._candidateService.UploadResume(this.file,this.candidate.Email)
+          .subscribe(can => {this.message = can},
+          err=>{
+            this.errorMessage=err;
+          });
+       }
             
       },
       error => this.errorMessage = <any>error);
-
-     }
-       
+     }       
     }
-     
-    
-  
 }

@@ -27,7 +27,6 @@ var RegistrationComponent = (function () {
         var target = eventObj.target;
         var files = target.files;
         this.file = files[0];
-        //console.log(this.file); 
     };
     RegistrationComponent.prototype.ngOnInit = function () {
         var _this = this;

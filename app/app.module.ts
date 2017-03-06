@@ -32,6 +32,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { EmpRegistrationComponent } from  './internal/empRegistration.component';
 import { EmployeeMethods, EmployeeService} from './Services/Employee.service';
 import { SummaryMethods,SummaryService,SummayDummyService } from './Services/Summary.service';
+import { NewlinePipe } from './Shared/newline.pipe';
 
 @NgModule ({
   imports: [ BrowserModule, routing, HttpModule, FormsModule,],
@@ -47,7 +48,8 @@ import { SummaryMethods,SummaryService,SummayDummyService } from './Services/Sum
                   SummaryComponent,
                   EvaluationComponent,
                   TimerComponent,
-                  EmpRegistrationComponent
+                  EmpRegistrationComponent,
+                  NewlinePipe
                 ],  
   bootstrap: [ AppComponent ],
   providers: [{provide:SkillMethods, useClass:SkillService},
@@ -58,7 +60,7 @@ import { SummaryMethods,SummaryService,SummayDummyService } from './Services/Sum
               {provide:TestMethods, useClass:TestDummyService},
               {provide:Login, useClass:LoginReal},ConsultancyService,
               {provide:HandleError, useClass:HandleErrorService},
-              //{provide: LocationStrategy, useClass: HashLocationStrategy},
+              {provide: LocationStrategy, useClass: HashLocationStrategy},
               {provide:SummaryMethods, useClass:SummaryService},
               {provide: EmployeeMethods, useClass: EmployeeService},
               AuthGuard, ...AUTH_PROVIDERS,
