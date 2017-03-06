@@ -15,7 +15,6 @@ var Candidate_1 = require('../Recruitment/Candidate/Candidate');
 var Skills_service_1 = require('../Services/Skills.service');
 var Consultancy_service_1 = require('../Services/Consultancy.service');
 var RegistrationComponent = (function () {
-    //public r:any;
     function RegistrationComponent(_skillService, _candidateService, _consultancyService, router) {
         this._skillService = _skillService;
         this._candidateService = _candidateService;
@@ -73,7 +72,7 @@ var RegistrationComponent = (function () {
             this._candidateService.saveCandidate(this.candidate)
                 .subscribe(function (can) {
                 if (can == "Already Registered") {
-                    alert("Yo are already registered before !!! contact admin ..");
+                    alert("You are already registered before please contact the admin");
                 }
                 else {
                     _this.router.navigate(['/registrationsuccess']);

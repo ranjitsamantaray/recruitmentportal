@@ -4,7 +4,6 @@ import 'rxjs/add/operator/toPromise';
 import { Candidate } from '../Recruitment/Candidate/Candidate';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import * as Rs from 'rxjs/Rx';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { ConfigService } from '../config/config.service';
@@ -15,8 +14,7 @@ export abstract class SummaryMethods{
 }
 
 @Injectable()
-export class QuestionsService extends SummaryMethods {
-  //private url = 'http://localhost:8088/api/summary';
+export class SummaryService extends SummaryMethods {  
   config: any;
   private url : any;
   
@@ -26,16 +24,25 @@ export class QuestionsService extends SummaryMethods {
     console.log('Inside SummaryService');
     this.config = this.configSrvc.config;
     console.log('Configurations: '+ JSON.stringify(this.config));
-    this.url = this.config['apiUrl'] + '';
+    this.url = this.config['apiUrl'] + 'dbsecure-can/summary';
   }  
 
 
   getSummary(): Observable<Candidate[]>
   {
-    return this._http.get(this.url)
+    let token = localStorage.getItem('id_token');
+    console.log('token:' + token);
+    let headers = new Headers();
+    headers.append('acc-token',`${token}`);
+    
+    return this._http.get(this.url, { headers: headers })
     .map((response : Response) => <Candidate[]> response.json())
     .do(data => console.log('All : ' + JSON.stringify(data)))
-    .catch(res => this._handleError.handleError(res));
+    .catch(err =>{
+      console.log('Error returned from summary Service: ' + err);
+     //let r = JSON.parse(err._body);
+      return Observable.throw(err.statusText);
+    });
   }
 
   // private handleError(error: Response) {

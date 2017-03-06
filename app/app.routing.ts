@@ -9,13 +9,13 @@ import { TestComponent } from './test/test.component';
 import { SummaryComponent } from './internal/summary.component';
 import { TestSuccessComponent } from './test/testsuccess.component';
 import { EvaluationComponent } from './internal/evaluation.component';
-//import {EmpRegistrationComponent} from  './internal/empRegistration.component'
+import { EmpRegistrationComponent } from  './internal/empRegistration.component'
 import {AuthGuard} from './auth.guard';
 
 const appRoutes: Routes = [
   { path: 'home', component: WelcomeComponent },
   { path: 'registrationsuccess', component: RegistrationSuccessComponent},
-  //{ path: 'empregistration', component: EmpRegistrationComponent},
+  { path: 'empregistration', component: EmpRegistrationComponent},
   { path: 'login', component: LoginComponent},
   { path: 'testlogin', component: TestLoginComponent },
   { path: 'test', component: TestComponent,canActivate :[AuthGuard] },

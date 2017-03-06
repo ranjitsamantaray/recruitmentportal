@@ -43,7 +43,7 @@ var CandidateService = (function (_super) {
         this.url = this.config['apiUrl'] + 'candidate/register';
         this.urlResume = this.config['apiUrl'] + 'candidate/upload';
         this.url2 = this.config['apiUrl'] + 'employee/register';
-        this.url3 = this.config['apiUrl'] + 'employee/summary';
+        this.url3 = this.config['apiUrl'] + 'dbsecure-can/summary';
     }
     CandidateService.prototype.saveCandidate = function (candidate) {
         var _this = this;
@@ -79,6 +79,10 @@ var CandidateService = (function (_super) {
         });
     };
     CandidateService.prototype.getCandidates = function () {
+        var token = localStorage.getItem('id_token');
+        console.log('token:' + token);
+        var headers = new http_1.Headers();
+        headers.append('acc-token', "" + token);
         return this._http.get(this.url3)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('All : ' + JSON.stringify(data)); })

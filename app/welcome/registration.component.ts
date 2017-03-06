@@ -21,7 +21,7 @@ export class RegistrationComponent implements OnInit {
   public message:string;
   file : File;
   public today: number = Date.now();
-  //public r:any;
+  
   
   constructor(
     private _skillService: SkillMethods, private _candidateService: CandidateMethods, private _consultancyService : ConsultancyService,
@@ -88,7 +88,7 @@ export class RegistrationComponent implements OnInit {
    
     .subscribe(can => {
        if(can == "Already Registered"){
-       alert("Yo are already registered before !!! contact admin ..");
+       alert("You are already registered before please contact the admin");
           }
      else{
        this.router.navigate(['/registrationsuccess']);

@@ -22,14 +22,16 @@ import { TimerComponent } from './Shared/Timer.component';
 import { QuestionsMethods, QuestionsService, QuestionsDummyService } from './Services/Questions.service';
 import { AuthUserMethods,AuthUserService,AuthUserDummyService } from './Services/AuthenticateUser.service';
 import { TestMethods,TestService,TestDummyService } from './Services/Test.service';
-import {ConsultancyService} from './Services/Consultancy.service';
+import { ConsultancyService} from './Services/Consultancy.service';
 import { Login, LoginDummy, LoginReal } from './Services/Login.service';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { AuthGuard } from './auth.guard';
 import { ConfigService } from './config/config.service';
 import { HandleError,HandleErrorService } from './Services/HandleError.service';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-//import {EmpRegistrationComponent} from  './internal/empRegistration.component'
+import { EmpRegistrationComponent } from  './internal/empRegistration.component';
+import { EmployeeMethods, EmployeeService} from './Services/Employee.service';
+import { SummaryMethods,SummaryService,SummayDummyService } from './Services/Summary.service';
 
 @NgModule ({
   imports: [ BrowserModule, routing, HttpModule, FormsModule,],
@@ -44,8 +46,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
                   TestSuccessComponent,
                   SummaryComponent,
                   EvaluationComponent,
-                  TimerComponent//,
-                  //EmpRegistrationComponent
+                  TimerComponent,
+                  EmpRegistrationComponent
                 ],  
   bootstrap: [ AppComponent ],
   providers: [{provide:SkillMethods, useClass:SkillService},
@@ -57,6 +59,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
               {provide:Login, useClass:LoginReal},ConsultancyService,
               {provide:HandleError, useClass:HandleErrorService},
               {provide: LocationStrategy, useClass: HashLocationStrategy},
+              {provide:SummaryMethods, useClass:SummaryService},
+              {provide: EmployeeMethods, useClass: EmployeeService},
               AuthGuard, ...AUTH_PROVIDERS,
               ConfigService,
               { provide: APP_INITIALIZER,
