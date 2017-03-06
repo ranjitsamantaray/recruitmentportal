@@ -32,6 +32,7 @@ export class RegistrationComponent implements OnInit {
         let target: HTMLInputElement = <HTMLInputElement> eventObj.target;
         let files: FileList = target.files;
         this.file = files[0];
+        //console.log(this.file.type);
   }
 
   ngOnInit() {
@@ -79,6 +80,9 @@ export class RegistrationComponent implements OnInit {
    else if(!(String(this.candidate.Experience).match(new RegExp(/^[0-9]{0,2}(\.[0-9]{0,1}?)?$/)))){
      this.errorMessage="Invalid years of expreiance entered Eg:3.7";
    }
+   else if(this.file.type != "application/pdf" && this.file.type != "application/msword"){
+     this.errorMessage="Please upload either word or a pdf";
+   }   
    else{
      //console.log(JSON.stringify(this.candidate));
      this._candidateService.saveCandidate(this.candidate)   

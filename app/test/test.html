@@ -13,10 +13,7 @@
 			
           <div id="pure-control-group" *ngFor="let q of questions; let i=index " >
             <br>
-              <table class="noBorder"><tr>
-                <td>{{i + 1}}</td>
-                <td><div id="pure-control-group" [innerHtml]="q.Questions"> </div></td></tr>
-              </table> 
+              <div id="pure-control-group" [innerHtml]="q.Questions"> </div>
               <textarea id="pure-control-group" rows="7" cols="50" autofocus placeholder="Answers" [(ngModel)]="q.Answer"></textarea>
               <br>
           </div>

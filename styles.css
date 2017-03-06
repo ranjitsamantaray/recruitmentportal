@@ -636,9 +636,7 @@ position:absolute;
   width:auto;
   word-wrap:break-word;
 }
-#noBorder {
-    border:none;
-}
+#noBorder {border-collapse:collapse;}
 #pure-control-group{
   font-family:'Calibri Bold', 'Calibri';
   color:black;
