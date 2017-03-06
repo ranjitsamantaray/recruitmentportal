@@ -16,7 +16,7 @@ var NewlinePipe = (function () {
     function NewlinePipe() {
     }
     NewlinePipe.prototype.transform = function (value, args) {
-        return value.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+        return value.replace('\n', '<br/>');
     };
     NewlinePipe = __decorate([
         core_1.Pipe({ name: 'newline' }), 
