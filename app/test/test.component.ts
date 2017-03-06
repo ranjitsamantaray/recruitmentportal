@@ -53,16 +53,19 @@ export class TestComponent implements OnInit {
 
   @HostListener('window:copy', ['$event'])
   onCopy(event){
+    console.log('Copy not allowed');
     return false;
   }
 
   @HostListener('window:cut', ['$event'])
   onCut(event){
+    console.log('Cut not allowed');
     return false;
   }
 
   @HostListener('window:paste', ['$event'])
   onPaste(event){
+    console.log('Paste not allowed');
     return false;
   }
 

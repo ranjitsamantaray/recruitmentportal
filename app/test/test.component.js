@@ -38,12 +38,15 @@ var TestComponent = (function () {
         return false;
     };
     TestComponent.prototype.onCopy = function (event) {
+        console.log('Copy not allowed');
         return false;
     };
     TestComponent.prototype.onCut = function (event) {
+        console.log('Cut not allowed');
         return false;
     };
     TestComponent.prototype.onPaste = function (event) {
+        console.log('Paste not allowed');
         return false;
     };
     TestComponent.prototype.getQuetions = function () {
