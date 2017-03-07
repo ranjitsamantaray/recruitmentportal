@@ -33,11 +33,32 @@ export class SummaryService extends SummaryMethods {
     let token = localStorage.getItem('id_token');
     console.log('token:' + token);
     let headers = new Headers();
-    headers.append('acc-token',`${token}`);
+    headers.append('acc-token',`${token}`);    
     
     return this._http.get(this.url, { headers: headers })
-    .map((response : Response) => <Candidate[]> response.json())
-    .do(data => console.log('All : ' + JSON.stringify(data)))
+    .map((r) => {
+      let x = r.json();
+      let candidates : Array<Candidate> = new Array<Candidate>();
+      for(var i = 0;i< x.length ; i++)
+      {
+         let s: Candidate = new Candidate(
+              x[i].ID,
+              "",
+              x[i].Name,
+              "",
+              x[i].Experience,
+              x[i].Skill,
+              null,
+              x[i].Consultant_Name,
+              x[i].Score,
+              x[i].Status,
+              "",
+              x[i].Logic_Score
+         );
+         candidates.push(s); 
+      }
+      return candidates;
+    })    
     .catch(err =>{
       console.log('Error returned from summary Service: ' + err);     
       return Observable.throw(err.statusText);
@@ -55,21 +76,18 @@ export class SummayDummyService extends SummaryMethods {
 
   getSummary(): Observable<Candidate[]>
   {
-    return this._http.get(this.url)
-    .map((r) => {
-      let x = r.json();
-      let candidates : Array<Candidate> = new Array<Candidate>();
-      for(var i = 0;i< x.length ; i++)
-      {
-        // let s: Candidate = new Candidate(
-        //      x[i].id,
-        //      x[i].name
-        // );
-        // candidates.push(s); 
-      }
-      return candidates;
-    })
-    .catch(this.handleError);
+    let token = localStorage.getItem('id_token');
+    console.log('token:' + token);
+    let headers = new Headers();
+    headers.append('acc-token',`${token}`);
+
+    return this._http.get(this.url, { headers: headers })
+    .map((response : Response) => <Candidate[]> response.json())
+    .do(data => console.log('All : ' + JSON.stringify(data)))
+    .catch(err =>{
+      console.log('Error returned from summary Service: ' + err);     
+      return Observable.throw(err.statusText);
+    });
   }
 
   private handleError(error: any): Promise<any> {

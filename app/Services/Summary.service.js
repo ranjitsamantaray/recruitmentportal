@@ -16,6 +16,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
+var Candidate_1 = require('../Recruitment/Candidate/Candidate');
 var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/do');
@@ -46,8 +47,15 @@ var SummaryService = (function (_super) {
         var headers = new http_1.Headers();
         headers.append('acc-token', "" + token);
         return this._http.get(this.url, { headers: headers })
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All : ' + JSON.stringify(data)); })
+            .map(function (r) {
+            var x = r.json();
+            var candidates = new Array();
+            for (var i = 0; i < x.length; i++) {
+                var s = new Candidate_1.Candidate(x[i].ID, "", x[i].Name, "", x[i].Experience, x[i].Skill, null, x[i].Consultant_Name, x[i].Score, x[i].Status, "", x[i].Logic_Score);
+                candidates.push(s);
+            }
+            return candidates;
+        })
             .catch(function (err) {
             console.log('Error returned from summary Service: ' + err);
             return Observable_1.Observable.throw(err.statusText);
@@ -68,15 +76,17 @@ var SummayDummyService = (function (_super) {
         this.url = 'app/Json/Candidate.json';
     }
     SummayDummyService.prototype.getSummary = function () {
-        return this._http.get(this.url)
-            .map(function (r) {
-            var x = r.json();
-            var candidates = new Array();
-            for (var i = 0; i < x.length; i++) {
-            }
-            return candidates;
-        })
-            .catch(this.handleError);
+        var token = localStorage.getItem('id_token');
+        console.log('token:' + token);
+        var headers = new http_1.Headers();
+        headers.append('acc-token', "" + token);
+        return this._http.get(this.url, { headers: headers })
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All : ' + JSON.stringify(data)); })
+            .catch(function (err) {
+            console.log('Error returned from summary Service: ' + err);
+            return Observable_1.Observable.throw(err.statusText);
+        });
     };
     SummayDummyService.prototype.handleError = function (error) {
         console.error('An error occurred', error);

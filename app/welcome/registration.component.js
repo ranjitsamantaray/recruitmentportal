@@ -27,7 +27,7 @@ var RegistrationComponent = (function () {
         var target = eventObj.target;
         var files = target.files;
         this.file = files[0];
-        //console.log(this.file.type);
+        console.log(this.file.type);
     };
     RegistrationComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -67,7 +67,8 @@ var RegistrationComponent = (function () {
         else if (!(String(this.candidate.Experience).match(new RegExp(/^[0-9]{0,2}(\.[0-9]{0,1}?)?$/)))) {
             this.errorMessage = "Invalid years of expreiance entered Eg:3.7";
         }
-        else if (this.file.type != "application/pdf" && this.file.type != "application/msword") {
+        else if (this.file.type != "application/pdf" && this.file.type != "application/msword"
+            && this.file.type != "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
             this.errorMessage = "Please upload either word or a pdf";
         }
         else {
