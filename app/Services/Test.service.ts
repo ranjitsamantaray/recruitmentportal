@@ -11,9 +11,10 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { ConfigService } from '../config/config.service';
 import { HandleError } from './HandleError.service';
+import { SubmitTest } from '../Recruitment/SubmitTest'
 
 export abstract class TestMethods{
-    abstract saveTest(canId : string): Observable<any>;
+    abstract saveTest(subTest : SubmitTest): Observable<any>;
     abstract getTest(canId : string): Observable<Eval>;
 }
 
@@ -33,20 +34,20 @@ export class TestService extends TestMethods {
     this.urlSave = this.config['apiUrl'] + 'dbsecure-can/submiteval';
   }  
 
-  saveTest(canId : string): Observable<any>
+  saveTest(subTest : SubmitTest): Observable<any>
   {
+    console.log(JSON.stringify(subTest));
     let token = localStorage.getItem('id_token');
     console.log('token:' + token);
     let headers = new Headers();
-    headers.append('acc-token',`${token}`);    
-    var body=`Email=${canId}`;    
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('acc-token',`${token}`);        
+    headers.append('Content-Type', 'application/json');
     
-    return this._http.post(this.urlSave, body, { headers: headers })
+    return this._http.post(this.urlSave, subTest, { headers: headers })
     .map((response : Response) => <any> response)
     //.do(data => console.log('All : ' + JSON.stringify(data)))     
     .catch(err =>{
-      console.log('Error returned from evaluation Service: ' + err);     
+      console.log('Error returned from test Service: ' + err);     
       return Observable.throw(err.statusText);
     });
   }

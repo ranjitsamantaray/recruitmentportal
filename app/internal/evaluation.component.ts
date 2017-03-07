@@ -5,6 +5,7 @@ import { Test } from '../Recruitment/Test/Test';
 import { Eval } from '../Recruitment/Eval';
 import { CandidateMethods } from '../Services/Candidate.service';
 import { Candidate } from '../Recruitment/Candidate/Candidate';
+import { SubmitTest } from '../Recruitment/SubmitTest';
 
 @Component ({
   selector: 'evaluation',
@@ -16,10 +17,11 @@ export class EvaluationComponent implements OnInit {
   //public candidate : Candidate;
   public tests: Eval;
   errorMessage : string;
-  public canId : number;
+  public email : string;
   public show : boolean;
   public Score:number=null;
   public v:any;
+  public sub : SubmitTest = new SubmitTest();
   
   constructor(_router: Router, private _candidateService : CandidateMethods,
   private _testService : TestMethods, private route: ActivatedRoute){  
@@ -28,14 +30,25 @@ export class EvaluationComponent implements OnInit {
   }
 
   ngOnInit() {    
+     this.email = "yb@danskeit.co.in";
      this.route.params
-    .switchMap((params: Params) =>this._testService.getTest("yb@danskeit.co.in"))
+    .switchMap((params: Params) =>this._testService.getTest(this.email))
     .subscribe(tests => this.tests = tests,
      error => this.errorMessage = <any>error);   
      console.log(this.tests);  
   }
   gotoSaveEval()  {
     this.show = true;
+  }
+  gotoSubmitEval()
+  {
+    this.sub.Candidate_ID = this.tests.recordset.ID;
+    this.sub.Evaluation = this.tests.rec;
+    this.sub.Score = this.Score;
+    this._testService.saveTest(this.sub)
+    .subscribe(can => {      
+      this.router.navigate(['summary']);
+    },error => this.errorMessage = <any>error);
   }
   score(v:string, testID : number){
      console.log(v);

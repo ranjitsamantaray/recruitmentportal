@@ -44,17 +44,17 @@ var TestService = (function (_super) {
         this.url = this.config['apiUrl'] + 'dbsecure-can/answers';
         this.urlSave = this.config['apiUrl'] + 'dbsecure-can/submiteval';
     }
-    TestService.prototype.saveTest = function (canId) {
+    TestService.prototype.saveTest = function (subTest) {
+        console.log(JSON.stringify(subTest));
         var token = localStorage.getItem('id_token');
         console.log('token:' + token);
         var headers = new http_1.Headers();
         headers.append('acc-token', "" + token);
-        var body = "Email=" + canId;
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        return this._http.post(this.urlSave, body, { headers: headers })
+        headers.append('Content-Type', 'application/json');
+        return this._http.post(this.urlSave, subTest, { headers: headers })
             .map(function (response) { return response; })
             .catch(function (err) {
-            console.log('Error returned from evaluation Service: ' + err);
+            console.log('Error returned from test Service: ' + err);
             return Observable_1.Observable.throw(err.statusText);
         });
     };
