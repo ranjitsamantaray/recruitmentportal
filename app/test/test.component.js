@@ -85,25 +85,25 @@ var TestComponent = (function () {
         __metadata('design:returntype', void 0)
     ], TestComponent.prototype, "onBeforeUnload", null);
     __decorate([
-        core_1.HostListener('contextmenu', ['$event']), 
+        core_1.HostListener('window:contextmenu', ['$event']), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', [Object]), 
         __metadata('design:returntype', void 0)
     ], TestComponent.prototype, "onContextMenu", null);
     __decorate([
-        core_1.HostListener('copy', ['$event']), 
+        core_1.HostListener('window:copy', ['$event']), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', [Object]), 
         __metadata('design:returntype', void 0)
     ], TestComponent.prototype, "onCopy", null);
     __decorate([
-        core_1.HostListener('cut', ['$event']), 
+        core_1.HostListener('window:cut', ['$event']), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', [Object]), 
         __metadata('design:returntype', void 0)
     ], TestComponent.prototype, "onCut", null);
     __decorate([
-        core_1.HostListener('paste', ['$event']), 
+        core_1.HostListener('window:paste', ['$event']), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', [Object]), 
         __metadata('design:returntype', void 0)

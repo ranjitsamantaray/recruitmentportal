@@ -46,24 +46,24 @@ export class TestComponent implements OnInit {
     this.router.navigate(['testsuccess']);
   }
 
-  @HostListener('contextmenu', ['$event'])
+  @HostListener('window:contextmenu', ['$event'])
   onContextMenu(event){
     return false;
   }
 
-  @HostListener('copy', ['$event'])
+  @HostListener('window:copy', ['$event'])
   onCopy(event){
     console.log('Copy not allowed');
     return false;
   }
 
-  @HostListener('cut', ['$event'])
+  @HostListener('window:cut', ['$event'])
   onCut(event){
     console.log('Cut not allowed');
     return false;
   }
 
-  @HostListener('paste', ['$event'])
+  @HostListener('window:paste', ['$event'])
   onPaste(event){
     console.log('Paste not allowed');
     return false;
