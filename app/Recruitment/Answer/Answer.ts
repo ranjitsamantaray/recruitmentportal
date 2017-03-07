@@ -6,7 +6,6 @@ Answer : string;
 constructor(id : string,  question : string, answer : string)
 {
 this.Question_Id = id;
-//this.Skill = skill;
 this.Question = question;
 this.Answer = answer;
 }

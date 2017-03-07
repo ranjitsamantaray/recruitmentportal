@@ -57,7 +57,7 @@ import { NewlinePipe } from './Shared/newline.pipe';
               {provide:AuthCandidateMethods, useClass:AuthCandidateDummyService},
               {provide:QuestionsMethods, useClass:QuestionsService},
               {provide:AuthUserMethods, useClass:AuthUserDummyService},
-              {provide:TestMethods, useClass:TestDummyService},
+              {provide:TestMethods, useClass:TestService},
               {provide:Login, useClass:LoginReal},ConsultancyService,
               {provide:HandleError, useClass:HandleErrorService},
               {provide: LocationStrategy, useClass: HashLocationStrategy},

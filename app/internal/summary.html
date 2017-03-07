@@ -65,12 +65,12 @@
               <tr class="tr" *ngFor="let can of candidates ">
 
                    <th id="row-text">{{can.ID}}</th>
-                   <th id="row-text"></th>
+                   <th id="row-text">{{can.Registration_date}}</th>
                    <th id="row-text">{{can.Name}}</th>
                    <th id="row-text">{{can.Experience}}</th>
                    <th id="row-text">{{can.Skill}}</th>
                    <th id="row-text" >{{can.Score}}
-                       <button id="button"  *ngIf="!can.Score" type="save" [routerLink]="['/evaluation', can.ID]">Evaluate</button>
+                       <button id="button"  *ngIf="!can.Score" type="save" [routerLink]="['/evaluation', can.Email]">Evaluate</button>
                    </th>
                    <th id="row-text" >{{can.Consultancy}}</th>
                    <th id="row-text" >{{can.LogikScore}}</th>

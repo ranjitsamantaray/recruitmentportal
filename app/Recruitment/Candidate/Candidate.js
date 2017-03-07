@@ -1,15 +1,15 @@
 "use strict";
 var Candidate = (function () {
-    function Candidate(id, email, name, phone, experience, skill, Reg_date, cosultancy, Score, Status, resume, logikScore) {
+    function Candidate(id, email, name, phone, experience, skill, reg_date, cosultancy, score, status, resume, logikScore) {
         this.ID = id;
         this.Name = name;
         this.Email = email;
         this.Phone = phone;
         this.Experience = experience;
         this.Skill = skill;
-        this.Registration_date = Reg_date;
+        this.Registration_date = reg_date;
         this.Consultancy = cosultancy;
-        this.Score = Score;
+        this.Score = score;
         this.Status = status;
         this.Resume = resume;
         this.LogikScore = logikScore;

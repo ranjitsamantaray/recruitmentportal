@@ -1,12 +1,12 @@
 export class Test{
-CandidateID : number;
+QuestionID : string;
 Question : string;
 Answer : string;
 Status : string;
 
-constructor(id : number, question : string, answer : string, status : string)
+constructor(id : string, question : string, answer : string, status : string)
 {
-this.CandidateID = id;
+this.QuestionID = id;
 this.Question = question;
 this.Answer = answer;
 this.Status = status;

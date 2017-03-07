@@ -13,7 +13,7 @@
        <table style="width:100%;text-align:cent;border-collapse: collapse;">
            <thead>
                <tr>
-                   <th id="table_header" >Name</th>
+                   <th id="table_header">Name</th>
                    <th id="table_header">Experiance</th>
                    <th id="table_header">Skill</th>
                    <th id="table_header">Score</th>
@@ -21,13 +21,13 @@
                    <th id="table_header">Logics Score</th>
                </tr>
             </thead>
-               <tr>
-                   <th id="row-text" style="background-color:white;">{{candidate.Name}}</th>
-                   <th id="row-text" style="background-color:white;">{{candidate.Experience}}</th>
-                   <th id="row-text" style="background-color:white;">{{candidate.Skill}}</th>
+               <tr *ngIf="tests.recordset">
+                   <th id="row-text" style="background-color:white;">{{tests.recordset.Name}}</th>
+                   <th id="row-text" style="background-color:white;">{{tests.recordset.Experience}}</th>
+                   <th id="row-text" style="background-color:white;">{{tests.recordset.Skill}}</th>
                    <th id="row-text" style="background-color:white;">{{Score}}</th>
-                   <th id="row-text" style="background-color:white;">{{candidate.Consultancy}}</th>
-                   <th id="row-text" style="background-color:white;">{{candidate.LogikScore}}</th>
+                   <th id="row-text" style="background-color:white;">{{tests.recordset.Consultancy}}</th>
+                   <th id="row-text" style="background-color:white;">{{tests.recordset.LogikScore}}</th>
               </tr>   
 
        </table>
@@ -36,7 +36,7 @@
 		<div id="test_div" style="top:150px;height:710px">
            <div id="question_div">
 			<form>
-                <div id="pure-control-group" *ngFor="let test of tests">
+                <div id="pure-control-group" *ngFor="let test of tests.rec">
                 <label for="Q1" class="text">Q{{test.QuestionID}}.{{test.Question}}</label>
                 <br><br>
                 <textarea placeholder={{test.Answer}} id="pure-control-group"rows="6" cols="50" disabled></textarea><br>

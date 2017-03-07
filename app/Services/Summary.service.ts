@@ -43,12 +43,12 @@ export class SummaryService extends SummaryMethods {
       {
          let s: Candidate = new Candidate(
               x[i].ID,
-              "",
+              x[i].Email,
               x[i].Name,
               "",
               x[i].Experience,
               x[i].Skill,
-              null,
+              x[i].Registration_Date,
               x[i].Consultant_Name,
               x[i].Score,
               x[i].Status,
@@ -57,7 +57,7 @@ export class SummaryService extends SummaryMethods {
          );
          candidates.push(s); 
       }
-      return candidates;
+      return candidates;      
     })    
     .catch(err =>{
       console.log('Error returned from summary Service: ' + err);     

@@ -1,7 +1,7 @@
 "use strict";
 var Test = (function () {
     function Test(id, question, answer, status) {
-        this.CandidateID = id;
+        this.QuestionID = id;
         this.Question = question;
         this.Answer = answer;
         this.Status = status;

@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var Test_service_1 = require('../Services/Test.service');
+var Eval_1 = require('../Recruitment/Eval');
 var Candidate_service_1 = require('../Services/Candidate.service');
 var EvaluationComponent = (function () {
     function EvaluationComponent(_router, _candidateService, _testService, route) {
@@ -19,16 +20,14 @@ var EvaluationComponent = (function () {
         this.route = route;
         this.Score = null;
         this.router = _router;
-        //this.v=route.params.switchMap((params: Params));
+        this.tests = new Eval_1.Eval();
     }
     EvaluationComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params
-            .switchMap(function (params) { return _this._testService.getTest(+params['id']); }).subscribe(function (tests) { return _this.tests = tests; }, function (error) { return _this.errorMessage = error; });
-        this.route.params
-            .switchMap(function (params) { return _this._candidateService.getCandidate(+params['id']); })
-            .subscribe(function (candidate) { return _this.candidate = candidate; }, function (error) { return _this.errorMessage = error; });
-        this.show = false;
+            .switchMap(function (params) { return _this._testService.getTest("yb@danskeit.co.in"); })
+            .subscribe(function (tests) { return _this.tests = tests; }, function (error) { return _this.errorMessage = error; });
+        console.log(this.tests);
     };
     EvaluationComponent.prototype.gotoSaveEval = function () {
         this.show = true;
@@ -36,43 +35,43 @@ var EvaluationComponent = (function () {
     EvaluationComponent.prototype.score = function (v, testID) {
         console.log(v);
         console.log(this.Score);
-        if (this.tests[testID].Status == '') {
+        if (this.tests.rec[testID].Status == '') {
             if (v == 'C') {
-                this.tests[testID].Status = 'C';
+                this.tests.rec[testID].Status = 'C';
                 this.Score = this.Score + 10;
             }
             if (v == 'P') {
-                this.tests[testID].Status = 'P';
+                this.tests.rec[testID].Status = 'P';
                 this.Score = this.Score + 5;
             }
         }
-        else if (this.tests[testID].Status == 'P') {
+        else if (this.tests.rec[testID].Status == 'P') {
             if (v == 'C') {
-                this.tests[testID].Status = 'C';
+                this.tests.rec[testID].Status = 'C';
                 this.Score = this.Score + 5;
             }
             if (v == 'W') {
-                this.tests[testID].Status = 'W';
+                this.tests.rec[testID].Status = 'W';
                 this.Score = this.Score - 5;
             }
         }
-        else if (this.tests[testID].Status == 'C') {
+        else if (this.tests.rec[testID].Status == 'C') {
             if (v == 'P') {
-                this.tests[testID].Status = 'P';
+                this.tests.rec[testID].Status = 'P';
                 this.Score = this.Score - 5;
             }
             if (v == 'W') {
-                this.tests[testID].Status = 'W';
+                this.tests.rec[testID].Status = 'W';
                 this.Score = this.Score - 10;
             }
         }
-        else if (this.tests[testID].Status == 'W') {
+        else if (this.tests.rec[testID].Status == 'W') {
             if (v == 'P') {
-                this.tests[testID].Status = 'P';
+                this.tests.rec[testID].Status = 'P';
                 this.Score = this.Score + 5;
             }
             if (v == 'C') {
-                this.tests[testID].Status = 'C';
+                this.tests.rec[testID].Status = 'C';
                 this.Score = this.Score + 10;
             }
         }
