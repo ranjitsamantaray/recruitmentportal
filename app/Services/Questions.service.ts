@@ -37,7 +37,7 @@ export class QuestionsService extends QuestionsMethods {
     let headers = new Headers();
     headers.append('acc-token',`${token}`);
     return this._http.get(this.url1,{ headers: headers })
-    .map((response : Response) => <Question[]> response.json())
+    .map((response : Response) => <Question[]> response.json())    
     .catch(err =>{
       console.log('Error returned from Question Service: ' + err);
      let r = JSON.parse(err._body);
