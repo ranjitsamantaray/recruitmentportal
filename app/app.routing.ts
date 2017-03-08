@@ -19,9 +19,9 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'testlogin', component: TestLoginComponent },
   { path: 'test', component: TestComponent,canActivate :[AuthGuard] },
-  { path: 'summary', component: SummaryComponent },
+  { path: 'summary', component: SummaryComponent,canActivate :[AuthGuard] },
   { path: 'testsuccess', component: TestSuccessComponent},
-  { path: 'evaluation/:id', component: EvaluationComponent},
+  { path: 'evaluation/:id', component: EvaluationComponent,},
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: '**', component: WelcomeComponent}
 ];

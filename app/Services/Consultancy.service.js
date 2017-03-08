@@ -29,6 +29,8 @@ var ConsultancyService = (function () {
         this.con.push(new Consultancy_1.Consultancy(3, "A2HR"));
         this.con.push(new Consultancy_1.Consultancy(4, "Arista"));
         this.con.push(new Consultancy_1.Consultancy(5, "Armour"));
+        this.con.push(new Consultancy_1.Consultancy(6, "CareerNet"));
+        this.con.push(new Consultancy_1.Consultancy(7, "Covenant India"));
         return Rs.Observable.from([this.con]);
         // return this._http.get(this.url)
         // .map((response : Response) => <Consultancy[]> response.json())

@@ -18,7 +18,11 @@ var AuthGuard = (function () {
         if (localStorage.getItem('id_token')) {
             return true;
         }
-        this.router.navigate(['/testlogin']);
+        var url = state.url;
+        if (url == '/test')
+            this.router.navigate(['/testlogin']);
+        if (url == '/summary')
+            this.router.navigate(['/login']);
         return false;
     };
     AuthGuard = __decorate([

@@ -22,7 +22,7 @@ var EmpRegistrationComponent = (function () {
     }
     EmpRegistrationComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.emp = new Employee_1.Employee('', '', '', '', '');
+        this.emp = new Employee_1.Employee('', '', '', '0', '0');
         this.roles = [
             {
                 "ID": 1,
@@ -61,8 +61,8 @@ var EmpRegistrationComponent = (function () {
         else if (this.emp.Role == '0') {
             this.errorMessage = "Please select your Role";
         }
-        else if (!this.emp.Email.match(new RegExp(/^[A-Z0-9a-z._%+-]+@[A-Za-z0-9-.]+.[A-Za-z]{2,4}$/))) {
-            this.errorMessage = "invalid email id eg:xyz@abc.com";
+        else if (!this.emp.Email.match(new RegExp(/^[A-Z0-9a-z._%+-]+@(danskeit)?\.co\.in$/))) {
+            this.errorMessage = "invalid email id eg:xyz@danskeit.co.in";
         }
         else {
             this._empService.registerEmployee(this.emp).subscribe(function (can) {
@@ -77,7 +77,6 @@ var EmpRegistrationComponent = (function () {
     };
     EmpRegistrationComponent.prototype.logout = function () {
         localStorage.removeItem('id_token');
-        localStorage.removeItem('Authlevel');
         this.router.navigate(['login']);
     };
     EmpRegistrationComponent = __decorate([

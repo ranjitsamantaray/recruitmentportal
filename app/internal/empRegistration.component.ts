@@ -25,7 +25,7 @@ export class EmpRegistrationComponent implements OnInit {
   }
 
     ngOnInit() {        
-        this.emp = new Employee('','','','','');
+        this.emp = new Employee('','','','0','0');
         this.roles = [
             {
                 "ID" : 1,
@@ -66,9 +66,9 @@ export class EmpRegistrationComponent implements OnInit {
         else if(this.emp.Role=='0'){
             this.errorMessage="Please select your Role";
         }
-        else if(!this.emp.Email.match(new RegExp(/^[A-Z0-9a-z._%+-]+@[A-Za-z0-9-.]+.[A-Za-z]{2,4}$/)))
+         else if(!this.emp.Email.match(new RegExp(/^[A-Z0-9a-z._%+-]+@(danskeit)?\.co\.in$/)))
         {
-            this.errorMessage="invalid email id eg:xyz@abc.com";
+     this.errorMessage="invalid email id eg:xyz@danskeit.co.in";
         }
         else {
             this._empService.registerEmployee(this.emp).subscribe(can => {
@@ -86,7 +86,6 @@ export class EmpRegistrationComponent implements OnInit {
     
     logout(){        
         localStorage.removeItem('id_token');
-        localStorage.removeItem('Authlevel');
         this.router.navigate(['login']);
     }
 
