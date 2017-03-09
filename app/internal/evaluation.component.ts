@@ -19,7 +19,7 @@ export class EvaluationComponent implements OnInit {
   errorMessage : string;
   public email : string;
   public show : boolean;
-  public Score:number=null;
+  public Score:number=0;
   public v:any;
   public sub : SubmitTest = new SubmitTest();
   
@@ -53,8 +53,8 @@ export class EvaluationComponent implements OnInit {
     },error => this.errorMessage = <any>error);
   }
   score(v:string, testID : number){
-     console.log(v);
-     console.log(this.Score);
+     console.log(this.tests);
+     console.log(testID);
     if(this.tests.rec[testID].Status == '')
     {
       if(v == 'C'){

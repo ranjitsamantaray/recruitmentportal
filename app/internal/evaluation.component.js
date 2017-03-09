@@ -19,7 +19,7 @@ var EvaluationComponent = (function () {
         this._candidateService = _candidateService;
         this._testService = _testService;
         this.route = route;
-        this.Score = null;
+        this.Score = 0;
         this.sub = new SubmitTest_1.SubmitTest();
         this.router = _router;
         this.tests = new Eval_1.Eval();
@@ -47,8 +47,8 @@ var EvaluationComponent = (function () {
         }, function (error) { return _this.errorMessage = error; });
     };
     EvaluationComponent.prototype.score = function (v, testID) {
-        console.log(v);
-        console.log(this.Score);
+        console.log(this.tests);
+        console.log(testID);
         if (this.tests.rec[testID].Status == '') {
             if (v == 'C') {
                 this.tests.rec[testID].Status = 'C';

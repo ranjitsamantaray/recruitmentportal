@@ -36,14 +36,13 @@
 		<div id="test_div" style="top:150px;height:710px">
            <div id="question_div">
 			<form>
-                <div id="pure-control-group" *ngFor="let test of tests.rec">
-                <div id="text" [innerHtml]="test.Question"> </div>
-                <!--<label for="Q1" class="text">Q{{test.QuestionID}}.{{test.Question}}</label>-->
+                <div id="pure-control-group" *ngFor="let test of tests.rec; let i=index">
+                <div id="text" [innerHtml]="test.Question"> </div>                
                 <br><br>
                 <textarea placeholder={{test.Answer}} id="pure-control-group"rows="6" cols="50" disabled></textarea><br>
-                <input type="radio" name="{{test.QuestionID}}"  (click)="score('C',test.QuestionID)">&nbsp;<label id="row-text">Correct</label>&nbsp;
-                <input type="radio" name="{{test.QuestionID}}" (click)="score('W',test.QuestionID)">&nbsp;<label id="row-text">Wrong</label>&nbsp;
-                <input type="radio" name="{{test.QuestionID}}" (click)="score('P',test.QuestionID)">&nbsp;<label id="row-text" >Partial</label>&nbsp;
+                <input type="radio" name="{{test.QuestionID}}"  (click)="score('C',i + 1)">&nbsp;<label id="row-text">Correct</label>&nbsp;
+                <input type="radio" name="{{test.QuestionID}}" (click)="score('W',i + 1)">&nbsp;<label id="row-text">Wrong</label>&nbsp;
+                <input type="radio" name="{{test.QuestionID}}" (click)="score('P',i + 1)">&nbsp;<label id="row-text" >Partial</label>&nbsp;
                 <br><br>
                 </div>                         
                 <br>
