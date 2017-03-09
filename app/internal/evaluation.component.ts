@@ -49,6 +49,7 @@ export class EvaluationComponent implements OnInit {
     },error => this.errorMessage = <any>error);
   }
   score(v:string, testID : number){
+    testID = testID - 1;
     if(this.tests.rec[testID].Status == '')
     {
       if(v == 'C'){

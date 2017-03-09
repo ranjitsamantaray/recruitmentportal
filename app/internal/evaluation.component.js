@@ -44,6 +44,7 @@ var EvaluationComponent = (function () {
         }, function (error) { return _this.errorMessage = error; });
     };
     EvaluationComponent.prototype.score = function (v, testID) {
+        testID = testID - 1;
         if (this.tests.rec[testID].Status == '') {
             if (v == 'C') {
                 this.tests.rec[testID].Status = 'C';
