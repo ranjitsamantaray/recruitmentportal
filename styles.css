@@ -39,16 +39,16 @@ body {
 #header_text {
   border-width:0px;
   position:absolute;
-  left:591px;
+  left:561px;
   top:28px;
-  width:359px;
+  width:439px;
   height:42px;
 }
 #header_text_input {
   position:absolute;
   left:0px;
   top:0px;
-  width:359px;
+  width:439px;
   height:42px;
   font-family:'Cambria Bold', 'Cambria';
   font-weight:700;
@@ -587,6 +587,10 @@ position:absolute;
   font-style:normal;
   font-size:16px;
 }
+li{
+  margin: 10px 0;
+  
+}
 #test_static {
   border-width:0px;
   position:absolute;
@@ -594,6 +598,17 @@ position:absolute;
   top:0px;
   width:546px;
   word-wrap:break-word;
+}
+#test_instruction{
+  border-width:0px;
+  position:absolute;
+  left:404px;
+  top:280px;
+  width:546px;
+  height:417px;
+  font-family:'Calibri';
+  font-style:normal;
+  font-size:16px;
 }
 #test_header_div {
   border-width:0px;
