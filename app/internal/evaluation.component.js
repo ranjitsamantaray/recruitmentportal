@@ -26,12 +26,9 @@ var EvaluationComponent = (function () {
     }
     EvaluationComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.route.params.subscribe(function (params) { _this.email = params['Email']; });
-        console.log(this.email);
         this.route.params
             .switchMap(function (params) { return _this._testService.getTest(params['id']); })
             .subscribe(function (tests) { return _this.tests = tests; }, function (error) { return _this.errorMessage = error; });
-        console.log(this.tests);
     };
     EvaluationComponent.prototype.gotoSaveEval = function () {
         this.show = true;
@@ -47,8 +44,6 @@ var EvaluationComponent = (function () {
         }, function (error) { return _this.errorMessage = error; });
     };
     EvaluationComponent.prototype.score = function (v, testID) {
-        console.log(this.tests);
-        console.log(testID);
         if (this.tests.rec[testID].Status == '') {
             if (v == 'C') {
                 this.tests.rec[testID].Status = 'C';

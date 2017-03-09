@@ -38,7 +38,6 @@ export class TestService extends TestMethods {
   {
     console.log(JSON.stringify(subTest));
     let token = localStorage.getItem('id_token');
-    console.log('token:' + token);
     let headers = new Headers();
     headers.append('acc-token',`${token}`);        
     headers.append('Content-Type', 'application/json');
@@ -55,7 +54,6 @@ export class TestService extends TestMethods {
   getTest(canId : string) : Observable<Eval>
   {  
     let token = localStorage.getItem('id_token');
-    console.log('token:' + token);
     let params: URLSearchParams = new URLSearchParams();
     params.set("Email", canId);
     let headers = new Headers();

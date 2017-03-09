@@ -30,14 +30,10 @@ export class EvaluationComponent implements OnInit {
   }
 
   ngOnInit() {    
-     this.route.params.subscribe
-     ((params : Params) => { this.email = params['Email']});
-     console.log(this.email);
      this.route.params
     .switchMap((params: Params) =>this._testService.getTest(params['id']))
     .subscribe(tests => this.tests = tests,
      error => this.errorMessage = <any>error);   
-     console.log(this.tests);  
   }
   gotoSaveEval()  {
     this.show = true;
@@ -53,8 +49,6 @@ export class EvaluationComponent implements OnInit {
     },error => this.errorMessage = <any>error);
   }
   score(v:string, testID : number){
-     console.log(this.tests);
-     console.log(testID);
     if(this.tests.rec[testID].Status == '')
     {
       if(v == 'C'){

@@ -47,7 +47,6 @@ var TestService = (function (_super) {
     TestService.prototype.saveTest = function (subTest) {
         console.log(JSON.stringify(subTest));
         var token = localStorage.getItem('id_token');
-        console.log('token:' + token);
         var headers = new http_1.Headers();
         headers.append('acc-token', "" + token);
         headers.append('Content-Type', 'application/json');
@@ -60,7 +59,6 @@ var TestService = (function (_super) {
     };
     TestService.prototype.getTest = function (canId) {
         var token = localStorage.getItem('id_token');
-        console.log('token:' + token);
         var params = new http_1.URLSearchParams();
         params.set("Email", canId);
         var headers = new http_1.Headers();
