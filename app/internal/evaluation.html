@@ -37,7 +37,8 @@
            <div id="question_div">
 			<form>
                 <div id="pure-control-group" *ngFor="let test of tests.rec">
-                <label for="Q1" class="text">Q{{test.QuestionID}}.{{test.Question}}</label>
+                <div id="text" [innerHtml]="test.Question"> </div>
+                <!--<label for="Q1" class="text">Q{{test.QuestionID}}.{{test.Question}}</label>-->
                 <br><br>
                 <textarea placeholder={{test.Answer}} id="pure-control-group"rows="6" cols="50" disabled></textarea><br>
                 <input type="radio" name="{{test.QuestionID}}"  (click)="score('C',test.QuestionID)">&nbsp;<label id="row-text">Correct</label>&nbsp;
