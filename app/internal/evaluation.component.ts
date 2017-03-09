@@ -30,9 +30,11 @@ export class EvaluationComponent implements OnInit {
   }
 
   ngOnInit() {    
-     this.email = "yb@danskeit.co.in";
+     this.route.params.subscribe
+     ((params : Params) => { this.email = params['Email']});
+     console.log(this.email);
      this.route.params
-    .switchMap((params: Params) =>this._testService.getTest(this.email))
+    .switchMap((params: Params) =>this._testService.getTest(params['id']))
     .subscribe(tests => this.tests = tests,
      error => this.errorMessage = <any>error);   
      console.log(this.tests);  

@@ -26,9 +26,10 @@ var EvaluationComponent = (function () {
     }
     EvaluationComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.email = "yb@danskeit.co.in";
+        this.route.params.subscribe(function (params) { _this.email = params['Email']; });
+        console.log(this.email);
         this.route.params
-            .switchMap(function (params) { return _this._testService.getTest(_this.email); })
+            .switchMap(function (params) { return _this._testService.getTest(params['id']); })
             .subscribe(function (tests) { return _this.tests = tests; }, function (error) { return _this.errorMessage = error; });
         console.log(this.tests);
     };
