@@ -36,14 +36,11 @@ var EvaluateService = (function (_super) {
         this._http = _http;
         this.configSrvc = configSrvc;
         this._handleError = _handleError;
-        console.log('Inside EvaluateService');
         this.config = this.configSrvc.config;
-        console.log('Configurations: ' + JSON.stringify(this.config));
         this.url = this.config['apiUrl'] + 'dbsecure-can/answers';
     }
     EvaluateService.prototype.getAnswers = function (canId) {
         var token = localStorage.getItem('id_token');
-        console.log('token:' + token);
         var headers = new http_1.Headers();
         headers.append('acc-token', "" + token);
         var body = "Email=" + canId;
@@ -59,13 +56,11 @@ var EvaluateService = (function (_super) {
             return questions;
         })
             .catch(function (err) {
-            console.log('Error returned from evaluation Service: ' + err);
             return Observable_1.Observable.throw(err.statusText);
         });
     };
     EvaluateService.prototype.saveAnswers = function (canId) {
         var token = localStorage.getItem('id_token');
-        console.log('token:' + token);
         var headers = new http_1.Headers();
         headers.append('acc-token', "" + token);
         var body = "Email=" + canId;
@@ -73,7 +68,6 @@ var EvaluateService = (function (_super) {
         return this._http.post(this.url, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(function (err) {
-            console.log('Error returned from evaluation Service: ' + err);
             return Observable_1.Observable.throw(err.statusText);
         });
     };

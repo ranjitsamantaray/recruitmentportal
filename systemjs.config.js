@@ -27,6 +27,9 @@
       'rxjs':                      'npm:rxjs',
       
       'angular2-jwt': 'node_modules/angular2-jwt/angular2-jwt.js',
+      'ng2-pagination': 'npm:ng2-pagination',
+     'mydatepicker': 'npm:mydatepicker/bundles/mydatepicker.umd.js',
+     'ng2-smart-table' : 'npm:ng2-smart-table'
       
     },
     // packages tells the System loader how to load when no filename and/or no extension
@@ -41,9 +44,16 @@
       'angular2-jwt': {
         defaultExtension: 'js'
       },
+     'ng2-pagination': { //add configuration to load
+        main: './index.js',
+        defaultExtension: 'js'
+      }, 
+      'ng2-smart-table': { //add configuration to load
+        main: './ng2-smart-table.js',
+        defaultExtension: 'js'
+      }, 
       
-
-
+      
     }
   });
 })(this);

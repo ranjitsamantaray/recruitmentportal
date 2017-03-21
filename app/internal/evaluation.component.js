@@ -14,9 +14,11 @@ var Test_service_1 = require('../Services/Test.service');
 var Eval_1 = require('../Recruitment/Eval');
 var Candidate_service_1 = require('../Services/Candidate.service');
 var SubmitTest_1 = require('../Recruitment/SubmitTest');
+var Consultancy_service_1 = require('../Services/Consultancy.service');
 var EvaluationComponent = (function () {
-    function EvaluationComponent(_router, _candidateService, _testService, route) {
+    function EvaluationComponent(_router, _candidateService, _consultancyService, _testService, route) {
         this._candidateService = _candidateService;
+        this._consultancyService = _consultancyService;
         this._testService = _testService;
         this.route = route;
         this.Score = 0;
@@ -26,9 +28,13 @@ var EvaluationComponent = (function () {
     }
     EvaluationComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this._consultancyService.getConsultancy().subscribe(function (cons) { return _this.Consul = cons; }, function (error) { return _this.errorMessage = error; });
         this.route.params
             .switchMap(function (params) { return _this._testService.getTest(params['id']); })
-            .subscribe(function (tests) { return _this.tests = tests; }, function (error) { return _this.errorMessage = error; });
+            .subscribe(function (tests) {
+            _this.tests = tests,
+                _this.tests.recordset.Consultancy = String(_this.Consul[Number(_this.tests.recordset.Consultancy) - 1].Name);
+        }, function (error) { return _this.errorMessage = error; });
     };
     EvaluationComponent.prototype.gotoSaveEval = function () {
         this.show = true;
@@ -88,7 +94,6 @@ var EvaluationComponent = (function () {
     };
     EvaluationComponent.prototype.logout = function () {
         localStorage.removeItem('id_token');
-        localStorage.removeItem('Authlevel');
         this.router.navigate(['login']);
     };
     EvaluationComponent = __decorate([
@@ -96,7 +101,7 @@ var EvaluationComponent = (function () {
             selector: 'evaluation',
             templateUrl: './app/internal/evaluation.html'
         }), 
-        __metadata('design:paramtypes', [router_1.Router, Candidate_service_1.CandidateMethods, Test_service_1.TestMethods, router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [router_1.Router, Candidate_service_1.CandidateMethods, Consultancy_service_1.ConsultancyService, Test_service_1.TestMethods, router_1.ActivatedRoute])
     ], EvaluationComponent);
     return EvaluationComponent;
 }());

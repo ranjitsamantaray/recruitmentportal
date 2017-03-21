@@ -34,7 +34,6 @@ var AuthCandidateService = (function (_super) {
         _super.call(this);
         this._http = _http;
         this.url = 'http://localhost:8088/api/logon';
-        console.log('Inside CandidateService');
     }
     AuthCandidateService.prototype.logout = function () {
         //localStorage.removeItem("can");
@@ -47,7 +46,6 @@ var AuthCandidateService = (function (_super) {
         return this._http
             .post(this.url, body, { headers: headers })
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All : ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     AuthCandidateService.prototype.checkCredentials = function () {

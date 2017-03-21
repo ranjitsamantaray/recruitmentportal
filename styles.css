@@ -479,6 +479,24 @@ position:absolute;
   font-style:normal;
   color:#FFFFFF;
 }
+#Reset_filter{
+  width:100px;
+  height:23px;
+  background-color:rgba(0, 51, 102, 1);
+  box-sizing:border-box;
+  border-width:1px;
+  border-style:solid;
+  border-color:rgba(121, 121, 121, 1);
+  border-radius:0px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:'Calibri Bold', 'Calibri';
+  font-weight:700;
+  font-style:normal;
+  color:#FFFFFF;
+}
+
 #int_login_div {
   border-width:0px;
   position:absolute;
@@ -673,6 +691,12 @@ li{
   width:840px;
   padding-left: 5px;
 }
+textarea{ 
+    background-color:white; 
+    font-family:'Calibri Bold', 'Calibri';
+    color:brown;
+}
+
 #question_div{
   left:10px;
   top:2px;
@@ -828,3 +852,4 @@ font-size: 14px;
     color: white; 
     float:center;
 }
+

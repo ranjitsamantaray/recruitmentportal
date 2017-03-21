@@ -37,9 +37,7 @@ var CandidateService = (function (_super) {
         this._http = _http;
         this.configSrvc = configSrvc;
         this._handleError = _handleError;
-        // console.log('Inside CandidateService');
         this.config = this.configSrvc.config;
-        // console.log('Configurations: '+ JSON.stringify(this.config));
         this.url = this.config['apiUrl'] + 'candidate/register';
         this.urlResume = this.config['apiUrl'] + 'candidate/upload';
         this.url2 = this.config['apiUrl'] + 'employee/register';
@@ -49,7 +47,6 @@ var CandidateService = (function (_super) {
         var _this = this;
         var body = "Name=" + candidate.Name + "&Email=" + candidate.Email + "&Phone=" + candidate.Phone + "&Experience=" + candidate.Experience + "&Skill=" + candidate.Skill + "&Consultant_Name=" + candidate.Consultancy;
         var headers = new http_1.Headers();
-        //console.log(body);
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this._http
             .post(this.url, body, { headers: headers })
@@ -60,7 +57,6 @@ var CandidateService = (function (_super) {
         var _this = this;
         var body = "Name=" + employee.Name + "&Email=" + employee.Email + "&Skill=" + employee.Skill + "&Role=" + employee.Role;
         var headers = new http_1.Headers();
-        //console.log(body);
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this._http
             .post(this.url2, body, { headers: headers })
@@ -80,15 +76,11 @@ var CandidateService = (function (_super) {
     };
     CandidateService.prototype.getCandidates = function () {
         var token = localStorage.getItem('id_token');
-        console.log('token:' + token);
         var headers = new http_1.Headers();
         headers.append('acc-token', "" + token);
         return this._http.get(this.url3)
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All : ' + JSON.stringify(data)); })
             .catch(function (err) {
-            console.log('Error returned from candidate Service: ' + err);
-            //let r = JSON.parse(err._body);
             return Observable_1.Observable.throw(err.statusText);
         });
     };

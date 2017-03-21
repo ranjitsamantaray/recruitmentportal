@@ -10,10 +10,10 @@ import * as Rs from 'rxjs/Rx';
 export class ConsultancyService{
   config: any;
   private url : any;
-  //private url2="http"
+
   constructor(private _http: Http,private _handleError : HandleError,
        private configSrvc: ConfigService,) {
-        // console.log('Inside ConsultancyService');
+        
          
          }
   con : Array<Consultancy>;
@@ -27,13 +27,10 @@ export class ConsultancyService{
     this.con.push(new Consultancy(5,"Armour"));
     this.con.push(new Consultancy(6,"CareerNet"));
     this.con.push(new Consultancy(7,"Covenant India"));
-	this.con.push(new Consultancy(8,"GlobalHunt"));
+    this.con.push(new Consultancy(8,"Global Hunt"))
     
     return Rs.Observable.from([this.con]);
-    // return this._http.get(this.url)
-    // .map((response : Response) => <Consultancy[]> response.json())
-    // //.do(data => console.log('All : ' + JSON.stringify(data)))
-    // .catch(res => this._handleError.handleError(res));
+
   }
 }
   

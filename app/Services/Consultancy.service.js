@@ -15,9 +15,7 @@ var HandleError_service_1 = require('./HandleError.service');
 var config_service_1 = require('../config/config.service');
 var Rs = require('rxjs/Rx');
 var ConsultancyService = (function () {
-    //private url2="http"
     function ConsultancyService(_http, _handleError, configSrvc) {
-        // console.log('Inside ConsultancyService');
         this._http = _http;
         this._handleError = _handleError;
         this.configSrvc = configSrvc;
@@ -31,12 +29,8 @@ var ConsultancyService = (function () {
         this.con.push(new Consultancy_1.Consultancy(5, "Armour"));
         this.con.push(new Consultancy_1.Consultancy(6, "CareerNet"));
         this.con.push(new Consultancy_1.Consultancy(7, "Covenant India"));
-        this.con.push(new Consultancy_1.Consultancy(8, "GlobalHunt"));
+        this.con.push(new Consultancy_1.Consultancy(8, "Global Hunt"));
         return Rs.Observable.from([this.con]);
-        // return this._http.get(this.url)
-        // .map((response : Response) => <Consultancy[]> response.json())
-        // //.do(data => console.log('All : ' + JSON.stringify(data)))
-        // .catch(res => this._handleError.handleError(res));
     };
     ConsultancyService = __decorate([
         core_1.Injectable(), 

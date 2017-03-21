@@ -6,7 +6,7 @@ import { Test } from '../Recruitment/Test/Test';
 import { Candidate } from '../Recruitment/Candidate/Candidate';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import * as Rs from 'rxjs/Rx';
+//import * as Rs from 'rxjs/Rx';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { ConfigService } from '../config/config.service';

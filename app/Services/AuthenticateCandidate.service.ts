@@ -21,7 +21,7 @@ export class AuthCandidateService extends AuthCandidateMethods {
   
   constructor(private _http: Http) {
     super();
-    console.log('Inside CandidateService');
+    
   }  
 
   logout() {
@@ -37,7 +37,7 @@ export class AuthCandidateService extends AuthCandidateMethods {
     return this._http
     .post(this.url, body, { headers: headers })
     .map((response : Response) => <boolean> response.json())
-    .do(data => console.log('All : ' + JSON.stringify(data)))
+   // .do(data => console.log('All : ' + JSON.stringify(data)))
     .catch(this.handleError);   
   }
 

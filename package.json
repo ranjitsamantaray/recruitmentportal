@@ -1,6 +1,6 @@
 {
   "name": "recruitmentapp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Danske IT Recruitmet App ",
   "scripts": {
     "start": "concurrently \"tsc -w\" \"lite-server\" ",
@@ -25,6 +25,11 @@
     "@angular/router": "~3.4.0",
     "angular-in-memory-web-api": "~0.2.4",
     "core-js": "^2.4.1",
+    "mydatepicker": "^1.7.6",
+    "ng2-completer": "^1.2.0",
+    "ng2-datepicker": "^1.8.1",
+    "ng2-pagination": "^2.0.1",
+    "ng2-smart-table": "^0.6.0-1",
     "reflect-metadata": "^0.1.10",
     "rxjs": "5.0.1",
     "systemjs": "0.19.40",

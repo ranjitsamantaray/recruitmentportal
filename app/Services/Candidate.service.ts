@@ -32,9 +32,7 @@ export class CandidateService extends CandidateMethods {
   constructor(private _http: Http, private configSrvc: ConfigService,
   private _handleError : HandleError)  {
     super();
-   // console.log('Inside CandidateService');
     this.config = this.configSrvc.config;
-   // console.log('Configurations: '+ JSON.stringify(this.config));
     this.url = this.config['apiUrl'] + 'candidate/register';
     this.urlResume =this.config['apiUrl']+'candidate/upload';
     this.url2 =this.config['apiUrl']+'employee/register';
@@ -45,7 +43,6 @@ export class CandidateService extends CandidateMethods {
   {
     var body=`Name=${candidate.Name}&Email=${candidate.Email}&Phone=${candidate.Phone}&Experience=${candidate.Experience}&Skill=${candidate.Skill}&Consultant_Name=${candidate.Consultancy}`; 
     var headers = new Headers();
-    //console.log(body);
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     return this._http
     .post(this.url, body, {headers:headers})
@@ -59,7 +56,6 @@ export class CandidateService extends CandidateMethods {
   {
     var body=`Name=${employee.Name}&Email=${employee.Email}&Skill=${employee.Skill}&Role=${employee.Role}`;
     var headers = new Headers();
-    //console.log(body);
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     return this._http
     .post(this.url2, body, {headers:headers})
@@ -89,15 +85,12 @@ export class CandidateService extends CandidateMethods {
   getCandidates(): Observable<Candidate[]>
   {    
     let token = localStorage.getItem('id_token');
-    console.log('token:' + token);
     let headers = new Headers();
     headers.append('acc-token',`${token}`);
     return this._http.get(this.url3)
     .map((response : Response) => <Candidate[]> response.json())
-    .do(data => console.log('All : ' + JSON.stringify(data)))
+    //.do(data => console.log('All : ' + JSON.stringify(data)))
     .catch(err =>{
-      console.log('Error returned from candidate Service: ' + err);
-     //let r = JSON.parse(err._body);
       return Observable.throw(err.statusText);
     });
   }

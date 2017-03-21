@@ -21,9 +21,7 @@ export class SummaryService extends SummaryMethods {
   constructor(private _http: Http,private configSrvc: ConfigService,
   private _handleError : HandleError) {
     super();
-    console.log('Inside SummaryService');
     this.config = this.configSrvc.config;
-    console.log('Configurations: '+ JSON.stringify(this.config));
     this.url = this.config['apiUrl'] + 'dbsecure-can/summary';
   }  
 
@@ -31,7 +29,6 @@ export class SummaryService extends SummaryMethods {
   getSummary(): Observable<Candidate[]>
   {
     let token = localStorage.getItem('id_token');
-    console.log('token:' + token);
     let headers = new Headers();
     headers.append('acc-token',`${token}`);    
     
@@ -60,7 +57,7 @@ export class SummaryService extends SummaryMethods {
       return candidates;      
     })    
     .catch(err =>{
-      console.log('Error returned from summary Service: ' + err);     
+          
       return Observable.throw(err.statusText);
     });
   }

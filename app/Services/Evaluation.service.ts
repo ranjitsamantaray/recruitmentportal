@@ -23,9 +23,7 @@ export class EvaluateService extends EvaluateMethods {
   constructor(private _http: Http,private configSrvc: ConfigService,
   private _handleError : HandleError) {
     super();
-    console.log('Inside EvaluateService');
     this.config = this.configSrvc.config;
-    console.log('Configurations: '+ JSON.stringify(this.config));
     this.url = this.config['apiUrl'] + 'dbsecure-can/answers';
   }  
 
@@ -33,7 +31,6 @@ export class EvaluateService extends EvaluateMethods {
   getAnswers(canId : string): Observable<Test[]>
   {
     let token = localStorage.getItem('id_token');
-    console.log('token:' + token);
     let headers = new Headers();
     headers.append('acc-token',`${token}`);    
     var body=`Email=${canId}`;    
@@ -55,8 +52,7 @@ export class EvaluateService extends EvaluateMethods {
       }
       return questions;
     })    
-    .catch(err =>{
-      console.log('Error returned from evaluation Service: ' + err);     
+    .catch(err =>{     
       return Observable.throw(err.statusText);
     });
   }
@@ -64,7 +60,6 @@ export class EvaluateService extends EvaluateMethods {
   saveAnswers(canId : string): Observable<string>
   {
     let token = localStorage.getItem('id_token');
-    console.log('token:' + token);
     let headers = new Headers();
     headers.append('acc-token',`${token}`);    
     var body=`Email=${canId}`;    
@@ -73,8 +68,7 @@ export class EvaluateService extends EvaluateMethods {
     return this._http.post(this.url, { headers: headers })
     .map((response : Response) => <Test> response.json())
     //.do(data => console.log('All : ' + JSON.stringify(data)))     
-    .catch(err =>{
-      console.log('Error returned from evaluation Service: ' + err);     
+    .catch(err =>{  
       return Observable.throw(err.statusText);
     });
   }

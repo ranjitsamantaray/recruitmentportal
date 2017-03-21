@@ -36,14 +36,11 @@ var SummaryService = (function (_super) {
         this._http = _http;
         this.configSrvc = configSrvc;
         this._handleError = _handleError;
-        console.log('Inside SummaryService');
         this.config = this.configSrvc.config;
-        console.log('Configurations: ' + JSON.stringify(this.config));
         this.url = this.config['apiUrl'] + 'dbsecure-can/summary';
     }
     SummaryService.prototype.getSummary = function () {
         var token = localStorage.getItem('id_token');
-        console.log('token:' + token);
         var headers = new http_1.Headers();
         headers.append('acc-token', "" + token);
         return this._http.get(this.url, { headers: headers })
@@ -57,7 +54,6 @@ var SummaryService = (function (_super) {
             return candidates;
         })
             .catch(function (err) {
-            console.log('Error returned from summary Service: ' + err);
             return Observable_1.Observable.throw(err.statusText);
         });
     };

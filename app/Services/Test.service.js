@@ -21,6 +21,7 @@ var Test_1 = require('../Recruitment/Test/Test');
 var Candidate_1 = require('../Recruitment/Candidate/Candidate');
 var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/operator/map');
+//import * as Rs from 'rxjs/Rx';
 require('rxjs/add/operator/do');
 require('rxjs/add/operator/catch');
 var config_service_1 = require('../config/config.service');
