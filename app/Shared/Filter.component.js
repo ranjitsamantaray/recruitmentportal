@@ -84,22 +84,22 @@ var FilterComponent = (function () {
                                                 break;
                                             case '< 20%':
                                                 if ((res.Skill == '.Net' && res.Score != null && res.Score <= 4)
-                                                    || (res.Skill == 'UI' && res.Score != null && res.Score <= 6))
+                                                    || ((res.Skill == 'UI' || res.Skill == 'Mainframe') && res.Score != null && res.Score <= 6))
                                                     temp.push(res);
                                                 break;
                                             case '20%-50%':
                                                 if ((res.Skill == '.Net' && res.Score >= 4 && res.Score <= 10)
-                                                    || (res.Skill == 'UI' && res.Score >= 6 && res.Score <= 15))
+                                                    || ((res.Skill == 'UI' || res.Skill == 'Mainframe') && res.Score >= 6 && res.Score <= 15))
                                                     temp.push(res);
                                                 break;
                                             case '50%-80%':
                                                 if ((res.Skill == '.Net' && res.Score >= 10 && res.Score <= 16)
-                                                    || (res.Skill == 'UI' && res.Score >= 15 && res.Score <= 24))
+                                                    || ((res.Skill == 'UI' || res.Skill == 'Mainframe') && res.Score >= 15 && res.Score <= 24))
                                                     temp.push(res);
                                                 break;
                                             case '> 80%':
                                                 if ((res.Skill == '.Net' && res.Score >= 16)
-                                                    || (res.Skill == 'UI' && res.Score >= 24))
+                                                    || ((res.Skill == 'UI' || res.Skill == 'Mainframe') && res.Score >= 24))
                                                     temp.push(res);
                                                 break;
                                         }

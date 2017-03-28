@@ -78,7 +78,7 @@
                    <th *ngIf="can.ID" id="row-text" >{{can.Score}}
                        <span *ngIf="(can.Score && can.Skill == 'UI')" style="color:brown">/30</span>
                        <span *ngIf="(can.Score && can.Skill == '.Net')" style="color:brown">/20</span>
-                       <span *ngIf="can.Skill == 'Mainframe'">N/A</span>
+                       <!--<span *ngIf="can.Skill == 'Mainframe'">N/A</span>-->
                        <button id="button"  *ngIf="(!(can.Score || can.Score==0) && can.Status !='Profile Received')" 
                        type="save" [routerLink]="['/evaluation', can.Email]">Evaluate</button>
                    </th>
