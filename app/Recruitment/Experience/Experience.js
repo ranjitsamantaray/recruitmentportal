@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var Experience = (function () {
     function Experience(id, yearsOfExp) {
         this.ID = id;

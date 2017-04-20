@@ -8,10 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var Login_service_1 = require("../Services/Login.service");
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var Login_service_1 = require('../Services/Login.service');
 var TestLoginComponent = (function () {
     function TestLoginComponent(_authService, _router) {
         this._authService = _authService;
@@ -39,14 +38,14 @@ var TestLoginComponent = (function () {
             });
         }
     };
+    TestLoginComponent = __decorate([
+        core_1.Component({
+            selector: 'testlogin',
+            templateUrl: './app/test/test-login.html'
+        }), 
+        __metadata('design:paramtypes', [Login_service_1.Login, router_1.Router])
+    ], TestLoginComponent);
     return TestLoginComponent;
 }());
-TestLoginComponent = __decorate([
-    core_1.Component({
-        selector: 'testlogin',
-        templateUrl: './app/test/test-login.html'
-    }),
-    __metadata("design:paramtypes", [Login_service_1.Login, router_1.Router])
-], TestLoginComponent);
 exports.TestLoginComponent = TestLoginComponent;
 //# sourceMappingURL=testlogin.component.js.map

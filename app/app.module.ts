@@ -37,12 +37,11 @@ import {FilterComponent } from './Shared/Filter.component';
 import {SortComponent } from './Shared/Sort.pipe';
 import {Ng2PaginationModule} from 'ng2-pagination';
 import { MyDatePickerModule } from 'mydatepicker';
-import {LightboxModule} from 'primeng/primeng';
 //import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 
 @NgModule ({
-  imports: [ BrowserModule, routing, HttpModule,MyDatePickerModule, FormsModule,Ng2PaginationModule,LightboxModule],
+  imports: [ BrowserModule, routing, HttpModule,MyDatePickerModule, FormsModule,Ng2PaginationModule],
   declarations: [ AppComponent,
                   RegistrationComponent,
                   WelcomeStaticComponent,
@@ -59,7 +58,6 @@ import {LightboxModule} from 'primeng/primeng';
                   NewlinePipe,
                   FilterComponent,
                   SortComponent
-                  
                 ],  
   bootstrap: [ AppComponent ],
   providers: [{provide:SkillMethods, useClass:SkillService},

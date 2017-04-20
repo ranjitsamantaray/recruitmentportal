@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var Candidate = (function () {
     function Candidate(id, email, name, phone, experience, skill, reg_date, cosultancy, score, status, resume, logikScore) {
         this.ID = id;

@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var LoginInfo = (function () {
     function LoginInfo(Status, Authlevel, key) {
         this.Status = Status;

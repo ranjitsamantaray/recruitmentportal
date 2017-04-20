@@ -1,8 +1,8 @@
 <div id="int_login_div">
   
-  <p style="font-size:18px;text-align:center;padding-top:25px;"><span style="font-family:'Calibri Bold', 'Calibri';font-weight:700;color:#003366;">EMPLOYEE LOGIN</span></p>
-  <input id="email" class="form-control" type="text" placeholder="Email" [(ngModel)]="email" (keyup)="errorMessage=''"/>
-  <input id="password" class="form-control" type="password" placeholder="Password" [(ngModel)]="pwd" (keyup)="errorMessage=''"/>
+  <p style="font-size:18px;text-align:center"><span style="font-family:'Calibri Bold', 'Calibri';font-weight:700;color:#003366;">LOGIN</span></p>
+  <input id="email" type="text" placeholder="Email" [(ngModel)]="email" (keyup)="errorMessage=''"/>
+  <input id="password" type="password" placeholder="Password" [(ngModel)]="pwd" (keyup)="errorMessage=''"/>
   <p style="text-align:center; font-size:14px"><span style="font-family:'Calibri Bold', 'Calibri';
     color: #D8000C;">{{errorMessage}}</span></p>   
   <input id="int_login_button" type="submit" value="LogIn" (click)="gotoSuccessPage()"/>

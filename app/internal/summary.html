@@ -1,11 +1,13 @@
-       <input id="logout" class="btn btn-primary btn-sm" style="top:25px" type="button" value="Log out" (click)="logout()" />
-       <button id="Reset_filter" class="btn btn-primary btn-sm" type="reset" (click)="Skill.value='None';
-                    Experiance.value='None';date1=null;Score.value='None';Consultancy.value='None';Name=null;
-                    Status.value='None';Logiks.value='None'" >Reset Filter</button>
-       <div style="clear: both"></div>
+
+
+       <br>
+       <br>
+       <br>
+       
+       <input id="logout" style="top:25px" type="button" value="Log out" (click)="logout()" />
+       <!--<br>-->
        <form>
-       <div class="table-responsive">    
-       <table class="table table-bordered table-striped" >
+       <table  style="width:100%;text-align:center;border-collapse: collapse;">
            <thead>
                <tr>
                    <th id="table_header" style="width:5%; height:70px">SNO.</th>
@@ -65,134 +67,28 @@
                             <option>On hold</option>
                    </select></th>
               </tr> 
-              </thead>     
-              <tbody>
               <tr class="tr" *ngFor="let can of (candidates|resultFilter:[date1,Name,Experiance.value,Skill.value,Score.value,Consultancy.value,Logiks.value,Status.value])
-               | paginate: {itemsPerPage: 10, currentPage:page, id: '1'};">
+               | paginate: {itemsPerPage: 15, currentPage:page, id: '1'};">
                 
-                   <td *ngIf="can.ID" id="row-text">{{can.ID}}</td>
-                   <td *ngIf="can.ID"id="row-text">{{can.Registration_date | date: 'dd-MM-yyyy' }}</td>
-                   <td *ngIf="can.ID"id="row-text"><p-lightbox type="content"><a class="group" href="javascript:void(0)">{{can.Name.replace('&nbsp;', ' ')}}</a>
-                   
-                   <div class="modal show" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document" style="width: 940px">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                
-                               <!-- <button type="button" class="close" data-dismiss="modal" (click)="hide($event)" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-                                <h1 class="modal-title"><b>{{can.Name}} - {{can.Skill}}</b></h1>
-                            </div>
-                            <div class="modal-body">
-                                
-                                <div id="candidate-info-tbl" class="table-responsive">
-                                    <h4>Candidate Information: </h4>
-                                    <table class="pop-up-table table table-condensed table-responsive table-user-information">
-                                        <tbody>
-                                            <tr>
-                                                <td> <strong> <span class="glyphicon glyphicon-asterisk text-primary"></span> S No </strong></td>
-                                                <td class="text-primary"> {{can.ID}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td> <strong> <span class="glyphicon glyphicon-user  text-primary"></span> Full Name </strong></td>
-                                                <td class="text-primary"> {{can.Name.replace('&nbsp;', '')}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td> <strong> <span class="glyphicon glyphicon-envelope text-primary"></span> Email </strong></td>
-                                                <td class="text-primary"> {{can.Email}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td> <strong> <span class="glyphicon glyphicon-lock text-primary"></span>Work Experience </strong></td>
-                                                <td class="text-primary"> {{can.Experience}} Years</td>
-                                            </tr>
-                                            <tr>
-                                                <td> <strong> <span class="glyphicon glyphicon-list-alt text-primary"></span> Test Score </strong></td>
-                                                <td *ngIf="can.ID">{{can.Score}}
-                                                    <span *ngIf="(can.Score && can.Skill == 'UI')" style="color:brown">/30</span>
-                                                    <span *ngIf="(can.Score && can.Skill == '.Net')" style="color:brown">/20</span>
-                                                    <span *ngIf="can.Skill == 'Mainframe'">N/A</span>
-                                                    <button id="button" class="btn btn-info btn-xs btn-evaluate"  *ngIf="(!(can.Score || can.Score==0) && can.Status !='Profile Received')" 
-                                                    type="save" [routerLink]="['/evaluation', can.Email]">Evaluate</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> <strong> <span class="glyphicon glyphicon-calendar text-primary"></span> Registration Date </strong></td>
-                                                <td class="text-primary"> {{can.Registration_date | date: 'dd-MM-yyyy' }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td> <strong> <span class="glyphicon glyphicon-stats text-primary"></span> Status </strong></td>
-                                                <td class="text-primary"> {{can.Status}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    </div>
-                                    <div id="candidate-remarks">
-                                        <h4>Candidate Remarks: </h4>
-                                        <table class="table table-bordered table-responsive">
-                                            <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Round</th>
-                                                <th>Remarks</th>
-                                                <th>Approver</th>                                                
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Test</td>
-                                                <td>Good in basics.Good in OOPS concepts, SQL. Good in OOPS concepts, SQLGood in OOPS concepts, SQLGood in OOPS concepts, SQLGood in OOPS concepts, SQL. Good in OOPS concepts, SQLGood in OOPS concepts, SQLGood in OOPS concepts, SQLGood in OOPS concepts, SQL. Good in OOPS concepts, SQLGood in OOPS concepts, SQLGood in OOPS concepts, SQLGood in OOPS concepts, SQL. Good in OOPS concepts, SQLGood in OOPS concepts, SQLGood in OOPS concepts, SQLGood in OOPS concepts, SQL. Good in OOPS concepts, SQLGood in OOPS concepts, SQLGood in OOPS concepts, SQLGood in OOPS concepts, SQL. Good in OOPS concepts, SQLGood in OOPS concepts, SQLGood in OOPS concepts, SQL</td>
-                                                <td>Ranjit</td>                                                
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Technical</td>
-                                                <td>Good in OOPS concepts, SQL. Good in OOPS concepts, SQLGood in OOPS concepts, SQLGood in OOPS concepts, SQLGood in OOPS concepts, SQL. Good in OOPS concepts, SQLGood in OOPS concepts, SQLGood in OOPS concepts, SQL</td>
-                                                <td>Ranjit</td> 
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td>Vertical</td>
-                                                <td>Good</td>
-                                                <td>Ranjit</td> 
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">4</th>
-                                                <td>HR</td>
-                                                <td>Cleared</td>
-                                                <td>Ranjit</td> 
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                <h4 id="resume">Resume:</h4>
-                                <!--<iframe src="https://view.officeapps.live.com/op/view.aspx?src=http%3A%2F%2Frecruitmentservices.azurewebsites.net%2FResume%2Frohith47%40test_com" style="width:100%; height:300px;" frameborder="0"></iframe>-->
-                                <embed [src]="getResumeLink(can.Email)" style="width:100%; height:290px;" type='application/pdf'>
-                            </div>
-                            <div class="modal-footer">                                
-                                <button type="button" class="btn btn-success">Approve Test</button>
-                                <button type="button" class="btn btn-danger">Reject</button>
-                                <a class="btn btn-primary" href="http://recruitmentservices.azurewebsites.net/Resume/{{can.Email.replace('.','_')}}.pdf" download>Download Resume</a>
-                            </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div><!-- /.modal -->
-                   
-                   </p-lightbox></td>
-                   <td *ngIf="can.ID" id="row-text">{{can.Experience}}</td>
-                   <td *ngIf="can.ID" id="row-text">{{can.Skill}}</td>
-                   <td *ngIf="can.ID" id="row-text" >{{can.Score}}
-                       <span *ngIf="(can.Score && can.Skill == 'UI')" style="color:brown">/30</span>
+                   <th *ngIf="can.ID" id="row-text">{{can.ID}}</th>
+                   <th *ngIf="can.ID"id="row-text">{{can.Registration_date | date: 'dd-MM-yyyy' }}</th>
+                   <th *ngIf="can.ID"id="row-text">{{can.Name}}</th>
+                   <th *ngIf="can.ID" id="row-text">{{can.Experience}}</th>
+                   <th *ngIf="can.ID" id="row-text">{{can.Skill}}</th>
+                   <th *ngIf="can.ID" id="row-text" >{{can.Score}}
+                       <span *ngIf="(can.Score && (can.Skill == 'UI' || can.Skill == 'Mainframe'))" style="color:brown">/30</span>
                        <span *ngIf="(can.Score && can.Skill == '.Net')" style="color:brown">/20</span>
-                       <span *ngIf="(can.Score && can.Skill == 'Mainframe')">/45</span>
-                       <button id="button" class="btn btn-info btn-xs btn-evaluate"  *ngIf="(!(can.Score || can.Score==0) && can.Status !='Profile Received')" 
+                       <!--<span *ngIf="can.Skill == 'Mainframe'">N/A</span>-->
+                       <button id="button"  *ngIf="(!(can.Score || can.Score==0) && can.Status !='Profile Received')" 
                        type="save" [routerLink]="['/evaluation', can.Email]">Evaluate</button>
-                   </td>
-                   <td *ngIf="can.ID" id="row-text" >{{can.Consultancy}}</td>
-                   <td *ngIf="can.ID" id="row-text" >{{can.LogikScore}}</td>
-                   <td  *ngIf="can.ID" id="row-text">{{can.Status}}</td>
-                   <div *ngIf="!can.ID" style="position:absolute;width:100%;top:215px;left:575px;font-size:18px;font-weight: 700;">No rows to display</div>
+                   </th>
+                   <th *ngIf="can.ID" id="row-text" >{{can.Consultancy}}</th>
+                   <th *ngIf="can.ID" id="row-text" >{{can.LogikScore}}</th>
+                   <th  *ngIf="can.ID" id="row-text">{{can.Status}}</th>
+                   <div *ngIf="!can.ID" style="position:absolute;width:100%;top:130px;font-size:18px;font-family:'Calibri Bold',  'Calibri';
+    font-weight: 700;">No rows to display</div>
               </tr>   
-              </tbody>
+              </thead>     
 
        </table>
        
@@ -202,8 +98,9 @@
                       autoHide="false">
         </pagination-controls>
         
-
-       </div>
+<button id="Reset_filter"  type="reset" (click)="Skill.value='None';
+                    Experiance.value='None';date1=null;Score.value='None';Consultancy.value='None';Name=null;
+                    Status.value='None';Logiks.value='None'" >Reset Filter</button>
 </form>
 <div id="trailer" style="top:660px;">
   <label id="trailer_input">Danske IT Recruitment Team</label>

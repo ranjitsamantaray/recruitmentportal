@@ -104,9 +104,4 @@ export class RegistrationComponent implements OnInit {
       error => this.errorMessage = <any>error);
      }       
     }
-
-    downloadResume(){
-      alert('DownloadResume')
-        this._candidateService.DownloadResume('shamanth.sundaram2@gmail.com');
-    }
 }

@@ -8,10 +8,6 @@
     <meta http-equiv="CACHE-CONTROL" content="NO-STORE">
     <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="/node_modules/primeng/resources/themes/omega/theme.css">
-    <link rel="stylesheet" type="text/css" href="/node_modules/primeng/resources/primeng.min.css" />
-        <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- 1. Load libraries -->
     <!-- Polyfill(s) for older browsers -->
     <script src="http://dbrecruitmentapp.azurewebsites.net/node_modules/core-js/client/shim.min.js"></script>
@@ -19,13 +15,13 @@
     <script src="http://dbrecruitmentapp.azurewebsites.net/node_modules/reflect-metadata/Reflect.js"></script>
     <script src="http://dbrecruitmentapp.azurewebsites.net/node_modules/systemjs/dist/system.src.js"></script>
     <!-- 2. Configure SystemJS -->
-    <script src="systemjs.config.js"></script>
+    <script src="http://dbrecruitmentapp.azurewebsites.net/systemjs.config.js"></script>
     <script>
       System.import('app').catch(function(err){ console.error(err); });
     </script>
   </head>
   <!-- 3. Display the application -->
-<body oncontextmenu="return false" onselectstart="return false">
+<body onload=setInterval("window.clipboardData.setData('text','')",2) oncontextmenu="return false" onselectstart="return false">
     <app-root>Loading...</app-root>
 </body>
 </html>

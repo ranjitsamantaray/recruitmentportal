@@ -8,13 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var Consultancy_1 = require("../Recruitment/Consultancy/Consultancy");
-var http_1 = require("@angular/http");
-var HandleError_service_1 = require("./HandleError.service");
-var config_service_1 = require("../config/config.service");
-var Rs = require("rxjs/Rx");
+var core_1 = require('@angular/core');
+var Consultancy_1 = require('../Recruitment/Consultancy/Consultancy');
+var http_1 = require('@angular/http');
+var HandleError_service_1 = require('./HandleError.service');
+var config_service_1 = require('../config/config.service');
+var Rs = require('rxjs/Rx');
 var ConsultancyService = (function () {
     function ConsultancyService(_http, _handleError, configSrvc) {
         this._http = _http;
@@ -33,12 +32,11 @@ var ConsultancyService = (function () {
         this.con.push(new Consultancy_1.Consultancy(8, "Global Hunt"));
         return Rs.Observable.from([this.con]);
     };
+    ConsultancyService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http, HandleError_service_1.HandleError, config_service_1.ConfigService])
+    ], ConsultancyService);
     return ConsultancyService;
 }());
-ConsultancyService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http, HandleError_service_1.HandleError,
-        config_service_1.ConfigService])
-], ConsultancyService);
 exports.ConsultancyService = ConsultancyService;
 //# sourceMappingURL=Consultancy.service.js.map

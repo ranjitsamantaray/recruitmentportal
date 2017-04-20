@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var Employee = (function () {
     function Employee(id, name, email, role, skill) {
         this.ID = id;

@@ -1,17 +1,17 @@
 <div id="reg_div">
     
-  <p style="font-size:18px;text-align:center;padding-top: 25px;"><span style="font-family:'Calibri Bold', 'Calibri';font-weight:700;color:#003366">
+  <p style="font-size:18px;text-align:center"><span style="font-family:'Calibri Bold', 'Calibri';font-weight:700;color:#003366">
     REGISTRATION  </span></p>
-  <input id="email" type="text" class="form-control" placeholder="Email" [(ngModel)]="candidate.Email"  (keyup)="errorMessage=''"/>
-  <input id="name" type="text" class="form-control" placeholder="Name" [(ngModel)]="candidate.Name"  (keyup)="errorMessage=''"/>
-  <input id="p" type="text" class="form-control" placeholder="+91" [disabled]="true"/>
-  <input id="phone" type="text" class="form-control" placeholder="Phone" [(ngModel)]="candidate.Phone" (keyup)="errorMessage=''"/>
-  <input id="exp" type="text" class="form-control" placeholder="Experience in Years" [(ngModel)]="candidate.Experience" (keyup)="errorMessage=''"/>
-  <select id="skill" class="form-control" [(ngModel)]="candidate.Skill" (change)="errorMessage=''">
+  <input id="email" type="text" placeholder="Email" [(ngModel)]="candidate.Email"  (keyup)="errorMessage=''"/>
+  <input id="name" type="text" placeholder="Name" [(ngModel)]="candidate.Name"  (keyup)="errorMessage=''"/>
+  <input id="p" type="text" placeholder="+91" [disabled]="true"/>
+  <input id="phone" type="text" placeholder="Phone" [(ngModel)]="candidate.Phone" (keyup)="errorMessage=''"/>
+  <input id="exp" type="text" placeholder="Experience in Years" [(ngModel)]="candidate.Experience" (keyup)="errorMessage=''"/>
+  <select id="skill" [(ngModel)]="candidate.Skill" (change)="errorMessage=''">
     <option [value]="0" (click)="candidate.Skill='0'">--Select your skill---</option>
     <option *ngFor="let skill of skills" [value]="skill.SKILL">{{skill.SKILL}}</option>
   </select>
-  <select id="consultancy" class="form-control" [(ngModel)]="candidate.Consultancy" (change)="errorMessage=''">
+  <select id="consultancy" [(ngModel)]="candidate.Consultancy" (change)="errorMessage=''">
     <option [value]="0" (click)="candidate.Consultancy='0'" >--Select your consultancy---</option>
     <option *ngFor="let cons of Consul" [value]="cons.ID">{{cons.Name}}</option>
   </select>
@@ -19,8 +19,7 @@
   <label id="filetxt">click Browse to upload resume</label>
   <p style="text-align:center; font-size:14px"><span style="font-family:'Calibri Bold', 'Calibri';
     color: #D8000C;">{{errorMessage}}</span></p>
-  <input id="signup" type="submit" class="form-control" value="Sign Up" (click)="gotoSuccessPage()" />
-  
+  <input id="signup" type="submit" value="Sign Up" (click)="gotoSuccessPage()" />
 </div>
 <div id="trailer" style="top:680px;">
   <label id="trailer_input">Danske IT Recruitment Team</label>

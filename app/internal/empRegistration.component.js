@@ -8,12 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var Employee_service_1 = require("../Services/Employee.service");
-var Employee_1 = require("../Recruitment/Employee/Employee");
-var Skills_service_1 = require("../Services/Skills.service");
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var Employee_service_1 = require('../Services/Employee.service');
+var Employee_1 = require('../Recruitment/Employee/Employee');
+var Skills_service_1 = require('../Services/Skills.service');
 var EmpRegistrationComponent = (function () {
     function EmpRegistrationComponent(_router, _empService, _skillService, route) {
         this._empService = _empService;
@@ -80,15 +79,14 @@ var EmpRegistrationComponent = (function () {
         localStorage.removeItem('id_token');
         this.router.navigate(['login']);
     };
+    EmpRegistrationComponent = __decorate([
+        core_1.Component({
+            selector: 'empregistration',
+            templateUrl: './app/internal/empRegistration.html'
+        }), 
+        __metadata('design:paramtypes', [router_1.Router, Employee_service_1.EmployeeMethods, Skills_service_1.SkillMethods, router_1.ActivatedRoute])
+    ], EmpRegistrationComponent);
     return EmpRegistrationComponent;
 }());
-EmpRegistrationComponent = __decorate([
-    core_1.Component({
-        selector: 'empregistration',
-        templateUrl: './app/internal/empRegistration.html'
-    }),
-    __metadata("design:paramtypes", [router_1.Router, Employee_service_1.EmployeeMethods, Skills_service_1.SkillMethods,
-        router_1.ActivatedRoute])
-], EmpRegistrationComponent);
 exports.EmpRegistrationComponent = EmpRegistrationComponent;
 //# sourceMappingURL=empRegistration.component.js.map

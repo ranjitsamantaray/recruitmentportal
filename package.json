@@ -30,7 +30,6 @@
     "ng2-datepicker": "^1.8.1",
     "ng2-pagination": "^2.0.1",
     "ng2-smart-table": "^0.6.0-1",
-    "primeng": "^2.0.5",
     "reflect-metadata": "^0.1.10",
     "rxjs": "5.0.1",
     "systemjs": "0.19.40",

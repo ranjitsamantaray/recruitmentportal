@@ -1,14 +1,9 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,16 +13,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
-require("rxjs/add/operator/toPromise");
-var Authentication_1 = require("../Recruitment/Authentication/Authentication");
-var Observable_1 = require("rxjs/Observable");
-require("rxjs/add/operator/map");
-var Rs = require("rxjs/Rx");
-require("rxjs/add/operator/do");
-require("rxjs/add/operator/catch");
+var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/toPromise');
+var Authentication_1 = require('../Recruitment/Authentication/Authentication');
+var Observable_1 = require('rxjs/Observable');
+require('rxjs/add/operator/map');
+var Rs = require('rxjs/Rx');
+require('rxjs/add/operator/do');
+require('rxjs/add/operator/catch');
 var AuthUserMethods = (function () {
     function AuthUserMethods() {
     }
@@ -37,11 +31,10 @@ exports.AuthUserMethods = AuthUserMethods;
 var AuthUserService = (function (_super) {
     __extends(AuthUserService, _super);
     function AuthUserService(_http) {
-        var _this = _super.call(this) || this;
-        _this._http = _http;
-        _this.url = 'http://localhost:8088/api/logonuser';
+        _super.call(this);
+        this._http = _http;
+        this.url = 'http://localhost:8088/api/logonuser';
         console.log('Inside Authenticate service');
-        return _this;
     }
     AuthUserService.prototype.logout = function () {
         localStorage.removeItem("user");
@@ -66,28 +59,27 @@ var AuthUserService = (function (_super) {
         console.error('An error occurred', error);
         return Observable_1.Observable.throw(error.json().error || 'Server error');
     };
+    AuthUserService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], AuthUserService);
     return AuthUserService;
 }(AuthUserMethods));
-AuthUserService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], AuthUserService);
 exports.AuthUserService = AuthUserService;
 var AuthUserDummyService = (function (_super) {
     __extends(AuthUserDummyService, _super);
     function AuthUserDummyService(_http) {
-        var _this = _super.call(this) || this;
-        _this._http = _http;
-        _this.url = 'http://localhost:8088/api/logon';
+        _super.call(this);
+        this._http = _http;
+        this.url = 'http://localhost:8088/api/logon';
         //private can : Candidate;
-        _this.users = [
+        this.users = [
             new Authentication_1.Authentication(1, "suraj.nd4444@gmail.com", "1234567", 1),
             new Authentication_1.Authentication(2, "kumar@danske.com", "1234567", 1),
             new Authentication_1.Authentication(3, "Akhil@danske.com", "1234567", 1),
             new Authentication_1.Authentication(4, "Ranjit@danske.com", "1234567", 1)
         ];
         console.log('Inside Authentication service');
-        return _this;
     }
     AuthUserDummyService.prototype.logout = function () {
         localStorage.removeItem('user');
@@ -116,11 +108,11 @@ var AuthUserDummyService = (function (_super) {
         console.error('An error occurred', error);
         return Observable_1.Observable.throw(error.json().error || 'Server error');
     };
+    AuthUserDummyService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], AuthUserDummyService);
     return AuthUserDummyService;
 }(AuthUserMethods));
-AuthUserDummyService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], AuthUserDummyService);
 exports.AuthUserDummyService = AuthUserDummyService;
 //# sourceMappingURL=AuthenticateUser.service.js.map

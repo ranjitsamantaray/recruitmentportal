@@ -8,9 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var WelcomeStaticComponent = (function () {
     function WelcomeStaticComponent(_router) {
         this.router = _router;
@@ -18,14 +17,14 @@ var WelcomeStaticComponent = (function () {
     WelcomeStaticComponent.prototype.gotoLogInPage = function () {
         this.router.navigate(['login']);
     };
+    WelcomeStaticComponent = __decorate([
+        core_1.Component({
+            selector: 'wel-static',
+            templateUrl: './app/welcome/static.html'
+        }), 
+        __metadata('design:paramtypes', [router_1.Router])
+    ], WelcomeStaticComponent);
     return WelcomeStaticComponent;
 }());
-WelcomeStaticComponent = __decorate([
-    core_1.Component({
-        selector: 'wel-static',
-        templateUrl: './app/welcome/static.html'
-    }),
-    __metadata("design:paramtypes", [router_1.Router])
-], WelcomeStaticComponent);
 exports.WelcomeStaticComponent = WelcomeStaticComponent;
 //# sourceMappingURL=static.component.js.map

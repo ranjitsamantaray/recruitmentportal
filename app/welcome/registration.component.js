@@ -8,13 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var Candidate_service_1 = require("../Services/Candidate.service");
-var Candidate_1 = require("../Recruitment/Candidate/Candidate");
-var Skills_service_1 = require("../Services/Skills.service");
-var Consultancy_service_1 = require("../Services/Consultancy.service");
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var Candidate_service_1 = require('../Services/Candidate.service');
+var Candidate_1 = require('../Recruitment/Candidate/Candidate');
+var Skills_service_1 = require('../Services/Skills.service');
+var Consultancy_service_1 = require('../Services/Consultancy.service');
 var RegistrationComponent = (function () {
     function RegistrationComponent(_skillService, _candidateService, _consultancyService, router) {
         this._skillService = _skillService;
@@ -89,19 +88,14 @@ var RegistrationComponent = (function () {
             }, function (error) { return _this.errorMessage = error; });
         }
     };
-    RegistrationComponent.prototype.downloadResume = function () {
-        alert('DownloadResume');
-        this._candidateService.DownloadResume('shamanth.sundaram2@gmail.com');
-    };
+    RegistrationComponent = __decorate([
+        core_1.Component({
+            selector: 'registration',
+            templateUrl: './app/welcome/registration.html'
+        }), 
+        __metadata('design:paramtypes', [Skills_service_1.SkillMethods, Candidate_service_1.CandidateMethods, Consultancy_service_1.ConsultancyService, router_1.Router])
+    ], RegistrationComponent);
     return RegistrationComponent;
 }());
-RegistrationComponent = __decorate([
-    core_1.Component({
-        selector: 'registration',
-        templateUrl: './app/welcome/registration.html'
-    }),
-    __metadata("design:paramtypes", [Skills_service_1.SkillMethods, Candidate_service_1.CandidateMethods, Consultancy_service_1.ConsultancyService,
-        router_1.Router])
-], RegistrationComponent);
 exports.RegistrationComponent = RegistrationComponent;
 //# sourceMappingURL=registration.component.js.map

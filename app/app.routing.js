@@ -1,16 +1,15 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var router_1 = require("@angular/router");
-var welcome_component_1 = require("./welcome/welcome.component");
-var success_component_1 = require("./welcome/success.component");
-var login_component_1 = require("./internal/login.component");
-var testlogin_component_1 = require("./test/testlogin.component");
-var test_component_1 = require("./test/test.component");
-var summary_component_1 = require("./internal/summary.component");
-var testsuccess_component_1 = require("./test/testsuccess.component");
-var evaluation_component_1 = require("./internal/evaluation.component");
-var empRegistration_component_1 = require("./internal/empRegistration.component");
-var auth_guard_1 = require("./auth.guard");
+var router_1 = require('@angular/router');
+var welcome_component_1 = require('./welcome/welcome.component');
+var success_component_1 = require('./welcome/success.component');
+var login_component_1 = require('./internal/login.component');
+var testlogin_component_1 = require('./test/testlogin.component');
+var test_component_1 = require('./test/test.component');
+var summary_component_1 = require('./internal/summary.component');
+var testsuccess_component_1 = require('./test/testsuccess.component');
+var evaluation_component_1 = require('./internal/evaluation.component');
+var empRegistration_component_1 = require('./internal/empRegistration.component');
+var auth_guard_1 = require('./auth.guard');
 var appRoutes = [
     { path: 'home', component: welcome_component_1.WelcomeComponent },
     { path: 'registrationsuccess', component: success_component_1.RegistrationSuccessComponent },

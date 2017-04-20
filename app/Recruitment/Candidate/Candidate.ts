@@ -5,7 +5,7 @@ Email : string;
 Phone : string;
 Experience : number;
 Skill : string;
-Registration_date: number;
+Registration_date: string;
 Consultancy : string;
 Score :number;
 Status : string;
