@@ -8,8 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var Rx_1 = require('rxjs/Rx');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var Rx_1 = require("rxjs/Rx");
 //import {TestComponent} from '../test/test.component';
 var TimerComponent = (function () {
     function TimerComponent() {
@@ -47,18 +48,17 @@ var TimerComponent = (function () {
     TimerComponent.prototype.ngOnDestroy = function () {
         this.subscription.unsubscribe();
     };
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], TimerComponent.prototype, "done", void 0);
-    TimerComponent = __decorate([
-        core_1.Component({
-            selector: 'my-timer',
-            template: "\n        {{mm}}:{{ss}}\n             ",
-        }), 
-        __metadata('design:paramtypes', [])
-    ], TimerComponent);
     return TimerComponent;
 }());
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], TimerComponent.prototype, "done", void 0);
+TimerComponent = __decorate([
+    core_1.Component({
+        selector: 'my-timer',
+        template: "\n        {{mm}}:{{ss}}\n             ",
+    })
+], TimerComponent);
 exports.TimerComponent = TimerComponent;
 //# sourceMappingURL=Timer.component.js.map

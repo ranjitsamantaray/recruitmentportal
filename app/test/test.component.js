@@ -8,11 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var Questions_service_1 = require('../Services/Questions.service');
-var common_1 = require('@angular/common');
-var common_2 = require('@angular/common');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var Questions_service_1 = require("../Services/Questions.service");
+var common_1 = require("@angular/common");
+var common_2 = require("@angular/common");
 var TestComponent = (function () {
     function TestComponent(_router, _questionService, location1, location) {
         this._questionService = _questionService;
@@ -72,50 +73,51 @@ var TestComponent = (function () {
             _this.router.navigate(['testsuccess']);
         }, function (error) { return _this.errorMessage = error; });
     };
-    __decorate([
-        core_1.HostListener('window:popstate', ['$event']), 
-        __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
-        __metadata('design:returntype', void 0)
-    ], TestComponent.prototype, "onPopState", null);
-    __decorate([
-        core_1.HostListener('window:beforeunload', ['$event']), 
-        __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
-        __metadata('design:returntype', void 0)
-    ], TestComponent.prototype, "onBeforeUnload", null);
-    __decorate([
-        core_1.HostListener('window:contextmenu', ['$event']), 
-        __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
-        __metadata('design:returntype', void 0)
-    ], TestComponent.prototype, "onContextMenu", null);
-    __decorate([
-        core_1.HostListener('window:copy', ['$event']), 
-        __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
-        __metadata('design:returntype', void 0)
-    ], TestComponent.prototype, "onCopy", null);
-    __decorate([
-        core_1.HostListener('window:cut', ['$event']), 
-        __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
-        __metadata('design:returntype', void 0)
-    ], TestComponent.prototype, "onCut", null);
-    __decorate([
-        core_1.HostListener('window:paste', ['$event']), 
-        __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
-        __metadata('design:returntype', void 0)
-    ], TestComponent.prototype, "onPaste", null);
-    TestComponent = __decorate([
-        core_1.Component({
-            selector: 'test',
-            templateUrl: './app/test/test.html',
-        }), 
-        __metadata('design:paramtypes', [router_1.Router, Questions_service_1.QuestionsMethods, common_1.PlatformLocation, common_2.Location])
-    ], TestComponent);
     return TestComponent;
 }());
+__decorate([
+    core_1.HostListener('window:popstate', ['$event']),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], TestComponent.prototype, "onPopState", null);
+__decorate([
+    core_1.HostListener('window:beforeunload', ['$event']),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], TestComponent.prototype, "onBeforeUnload", null);
+__decorate([
+    core_1.HostListener('window:contextmenu', ['$event']),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], TestComponent.prototype, "onContextMenu", null);
+__decorate([
+    core_1.HostListener('window:copy', ['$event']),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], TestComponent.prototype, "onCopy", null);
+__decorate([
+    core_1.HostListener('window:cut', ['$event']),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], TestComponent.prototype, "onCut", null);
+__decorate([
+    core_1.HostListener('window:paste', ['$event']),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], TestComponent.prototype, "onPaste", null);
+TestComponent = __decorate([
+    core_1.Component({
+        selector: 'test',
+        templateUrl: './app/test/test.html',
+    }),
+    __metadata("design:paramtypes", [router_1.Router, Questions_service_1.QuestionsMethods, common_1.PlatformLocation,
+        common_2.Location])
+], TestComponent);
 exports.TestComponent = TestComponent;
 //# sourceMappingURL=test.component.js.map

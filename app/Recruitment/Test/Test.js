@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Test = (function () {
     function Test(id, question, answer, status) {
         this.QuestionID = id;

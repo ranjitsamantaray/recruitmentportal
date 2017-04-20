@@ -9,6 +9,8 @@ import {ConsultancyService} from '../Services/Consultancy.service';
 import {FilterComponent } from '../Shared/Filter.component';
 import {IMyOptions, IMyDateModel} from 'mydatepicker';
 import {Ng2PaginationModule} from 'ng2-pagination';
+import {LightboxModule} from 'primeng/primeng';
+import {DomSanitizer} from '@angular/platform-browser';
 
 
 @Component ({
@@ -23,8 +25,9 @@ export class SummaryComponent implements OnInit {
   public Consul :Consultancy[];
   errorMessage : string; 
   public date1:string=null;
-  public length:number;
+  public length:number; 
   public Name:string=null;
+  public urlString: string;
  
   
   
@@ -37,9 +40,19 @@ export class SummaryComponent implements OnInit {
     };
 
   constructor(_router: Router, private _summaryService : SummaryMethods,private _consultancyService : ConsultancyService,
-  private _skillService : SkillMethods){  
+  private _skillService : SkillMethods, private sanitizer: DomSanitizer, private lightboxModule: LightboxModule){  
   this.router = _router;
   
+  }
+
+  getResumeLink(canid : string){
+    this.urlString = 'http://recruitmentservices.azurewebsites.net/Resume/' + canid.replace('.','_') + '.pdf';
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.urlString);
+  }
+
+
+  displayoverlay(){
+    
   }
 
   onDateChanged(event: IMyDateModel) {
@@ -82,6 +95,5 @@ logout(){
     localStorage.removeItem('id_token');
     this.router.navigate(['login']);
   }
+
 }
-
-

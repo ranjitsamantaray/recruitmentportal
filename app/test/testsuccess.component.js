@@ -8,8 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var TestSuccessComponent = (function () {
     function TestSuccessComponent(router) {
         this.router = router;
@@ -18,14 +19,14 @@ var TestSuccessComponent = (function () {
         localStorage.removeItem('id_token');
         this.router.navigate(['testlogin']);
     };
-    TestSuccessComponent = __decorate([
-        core_1.Component({
-            selector: 'test-success',
-            templateUrl: './app/test/test-success.html'
-        }), 
-        __metadata('design:paramtypes', [router_1.Router])
-    ], TestSuccessComponent);
     return TestSuccessComponent;
 }());
+TestSuccessComponent = __decorate([
+    core_1.Component({
+        selector: 'test-success',
+        templateUrl: './app/test/test-success.html'
+    }),
+    __metadata("design:paramtypes", [router_1.Router])
+], TestSuccessComponent);
 exports.TestSuccessComponent = TestSuccessComponent;
 //# sourceMappingURL=testsuccess.component.js.map

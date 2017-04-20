@@ -1,9 +1,14 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -13,17 +18,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
-var Questions_1 = require('../Recruitment/Questions/Questions');
-var Observable_1 = require('rxjs/Observable');
-require('rxjs/add/operator/map');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+require("rxjs/add/operator/toPromise");
+var Questions_1 = require("../Recruitment/Questions/Questions");
+var Observable_1 = require("rxjs/Observable");
+require("rxjs/add/operator/map");
 //import * as Rs from 'rxjs/Rx';
-require('rxjs/add/operator/do');
-require('rxjs/add/operator/catch');
-var config_service_1 = require('../config/config.service');
-var HandleError_service_1 = require('./HandleError.service');
+require("rxjs/add/operator/do");
+require("rxjs/add/operator/catch");
+var config_service_1 = require("../config/config.service");
+var HandleError_service_1 = require("./HandleError.service");
 var QuestionsMethods = (function () {
     function QuestionsMethods() {
     }
@@ -33,13 +39,14 @@ exports.QuestionsMethods = QuestionsMethods;
 var QuestionsService = (function (_super) {
     __extends(QuestionsService, _super);
     function QuestionsService(_http, configSrvc, _handleError) {
-        _super.call(this);
-        this._http = _http;
-        this.configSrvc = configSrvc;
-        this._handleError = _handleError;
-        this.config = this.configSrvc.config;
-        this.url1 = this.config['apiUrl'] + 'dbsecure-can/questionset';
-        this.url2 = this.config['apiUrl'] + 'dbsecure-can/submit';
+        var _this = _super.call(this) || this;
+        _this._http = _http;
+        _this.configSrvc = configSrvc;
+        _this._handleError = _handleError;
+        _this.config = _this.configSrvc.config;
+        _this.url1 = _this.config['apiUrl'] + 'dbsecure-can/questionset';
+        _this.url2 = _this.config['apiUrl'] + 'dbsecure-can/submit';
+        return _this;
     }
     QuestionsService.prototype.getQuestions = function () {
         var token = localStorage.getItem('id_token');
@@ -65,19 +72,21 @@ var QuestionsService = (function (_super) {
             .map(function (response) { return response.json(); })
             .catch(function (res) { return _this._handleError.handleError(res); });
     };
-    QuestionsService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, config_service_1.ConfigService, HandleError_service_1.HandleError])
-    ], QuestionsService);
     return QuestionsService;
 }(QuestionsMethods));
+QuestionsService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http, config_service_1.ConfigService,
+        HandleError_service_1.HandleError])
+], QuestionsService);
 exports.QuestionsService = QuestionsService;
 var QuestionsDummyService = (function (_super) {
     __extends(QuestionsDummyService, _super);
     function QuestionsDummyService(_http) {
-        _super.call(this);
-        this._http = _http;
-        this.url = 'app/Json/Question.json';
+        var _this = _super.call(this) || this;
+        _this._http = _http;
+        _this.url = 'app/Json/Question.json';
+        return _this;
     }
     QuestionsDummyService.prototype.getQuestions = function () {
         // return this._http.get(this.url)
@@ -102,11 +111,11 @@ var QuestionsDummyService = (function (_super) {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);
     };
-    QuestionsDummyService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], QuestionsDummyService);
     return QuestionsDummyService;
 }(QuestionsMethods));
+QuestionsDummyService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], QuestionsDummyService);
 exports.QuestionsDummyService = QuestionsDummyService;
 //# sourceMappingURL=Questions.service.js.map

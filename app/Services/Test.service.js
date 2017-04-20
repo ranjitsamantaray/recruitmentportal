@@ -1,9 +1,14 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -13,19 +18,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
-var Eval_1 = require('../Recruitment/Eval');
-var Test_1 = require('../Recruitment/Test/Test');
-var Candidate_1 = require('../Recruitment/Candidate/Candidate');
-var Observable_1 = require('rxjs/Observable');
-require('rxjs/add/operator/map');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+require("rxjs/add/operator/toPromise");
+var Eval_1 = require("../Recruitment/Eval");
+var Test_1 = require("../Recruitment/Test/Test");
+var Candidate_1 = require("../Recruitment/Candidate/Candidate");
+var Observable_1 = require("rxjs/Observable");
+require("rxjs/add/operator/map");
 //import * as Rs from 'rxjs/Rx';
-require('rxjs/add/operator/do');
-require('rxjs/add/operator/catch');
-var config_service_1 = require('../config/config.service');
-var HandleError_service_1 = require('./HandleError.service');
+require("rxjs/add/operator/do");
+require("rxjs/add/operator/catch");
+var config_service_1 = require("../config/config.service");
+var HandleError_service_1 = require("./HandleError.service");
 var TestMethods = (function () {
     function TestMethods() {
     }
@@ -35,15 +41,16 @@ exports.TestMethods = TestMethods;
 var TestService = (function (_super) {
     __extends(TestService, _super);
     function TestService(_http, configSrvc, _handleError) {
-        _super.call(this);
-        this._http = _http;
-        this.configSrvc = configSrvc;
-        this._handleError = _handleError;
+        var _this = _super.call(this) || this;
+        _this._http = _http;
+        _this.configSrvc = configSrvc;
+        _this._handleError = _handleError;
         console.log('Inside TestService');
-        this.config = this.configSrvc.config;
-        console.log('Configurations: ' + JSON.stringify(this.config));
-        this.url = this.config['apiUrl'] + 'dbsecure-can/answers';
-        this.urlSave = this.config['apiUrl'] + 'dbsecure-can/submiteval';
+        _this.config = _this.configSrvc.config;
+        console.log('Configurations: ' + JSON.stringify(_this.config));
+        _this.url = _this.config['apiUrl'] + 'dbsecure-can/answers';
+        _this.urlSave = _this.config['apiUrl'] + 'dbsecure-can/submiteval';
+        return _this;
     }
     TestService.prototype.saveTest = function (subTest) {
         console.log(JSON.stringify(subTest));
@@ -85,20 +92,22 @@ var TestService = (function (_super) {
             return Observable_1.Observable.throw(err.statusText);
         });
     };
-    TestService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, config_service_1.ConfigService, HandleError_service_1.HandleError])
-    ], TestService);
     return TestService;
 }(TestMethods));
+TestService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http, config_service_1.ConfigService,
+        HandleError_service_1.HandleError])
+], TestService);
 exports.TestService = TestService;
 var TestDummyService = (function (_super) {
     __extends(TestDummyService, _super);
     function TestDummyService(_http) {
-        _super.call(this);
-        this._http = _http;
-        this.url = 'app/Json/Test.json';
+        var _this = _super.call(this) || this;
+        _this._http = _http;
+        _this.url = 'app/Json/Test.json';
         console.log('Inside CandidateService');
+        return _this;
     }
     TestDummyService.prototype.saveTest = function (candidateID) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
@@ -144,11 +153,11 @@ var TestDummyService = (function (_super) {
         console.error('An error occurred', error);
         return Observable_1.Observable.throw(error.json().error || 'Server error');
     };
-    TestDummyService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], TestDummyService);
     return TestDummyService;
 }(TestMethods));
+TestDummyService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], TestDummyService);
 exports.TestDummyService = TestDummyService;
 //# sourceMappingURL=Test.service.js.map

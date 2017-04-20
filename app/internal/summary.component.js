@@ -8,16 +8,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var Summary_service_1 = require('../Services/Summary.service');
-var Skills_service_1 = require('../Services/Skills.service');
-var Consultancy_service_1 = require('../Services/Consultancy.service');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var Summary_service_1 = require("../Services/Summary.service");
+var Skills_service_1 = require("../Services/Skills.service");
+var Consultancy_service_1 = require("../Services/Consultancy.service");
+var primeng_1 = require("primeng/primeng");
+var platform_browser_1 = require("@angular/platform-browser");
 var SummaryComponent = (function () {
-    function SummaryComponent(_router, _summaryService, _consultancyService, _skillService) {
+    function SummaryComponent(_router, _summaryService, _consultancyService, _skillService, sanitizer, lightboxModule) {
         this._summaryService = _summaryService;
         this._consultancyService = _consultancyService;
         this._skillService = _skillService;
+        this.sanitizer = sanitizer;
+        this.lightboxModule = lightboxModule;
         this.date1 = null;
         this.Name = null;
         this.myDatePickerOptions = {
@@ -29,6 +34,12 @@ var SummaryComponent = (function () {
         };
         this.router = _router;
     }
+    SummaryComponent.prototype.getResumeLink = function (canid) {
+        this.urlString = 'http://recruitmentservices.azurewebsites.net/Resume/' + canid.replace('.', '_') + '.pdf';
+        return this.sanitizer.bypassSecurityTrustResourceUrl(this.urlString);
+    };
+    SummaryComponent.prototype.displayoverlay = function () {
+    };
     SummaryComponent.prototype.onDateChanged = function (event) {
         // event properties are: event.date, event.jsdate, event.formatted and event.epoc
         if (event.formatted) {
@@ -60,14 +71,15 @@ var SummaryComponent = (function () {
         localStorage.removeItem('id_token');
         this.router.navigate(['login']);
     };
-    SummaryComponent = __decorate([
-        core_1.Component({
-            selector: 'summary',
-            templateUrl: './app/internal/summary.html'
-        }), 
-        __metadata('design:paramtypes', [router_1.Router, Summary_service_1.SummaryMethods, Consultancy_service_1.ConsultancyService, Skills_service_1.SkillMethods])
-    ], SummaryComponent);
     return SummaryComponent;
 }());
+SummaryComponent = __decorate([
+    core_1.Component({
+        selector: 'summary',
+        templateUrl: './app/internal/summary.html'
+    }),
+    __metadata("design:paramtypes", [router_1.Router, Summary_service_1.SummaryMethods, Consultancy_service_1.ConsultancyService,
+        Skills_service_1.SkillMethods, platform_browser_1.DomSanitizer, primeng_1.LightboxModule])
+], SummaryComponent);
 exports.SummaryComponent = SummaryComponent;
 //# sourceMappingURL=summary.component.js.map

@@ -8,13 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var Test_service_1 = require('../Services/Test.service');
-var Eval_1 = require('../Recruitment/Eval');
-var Candidate_service_1 = require('../Services/Candidate.service');
-var SubmitTest_1 = require('../Recruitment/SubmitTest');
-var Consultancy_service_1 = require('../Services/Consultancy.service');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var Test_service_1 = require("../Services/Test.service");
+var Eval_1 = require("../Recruitment/Eval");
+var Candidate_service_1 = require("../Services/Candidate.service");
+var SubmitTest_1 = require("../Recruitment/SubmitTest");
+var Consultancy_service_1 = require("../Services/Consultancy.service");
 var EvaluationComponent = (function () {
     function EvaluationComponent(_router, _candidateService, _consultancyService, _testService, route) {
         this._candidateService = _candidateService;
@@ -96,14 +97,15 @@ var EvaluationComponent = (function () {
         localStorage.removeItem('id_token');
         this.router.navigate(['login']);
     };
-    EvaluationComponent = __decorate([
-        core_1.Component({
-            selector: 'evaluation',
-            templateUrl: './app/internal/evaluation.html'
-        }), 
-        __metadata('design:paramtypes', [router_1.Router, Candidate_service_1.CandidateMethods, Consultancy_service_1.ConsultancyService, Test_service_1.TestMethods, router_1.ActivatedRoute])
-    ], EvaluationComponent);
     return EvaluationComponent;
 }());
+EvaluationComponent = __decorate([
+    core_1.Component({
+        selector: 'evaluation',
+        templateUrl: './app/internal/evaluation.html'
+    }),
+    __metadata("design:paramtypes", [router_1.Router, Candidate_service_1.CandidateMethods, Consultancy_service_1.ConsultancyService,
+        Test_service_1.TestMethods, router_1.ActivatedRoute])
+], EvaluationComponent);
 exports.EvaluationComponent = EvaluationComponent;
 //# sourceMappingURL=evaluation.component.js.map

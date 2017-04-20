@@ -29,7 +29,8 @@
       'angular2-jwt': 'node_modules/angular2-jwt/angular2-jwt.js',
       'ng2-pagination': 'npm:ng2-pagination',
      'mydatepicker': 'npm:mydatepicker/bundles/mydatepicker.umd.js',
-     'ng2-smart-table' : 'npm:ng2-smart-table'
+     'ng2-smart-table' : 'npm:ng2-smart-table',
+     "primeng": "npm:primeng"
       
     },
     // packages tells the System loader how to load when no filename and/or no extension
@@ -52,7 +53,10 @@
         main: './ng2-smart-table.js',
         defaultExtension: 'js'
       }, 
-      
+      'primeng': { //add configuration to load
+        main: './primeng.js',
+        defaultExtension: 'js'
+      }, 
       
     }
   });

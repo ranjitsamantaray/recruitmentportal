@@ -1,9 +1,14 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -13,17 +18,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
-var Candidate_1 = require('../Recruitment/Candidate/Candidate');
-var Observable_1 = require('rxjs/Observable');
-require('rxjs/add/operator/map');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+require("rxjs/add/operator/toPromise");
+var Candidate_1 = require("../Recruitment/Candidate/Candidate");
+var Observable_1 = require("rxjs/Observable");
+require("rxjs/add/operator/map");
 //import * as Rs from 'rxjs/Rx';
-require('rxjs/add/operator/do');
-require('rxjs/add/operator/catch');
-var config_service_1 = require('../config/config.service');
-var HandleError_service_1 = require('./HandleError.service');
+require("rxjs/add/operator/do");
+require("rxjs/add/operator/catch");
+var config_service_1 = require("../config/config.service");
+var HandleError_service_1 = require("./HandleError.service");
 var CandidateMethods = (function () {
     function CandidateMethods() {
     }
@@ -33,15 +39,16 @@ exports.CandidateMethods = CandidateMethods;
 var CandidateService = (function (_super) {
     __extends(CandidateService, _super);
     function CandidateService(_http, configSrvc, _handleError) {
-        _super.call(this);
-        this._http = _http;
-        this.configSrvc = configSrvc;
-        this._handleError = _handleError;
-        this.config = this.configSrvc.config;
-        this.url = this.config['apiUrl'] + 'candidate/register';
-        this.urlResume = this.config['apiUrl'] + 'candidate/upload';
-        this.url2 = this.config['apiUrl'] + 'employee/register';
-        this.url3 = this.config['apiUrl'] + 'dbsecure-can/summary';
+        var _this = _super.call(this) || this;
+        _this._http = _http;
+        _this.configSrvc = configSrvc;
+        _this._handleError = _handleError;
+        _this.config = _this.configSrvc.config;
+        _this.url = _this.config['apiUrl'] + 'candidate/register';
+        _this.urlResume = _this.config['apiUrl'] + 'candidate/upload';
+        _this.url2 = _this.config['apiUrl'] + 'employee/register';
+        _this.url3 = _this.config['apiUrl'] + 'dbsecure-can/summary';
+        return _this;
     }
     CandidateService.prototype.saveCandidate = function (candidate) {
         var _this = this;
@@ -100,20 +107,21 @@ var CandidateService = (function (_super) {
             .map(function (response) { return response.json(); })
             .catch(function (res) { return _this._handleError.handleError(res); });
     };
-    CandidateService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, config_service_1.ConfigService, HandleError_service_1.HandleError])
-    ], CandidateService);
     return CandidateService;
 }(CandidateMethods));
+CandidateService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http, config_service_1.ConfigService,
+        HandleError_service_1.HandleError])
+], CandidateService);
 exports.CandidateService = CandidateService;
 var CandidateDummyService = (function (_super) {
     __extends(CandidateDummyService, _super);
     function CandidateDummyService(_http) {
-        _super.call(this);
-        this._http = _http;
-        this.url = 'app/Json/Candidate.json';
-        this.candidates = [
+        var _this = _super.call(this) || this;
+        _this._http = _http;
+        _this.url = 'app/Json/Candidate.json';
+        _this.candidates = [
             new Candidate_1.Candidate(1, "Akhil", "Akhil@a.com", "123456789", 9, "BD", 89, "BD", "123456", "XYZ", 90),
             new Candidate_1.Candidate(2, "Kumar", "Kumar@a.com", "123456789", 3, "Java", 99, "BD", "123456", "XYZ", 89),
             new Candidate_1.Candidate(3, "Ranjith", "Ranjith@a.com", "123456789", 7, "Dotnet", null, "BD", "123456", "ABC", 88),
@@ -121,6 +129,7 @@ var CandidateDummyService = (function (_super) {
             new Candidate_1.Candidate(5, "Nagaraj", "Nagaraj@a.com", "123456789", 2, "PLI", null, "BD", "123456", "LMN", 86)
         ];
         console.log('Inside CandidateService');
+        return _this;
     }
     CandidateDummyService.prototype.candidateLogin = function (email, pwd) {
         return Rs.Observable.from([false]);
@@ -172,11 +181,11 @@ var CandidateDummyService = (function (_super) {
         console.error('An error occurred', error);
         return Observable_1.Observable.throw(error.json().error || 'Server error');
     };
-    CandidateDummyService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], CandidateDummyService);
     return CandidateDummyService;
 }(CandidateMethods));
+CandidateDummyService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], CandidateDummyService);
 exports.CandidateDummyService = CandidateDummyService;
 //# sourceMappingURL=Candidate.service.js.map
